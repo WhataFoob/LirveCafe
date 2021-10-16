@@ -89,7 +89,7 @@ trang web của chúng ta
     . Vì sao lại cần sass/scss:
         + Giúp cho anh em viết css theo cách như kiểu ngôn ngữ lập trình được
         + Có cấu trúc dễ dàng và dễ bảo trì nha
-        + có thêm nhiều thư viện đễ hỗ trọ viết css dễ hơn (team front-rnd tìm hiểu nhé)
+        + có thêm nhiều thư viện đễ hỗ trọ viết css dễ hơn (team front-end tìm hiểu nhé)
 
     . file scss: dev chạy chứ trình duyệt vân dùng css được combine từ
                  file scss 
