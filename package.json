@@ -1,0 +1,43 @@
+{
+  "name": "bookstore",
+  "version": "1.0.0",
+  "description": "This is a project simulating a store that supplies all coffe and book services on website\r It is software engineering project in my university",
+  "exports": "./src/index.js",
+  "scripts": {
+    "start": "nodemon --inspect ./src/index.js",
+    "watch": "node-sass --watch ./src/resources/scss/ --output ./src/public/css/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JJLEE-20194099/software_engineering_project.git"
+  },
+  "keywords": [
+    "javascript",
+    "handlebars",
+    "bookstore",
+    "cafe",
+    "nodejs",
+    "express"
+  ],
+  "author": "LKN_VTC GROUP",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JJLEE-20194099/software_engineering_project/issues"
+  },
+  "homepage": "https://github.com/JJLEE-20194099/software_engineering_project#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.0.11",
+    "mongoose-delete": "^0.5.4",
+    "mongoose-slug-generator": "^1.0.4"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "node-sass": "^6.0.1",
+    "nodemon": "^2.0.13"
+  },
+  "type": "module"
+}

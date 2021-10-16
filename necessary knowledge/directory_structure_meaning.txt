@@ -1,0 +1,27 @@
+Project name
+    +/ src folder: mọi code chay của anh em đều ở trong này hết
+
+        public folder: chứa static file
+            + img folder: chứa image của anh em
+            + css folder: Không code ở đây mà code ở scss folder nha anh em
+                (đây là nới được build từ file scss ra)
+
+        index.js: tương tự file main trong c/c++ và java
+        resources folder:  -> chứa các tài nguyên của project
+            + scss folder: các file css  
+                > app.scss file
+                > _variables.scss file
+            + views folder: các file hbs 
+                (handlebars file <=> HTML file) bể bơi của anh em front end nhé
+                + layouts folder: nơi chứa template handelbars file mặc  định
+                    các file ngoài layouts sẽ là nội dung để chèn vào layouts nhé
+                
+                + partials folder: 
+                    Chứa header file
+                    Chứa file footer file
+        
+        nodemon.json: (Chưa biết nodemon là chi thì đọc qua keyword_meaning.txt trong git của project nhé)
+
+            -> để  config rằng khi các file không phải js thay đổi thì nodemon
+            vẫn lắng nghe để thay đổi được
+

@@ -1,0 +1,98 @@
+Kiến thức overview cho ai chưa biết về 1 số từ khóa và 
+kiến thức dùng trong project và 1 số cách đơn giản để chạy
+trang web của chúng ta
+
++/ nodejs: 
+    . là 1 nền tảng javascript được xây dựng trên Chrome's V8 javascript engine
+    . Bản chất Google Chorme nó dùng 1 cái core Chorme's V8 engine
+      là 1 trình thông dịch mà không phải biên dịch ra file binary để chạy
+      mà chạy trực tiếp, và nó dịch javascript của bạn chạy trên chrome browser
+    . Và nodejs để nó chạy được trên server thì nó dùng cái Chrome's V8 Javascript engine
+
+    Check nodejs in your computer available
+    cmd: node --version
+
+    . Khi cài nodejs thì nó cũng cài npm(node package management)
+    cmd: npm --version
+
++/ How to initial a nodejs project:
+    . cmd: npm init (Bản chất project cũng là 1 package thôi)
+    . note: (entry point: index.jd nghĩa là cái file mà server sẽ chạy)
+    . git repository: link project trên git (cái ni chắc ai cũng biết chưa biết thì giờ biết)
+    . keyword: tất cả các tag liên quan đến project -> tăng khả năng seo git project của anh em
+               khi tìm kiếm nha (Ex: nodejs, cafe, book, bookstore management, café management)
+    . author: software_engineering_uni_group
+    
+    -> tạo ra 1 file package.json(quản lý các dependencies của project)
++/ express: là 1 framework(pagekage)
+
+    . bản thân express nó cũng phụ thuộc nhiều package khác củ thể
+      hơn ơ trong package-log.json
+    
+    . node_modules: source code của package ở đây
+
+    . -> start web server with express
+    .express() -> trả về 1 instance để xây dựng 1 cái website cho anh em
+    
++/ route: URL path in your website
+
++/ nodemon: 
+    . Khi mà thay đổi code ở javascript ở trong project thì server nó đã
+      chạy rồi nghĩa là javascript nó đã được server load rồi
+      -> vấn đề ở đây là gì: các cái code mới javascript sẽ không được update
+      lên cho browser và ta phải tự tay restart lại server 
+      (lúc làm việc chả ai làm như vậy cả)
+
+    . Khi đó nodemon cần cho project của chúng ta để nó có thể lắng nghe được
+      sự thay đổi đó và automatically restarting server
++/ morgan: 
+    . Quan sát được cái log request mà client gửi lên
+    . app.use(morgan('combined'))
+    . Khi mà trình duyệt quay mãi mà không bt bug ở đâu thì
+      thư viện morgan là 1 lựa chọn tuyệt vời cho anh em để 
+      soát lỗi(nhớ dùng)
+
++/ Handlebars: (là template engine nhóm mình sử dụng)
+    . Đây là 1 template engine
+    . Template engine:
+        Khi không dùng template engine thì việc server send HTML page
+        về thì quá là dài dòng thì
+
+        Template engine nó giúp anh em có thể viết code HTML
+        gọn gàn hơn nhé và có hiểu quả như HTML thủ công
+
+    . Lúc đầu định cho anh em dùng pug(nhưng vì anh em không quen thì thôi)
+    . Pug có số lượng downloads trên 1 tuần là 1 triệu mấy nhé
+      trong khi đó handlebars được 100 nghìn mấy thôi
+      (pug cũng là 1 template engine và nó phổ biến hơn handlebars)
+      (số liệu tên npmjs nếu anh em thấy thú vị)
+
++/ static folder:
+    Nơi mà bắt đầu như root cho các đường dẫn tương đối khi
+    truyền vào code ở backend:
+    
+    VD: bình thường thì static folder path: '/'
+        thì muồn về trang home trong views thì phải 
+        truyền vào path từ backend là '/views/home'
+
+        Còn khi config cho static folder path là '/views',
+        thì truyền vào path từ backend là 'home'
+
++/ static path: với URL thì server kiểm tra các file tĩnh và cấu
+                hình mà ta đã config cho nó
+            (Anh em yên tâm tau sẽ cấu hình hết cho anh em
+                Việc của anh em chỉ có bơi lội trong môi trường views
+                của anh em thôi còn việc làm sao để cấu hình và tích
+                hợp tau sẽ lo nhé
+            )
++/ node-sass: package hô trợ đồi với các css file 
+    . Vì sao lại cần sass/scss:
+        + Giúp cho anh em viết css theo cách như kiểu ngôn ngữ lập trình được
+        + Có cấu trúc dễ dàng và dễ bảo trì nha
+        + có thêm nhiều thư viện đễ hỗ trọ viết css dễ hơn (team front-rnd tìm hiểu nhé)
+
+    . file scss: dev chạy chứ trình duyệt vân dùng css được combine từ
+                 file scss 
+
+
+
