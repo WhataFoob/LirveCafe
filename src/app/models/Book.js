@@ -7,11 +7,18 @@ const Schema = mongoose.Schema;
 mongoose.plugin(slug);
 const Book = new Schema(
     {
-        name: { type: String, required: true},
+        title: { type: String, required: true},
+        author: { type: String},
         description: { type: String},
         image: { type: String },
+        body: {type: String, required: true},
         no: {type: Number, required: true},
-        slug: { type: String, slug: 'name', unique: true },   
+        hidden: {type: Boolean},
+        slug: { type: String, slug: 'name', unique: true },
+        meta: {
+            votes: {type: Number, default: 0},
+            favs: {type: Number, default: 0}
+        }   
     },
     {
         timestamps: true,
