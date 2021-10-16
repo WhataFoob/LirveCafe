@@ -10,6 +10,9 @@ import { dirname } from 'path';
 import routeObj from './routes/index.js';
 import db from './config/database/index.js';
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 const app = express();
 db.connect();
 const port = 3000;
