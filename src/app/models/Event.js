@@ -12,7 +12,6 @@ const Event = new Schema(
         no: {type: Number, requires: true},
         drinkList: [Number],
         foodList: [Number],
-        hidden: {type: Boolean},
         slug: {type: String, slug: 'name', unique: true}
     },
     {

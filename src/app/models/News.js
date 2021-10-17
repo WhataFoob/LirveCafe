@@ -9,7 +9,6 @@ const News = new Schema(
         title: {type: String, required: true},
         image: {type: String, default: "https://dailyvoinuoc.com/wp-content/uploads/2016/10/big-sale.jpg"},
         description: {type: String},
-        hidden: {type: Boolean},
         slug: {type: String, slug: 'title', unique: true},
         endTime: {type: Date, default: Date.now() + 60*60*24*7}
     },

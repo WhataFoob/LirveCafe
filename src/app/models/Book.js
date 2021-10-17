@@ -13,8 +13,7 @@ const Book = new Schema(
         image: { type: String },
         body: {type: String, required: true},
         no: {type: Number, required: true},
-        hidden: {type: Boolean},
-        slug: { type: String, slug: 'name', unique: true },
+        slug: { type: String, slug: 'title', unique: true },
         meta: {
             votes: {type: Number, default: 0},
             favs: {type: Number, default: 0}

@@ -10,7 +10,6 @@ const Coffee = new Schema(
         name: {type: String, required: true},
         description: {type: String, required: true},
         image: {type: String, required: true},
-        hidden: {type: Boolean},
         slug: {type: String, slug: 'name', unique: true},
         meta: {
             votes: {type: Number, default: 0},

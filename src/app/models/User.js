@@ -15,7 +15,6 @@ const User = new Schema(
         password: {type: String, required: true},
         avatar: {type: String},
         star_no: {type: Number, default: 0},
-        hidden: {type: Boolean},
     },
     {
         timestamps: true,
