@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 
-import controllers from '../app/controllers/CoffeeController.js';
+import controllers from '../app/controllers/EventController.js';
 
 router.get('/list', controllers.index);
 router.get('/:slug', controllers.show);
