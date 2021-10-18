@@ -1,0 +1,4 @@
+1./ errors: (mảng các lỗi khi validate)
+    khi login thì backend sẽ validate data rồi gửi về 
+    errors data cho front end render ngược lại trên form login
+    (tương tự cho form tạo tài khoản)
