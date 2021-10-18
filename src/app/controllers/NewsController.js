@@ -1,9 +1,20 @@
-import News from '../models/Event'
-import { singleMongooseDocumentToObject } from '../../support_lib/mongoose';
+import News from '../models/News.js'
+import { singleMongooseDocumentToObject } from '../../support_lib/mongoose.js';
 
 const NewsController = {
-     // GET: /news/:slug
-     show(req, res, next) {
+
+    // GET /news/list
+    index(req, res, next) {
+        News.find({})
+            .then((news) => {
+                res.render('news/news_detail', {
+                    news: mongooseDocumentsToObject(news)
+                });
+            }).catch(next);
+    },
+
+    // GET: /news/:slug
+    show(req, res, next) {
         News.findOne({ slug: req.params.slug })
             .then((book) => {
                 res.render('news/show', {

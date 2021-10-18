@@ -1,20 +1,18 @@
 import mongoose from 'mongoose';
 
-const connectObj = {
+const mongoose_driver = {
     connect: async function () {
         try {
-            await mongoose.connect('mongodb://localhost: 27017/bookstore_dev', {
+            await mongoose.connect(process.env.MONGO_URL, {
                 useNewUrlParser: true,
-                useUnifiedTopology: true,
-                useCreateIndex: true,
+                useUnifiedTopology: true
             });
-    
-            console.log('Kết nối thành công')
-    
+            console.log('Connect Successfully')
         } catch(error) {
-            console.log('Kết nối thất bại')
+            console.log('Connect Failure')
         }
+        
     }
 }
 
-export default connectObj;
+export default mongoose_driver;

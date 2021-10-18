@@ -1,12 +1,26 @@
-import Coffee from '../models/Coffee';
-import { singleMongooseDocumentToObject } from '../../support_lib/mongoose';
+import Coffee from '../models/Coffee.js';
+import { 
+    singleMongooseDocumentToObject,
+    mongooseDocumentsToObject
+} from '../../support_lib/mongoose.js';
 
 const CoffeeController = {
+
+    // GET /coffee/list
+    index(req, res, next) {
+        Coffee.find({})
+            .then((coffee) => {
+                res.render('cafe/list', {
+                    coffee: mongooseDocumentsToObject(coffee)
+                });
+            }).catch(next);
+    },
+
     // GET /coffee/:slug
     show(req, res, next) {
         Coffee.findOne({slug: req.params.slug})
             .then((coffee) => {
-                res.render('cafe/show', {
+                res.render('cafe/coffee_detail', {
                     coffee: singleMongooseDocumentToObject(coffee)
                 })
             }).catch(next);

@@ -1,11 +1,8 @@
-const mongooseUtils = {
-    mongooseDocumentsToObject: function(documents) {
-        return documents.map((document) => document.toObject());
-    },
-    singleMongooseDocumenttObject: function(document) {
-        if (document) return document.toOject();
-        return document;
-    }
+export const mongooseDocumentsToObject = function(documents) {
+    return documents.map((document) => document.toObject());
 };
 
-export default mongooseUtils;   
+export const singleMongooseDocumentToObject = function(document) {
+    if (document) return document.toObject();
+    return document;
+}

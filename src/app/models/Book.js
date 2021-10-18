@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import slug from 'mongoose-slug-generator';
 import mongooseDelete from 'mongoose-delete';
 
-const Schema = mongoose.Schema;
+const {Schema} = mongoose;
 
 mongoose.plugin(slug);
 const Book = new Schema(

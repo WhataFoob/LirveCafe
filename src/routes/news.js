@@ -1,0 +1,16 @@
+import express from 'express';
+const router = express.Router();
+
+import controllers from '../app/controllers/NewsController.js';
+
+router.get('/list', controllers.index);
+router.get('/:slug', controllers.show);
+router.get('/create', controllers.create);
+router.post('/save', controllers.save);
+router.get('/:id/edit', controllers.edit);
+router.put('/:id', controllers.update);
+router.delete('/:id', controllers.softDelete);
+router.delete('/:id/force', controllers.deepDelete);
+router.patch('/:id/restore', controllers.restore);
+
+export default router;

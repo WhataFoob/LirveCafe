@@ -1,11 +1,22 @@
-import Book from '../models/Book';
-import { singleMongooseDocumentToObject } from '../../support_lib/mongoose';
+import Book from '../models/Book.js';
+import { singleMongooseDocumentToObject } from '../../support_lib/mongoose.js';
+
 const BookController = {
+    // GET /books/list
+    index(req, res, next) {
+        Book.find({})
+            .then((books) => {
+                res.render('books/list', {
+                    books: mongooseDocumentsToObject(books)
+                });
+            }).catch(next);
+    },
+
     // GET: /books/:slug
     show(req, res, next) {
         Book.findOne({ slug: req.params.slug })
             .then((book) => {
-                res.render('books/show', {
+                res.render('books/book_detail', {
                     book: singleMongooseDocumentToObject(book)
                 })
             })

@@ -1,13 +1,27 @@
-import Event from '../models/Event';
-import { singleMongooseDocumentToObject } from '../../support_lib/mongoose';
+import Event from '../models/Event.js';
+import { 
+    singleMongooseDocumentToObject,
+    mongooseDocumentsToObject
+} from '../../support_lib/mongoose.js';
 
 const EventController = {
+
+    // GET /events/list
+
+    index(req, res, next) {
+        Event.find({})
+            .then((events) => {
+                res.render('events/list', {
+                    events: mongooseDocumentsToObject(events)
+                })
+            }).catch(next);
+    },
     
     // GET /events/:slug
     show(req, res, next) {
         Event.findOne({slug: req.params.slug})
             .then((event) => {
-                res.render('events/show' , {
+                res.render('events/event_detail' , {
                     event: singleMongooseDocumentToObject(event)
                 })
             }).catch(next)

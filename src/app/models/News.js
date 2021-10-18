@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import slug from 'mongoose-slug-generator';
 import mongooseDelete from 'mongoose-delete';
 
-const Schema = mongoose.Schema;
+const {Schema} = mongoose;
 
 const News = new Schema(
     {
@@ -23,4 +23,4 @@ News.plugin(mongooseDelete, {
     overrideMethos: 'all'
 });
 
-export default mongoose.model(News);
+export default mongoose.model('News', News);

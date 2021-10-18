@@ -1,20 +1,21 @@
-import mongoose, { mongo } from 'mongoose';
+import mongoose from 'mongoose';
 import slug from 'mongoose-slug-generator';
 import mongooseDelete from 'mongoose-delete';
-import mongooseEmail from 'mongoose-type-email';
 
-const Schema = mongoose.Schema;
+
+const {Schema} = mongoose;
 
 const User = new Schema(
     {
         firstname: {type: String, required: true},
         lastname: {type: String, required: true},
-        email: {type: mongoose.SchemaTypes.Email, required: true},
+        email: {type: String, required: true},
         phone: {type: String, required: true},
         username: {type: String},
         password: {type: String, required: true},
         avatar: {type: String},
         star_no: {type: Number, default: 0},
+        role: {type: String, default: "guest"}
     },
     {
         timestamps: true,
