@@ -20,7 +20,7 @@ const CoffeeController = {
     show(req, res, next) {
         Coffee.findOne({slug: req.params.slug})
             .then((coffee) => {
-                res.render('cafe/coffee_detail', {
+                res.render('cafe/coffee_info', {
                     coffee: singleMongooseDocumentToObject(coffee)
                 })
             }).catch(next);
@@ -33,7 +33,7 @@ const CoffeeController = {
 
     // POST /coffee/save
     save(req, res, next) {
-        req.body.image = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/1200px-A_small_cup_of_coffee.JPG';
+        req.body.image = '/' + req.file.path.split('\\').slice(2).join('/'); 
         const coffee = new Coffee(req.body);
         coffee.save()
             .then(() => res.redirect('/own/stored/coffee'))

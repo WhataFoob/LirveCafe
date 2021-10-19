@@ -1,5 +1,8 @@
 import Book from '../models/Book.js';
-import { singleMongooseDocumentToObject } from '../../support_lib/mongoose.js';
+import { 
+    singleMongooseDocumentToObject,
+    mongooseDocumentsToObject 
+} from '../../support_lib/mongoose.js';
 
 const BookController = {
     // GET /books/list
@@ -16,7 +19,7 @@ const BookController = {
     show(req, res, next) {
         Book.findOne({ slug: req.params.slug })
             .then((book) => {
-                res.render('books/book_detail', {
+                res.render('books/book_info', {
                     book: singleMongooseDocumentToObject(book)
                 })
             })
@@ -30,7 +33,7 @@ const BookController = {
 
     // POST : /books/save
     save(req, res, next) {
-        req.body.image = 'https://img.freepik.com/free-psd/book-cover-mockup_125540-572.jpg?size=626&ext=jpg';
+        req.body.image = '/' + req.file.path.split('\\').slice(2).join('/'); 
         const book = new Book(req.body);
         book.save()
             .then(() => res.redirect('/own/stored/books'))
