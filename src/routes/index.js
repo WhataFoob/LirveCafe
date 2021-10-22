@@ -5,6 +5,7 @@ import newsRoute from './news.js';
 import userRoute from './user.js'; 
 import ownRoute from './own.js'; 
 import authRoute from './auth.js';
+import testRoute from './test.js';
 
 const routeObj = {
     route: function (app) {
@@ -15,6 +16,7 @@ const routeObj = {
         app.use('/users', userRoute);
         app.use('/own', ownRoute);
         app.use('/auth', authRoute);
+        app.use('/', testRoute);
     },
 }
 export default routeObj;

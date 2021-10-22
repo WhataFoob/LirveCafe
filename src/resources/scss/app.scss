@@ -1,8 +1,7 @@
 @import 'variables';
 
-.test {
-    font-weight: 600;
+$redColor: red;
+
+h1 {
+    color: $redColor;
 }
-
-
-// code css ở đây
