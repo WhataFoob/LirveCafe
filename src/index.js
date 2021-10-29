@@ -9,7 +9,6 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-
 import routeObj from './routes/index.js';
 import mongoose_driver from './config/database/index.js';
 
@@ -35,8 +34,6 @@ app.use(
 // parsing application/json
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}))
-
-
 app.use(methodOverride('_method'));
 
 app.engine(

@@ -1,0 +1,257 @@
+@import 'variables';
+
+$headerHeight: 100px;
+$headerColor: #8B4513;
+$boundColor: #945305;
+
+$itemSliderHeight: 500px;
+
+
+.app {
+    background-color: $boundColor;
+    height: auto;
+    scroll-behavior: smooth;
+}
+
+#header {
+
+
+    background-color: $headerColor;
+    .header-text {
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .header-list {
+        
+        background-color: #ccc;
+        z-index: 2;
+        display: none;
+        position: relative;
+        
+        ul {
+            padding-left: 0px;
+            margin-bottom: 0;
+            background-color:$headerColor;
+            border: 1px solid #000; 
+            position: absolute;
+            top: 100%;
+            right: 100%;    
+        }
+
+        li {
+            list-style-type: none;
+            
+            height: 40px;
+            padding: 4px 16px;
+            width: 150px;
+        }
+        li:hover {
+            color: #8B4513;
+            background-color:#ccc;
+        }
+
+        a {
+            color: #000;
+            font-weight: bold;
+            font-size: 16px;
+
+        }
+
+    }
+
+    .header-menu:hover #menu-list{
+        display: block;
+    }
+
+    .header-user:hover #user-list {
+        display: block;
+    }
+
+    .header-icon {
+        position: relative;
+    }
+    .header-number {
+        position: absolute;
+        z-index: 2;
+        top: 9px;
+        left: 22px;
+        background: red;
+        color: #fff;
+        font-size: 20px;
+        border-radius: 50px;
+        width: 24px;
+        height: 24px;
+        text-align: center;
+    }
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    
+}
+
+#main-header {
+    width: 84%;
+    background-color: $headerColor;
+    height: $headerHeight;
+    margin: 0 auto;
+
+    #name-brand {
+        color: #000;
+    }
+
+}
+
+.header-menu,
+.header-user {
+    height: 40px;
+    font-size: 13px;
+    
+}
+
+.header-user {
+    margin: 8px;
+}
+
+#header .header-icon {
+    font-size: 36px;
+    margin: 0 8px;
+}
+// 
+.container-fluid {
+    padding: 0px 0px !important;
+    justify-content: center;
+    width: 84%;
+    height: auto; 
+    background-color: $boundColor;
+}
+
+// -----------Slider------------- 
+#home-slider {
+    margin-top: 32px;
+    .carousel-item img {
+        height: $itemSliderHeight;
+    }
+
+}
+
+// ---------------home books------------------
+.home-product {
+
+    margin-top:32px; 
+    background-image: linear-gradient(45deg,#EEE, #222222);
+
+    .product-header {
+        
+        font-size: 40px;
+        color: $headerColor;
+        padding: 8px 32px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-weight: bold;
+    }
+
+    
+    .carousel-item {
+        height: 400px;
+        padding: 0 8px;
+        .panel-thumbnail {
+            height: 200px;
+        }
+
+        .panel-thumbnail img {
+            height: 200px;
+        }
+
+        .card {
+            height: 200px;
+            background-color: #000;
+            color: #ccc;
+            position: relative;
+        }
+
+        .card-link {
+            position: absolute;
+            bottom: 0;
+        }
+    }
+
+     /* show 3 items */
+     .carousel-inner .active,
+     .carousel-inner .active + .carousel-item,
+     .carousel-inner .active + .carousel-item + .carousel-item,
+     .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item  {
+         display: block;
+     }
+     
+     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
+     .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
+         transition: none;
+     }
+     
+     .carousel-inner .carousel-item-next,
+     .carousel-inner .carousel-item-prev {
+       position: relative;
+       transform: translate3d(0, 0, 0);
+     }
+     
+     .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+         position: absolute;
+         top: 0;
+         right: -25%;
+         z-index: -1;
+         display: block;
+         visibility: visible;
+     }
+     
+     /* left or forward direction */
+     .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+     .carousel-item-next.carousel-item-left + .carousel-item,
+     .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+     .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
+     .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+         position: relative;
+         transform: translate3d(-100%, 0, 0);
+         visibility: visible;
+     }
+     
+     /* farthest right hidden item must be abso position for animations */
+     .carousel-inner .carousel-item-prev.carousel-item-right {
+         position: absolute;
+         top: 0;
+         left: 0;
+         z-index: -1;
+         display: block;
+         visibility: visible;
+     }
+     
+     /* right or prev direction */
+     .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+     .carousel-item-prev.carousel-item-right + .carousel-item,
+     .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+     .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+     .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+         position: relative;
+         transform: translate3d(100%, 0, 0);
+         visibility: visible;
+         display: block;
+         visibility: visible;
+     }
+    
+  
+}
+
+#home-image {
+    margin: 16px 0;
+    padding-top: 50%;
+    background: url('/img/homeimage.jpg') center center / cover no-repeat;
+}
+
+#footer {
+    height: 200px;
+    background-color: pink;
+}
