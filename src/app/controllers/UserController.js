@@ -13,7 +13,7 @@ const UserController = {
         User.find({})
             .then((users) => {
                
-                res.render('users/list', {
+                res.render('own/users/list/store.hbs', {
                     users: mongooseDocumentsToObject(users)
                    
                 });
@@ -24,7 +24,7 @@ const UserController = {
     show(req, res, next) {
         User.findOne({ _id: req.params.id })
             .then((user) => {
-                res.render('users/user_info', {
+                res.render('users/item/user_info.hbs', {
                     user: singleMongooseDocumentToObject(user)
                 })
             })
@@ -33,7 +33,7 @@ const UserController = {
 
     // GET: /users/create
     create(req, res, next) {
-        res.render('users/create');
+        res.render('users/item/create.hbs');
     },
 
     // POST : /users/save
@@ -54,14 +54,14 @@ const UserController = {
     edit(req, res, next) {
         User.findById(req.params.id)
             .then((user) => {
-                res.render('users/edit', {
+                res.render('users/item/edit.hbs', {
                     user: singleMongooseDocumentToObject(user)
                 })
             })
             .catch(next);
     },
 
-    // PUT /users/:id
+    // PATCH /users/:id
     update(req, res, next) {
         User.updateOne({_id: req.params.id}, req.body)
             .then(() => res.redirect('back'))
