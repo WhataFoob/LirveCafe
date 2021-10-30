@@ -9,7 +9,7 @@ const BookController = {
     index(req, res, next) {
         Book.find({})
             .then((books) => {
-                res.render('books/list', {
+                res.render('books/list/list.hbs', {
                     books: mongooseDocumentsToObject(books)
                 });
             }).catch(next);
@@ -19,7 +19,7 @@ const BookController = {
     show(req, res, next) {
         Book.findOne({ slug: req.params.slug })
             .then((book) => {
-                res.render('books/book_info', {
+                res.render('books/item/book_info.hbs', {
                     book: singleMongooseDocumentToObject(book)
                 })
             })
@@ -28,7 +28,7 @@ const BookController = {
 
     // GET: /books/create
     create(req, res, next) {
-        res.render('books/create');
+        res.render('own/books/item/create.hbs');
     },
 
     // POST : /books/save
@@ -44,14 +44,14 @@ const BookController = {
     edit(req, res, next) {
         Book.findById(req.params.id)
             .then((book) => {
-                res.render('books/edit', {
+                res.render('own/books/item/edit.hbs', {
                     book: singleMongooseDocumentToObject(book)
                 })
             })
             .catch(next);
     },
 
-    // PUT /books/:id
+    // PATCH /books/:id
     update(req, res, next) {
         Book.updateOne({_id: req.params.id}, req.body)
             .then(() => res.redirect('back'))

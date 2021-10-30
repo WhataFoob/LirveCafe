@@ -14,7 +14,7 @@ const OwnController = {
     storedCoffee(req, res, next) {
         Promise.all([Coffee.find({}), Coffee.countDocumentsDeleted()])
             .then(([coffee, deletedCount]) => {
-                res.render('cafe/list', {
+                res.render('own/drink/list/store.hbs', {
                     deletedCount,
                     coffee: mongooseDocumentsToObject(coffee)
                 })
@@ -25,7 +25,7 @@ const OwnController = {
     trashCoffee(req, res, next) {
         Coffee.findDeleted({})
             .then((coffee) => {
-                res.render('own/trash-coffee', {
+                res.render('own/drink/list/trash.hbs', {
                     coffee: mongooseDocumentsToObject(coffee)
                 })
             }).catch(next);
@@ -37,7 +37,7 @@ const OwnController = {
     storedBooks(req, res, next) {
         Promise.all([Book.find({}), Book.countDocumentsDeleted()])
             .then(([books, deletedCount]) => {
-                res.render('own/stored-books', {
+                res.render('own/books/list/store.hbs', {
                     deletedCount,
                     books: mongooseDocumentsToObject(books)
                 })
@@ -48,7 +48,7 @@ const OwnController = {
     trashBooks(req, res, next) {
         Book.findDeleted({})
             .then((books) => {
-                res.render('own/trash-books', {
+                res.render('own/books/list/trash.hbs', {
                     books: mongooseDocumentsToObject(books)
                 })
             }).catch(next);
@@ -60,7 +60,7 @@ const OwnController = {
     storedUsers(req, res, next) {
         Promise.all([User.find({}), User.countDocumentsDeleted()])
             .then(([users, deletedCount]) => {
-                res.render('own/stored-users', {
+                res.render('own/users/list/store.hbs', {
                     deletedCount,
                     users: mongooseDocumentsToObject(users)
                 })
@@ -71,7 +71,7 @@ const OwnController = {
     trashUsers(req, res, next) {
         User.findDeleted({})
             .then((users) => {
-                res.render('own/trash-users', {
+                res.render('own/users/list/trash.hbs', {
                     users: mongooseDocumentsToObject(users)
                 })
             }).catch(next);
@@ -83,7 +83,7 @@ const OwnController = {
     storedNews(req, res, next) {
         Promise.all([News.find({}), News.countDocumentsDeleted()])
             .then(([news, deletedCount]) => {
-                res.render('own/stored-news', {
+                res.render('own/news/list/store.hbs', {
                     deletedCount,
                     news: mongooseDocumentsToObject(news)
                 })
@@ -94,7 +94,7 @@ const OwnController = {
     trashNews(req, res, next) {
         News.findDeleted({})
             .then((news) => {
-                res.render('own/trash-news', {
+                res.render('own/news/list/store.hbs', {
                     news: mongooseDocumentsToObject(news)
                 })
             }).catch(next);
@@ -106,7 +106,7 @@ const OwnController = {
     storedEvents(req, res, next) {
         Promise.all([Event.find({}), Event.countDocumentsDeleted()])
             .then(([events, deletedCount]) => {
-                res.render('own/stored-events', {
+                res.render('users/list/store.hbs', {
                     deletedCount,
                     events: mongooseDocumentsToObject(events)
                 })
@@ -117,7 +117,7 @@ const OwnController = {
     trashEvents(req, res, next) {
         Event.findDeleted({})
             .then((events) => {
-                res.render('own/trash-events', {
+                res.render('users/list/trash.hbs', {
                     events: mongooseDocumentsToObject(events)
                 })
             }).catch(next);

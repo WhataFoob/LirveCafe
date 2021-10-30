@@ -7,7 +7,7 @@ const NewsController = {
     index(req, res, next) {
         News.find({})
             .then((news) => {
-                res.render('news/news_detail', {
+                res.render('news/list/list.hbs', {
                     news: mongooseDocumentsToObject(news)
                 });
             }).catch(next);
@@ -17,7 +17,7 @@ const NewsController = {
     show(req, res, next) {
         News.findOne({ slug: req.params.slug })
             .then((book) => {
-                res.render('news/show', {
+                res.render('news/item/news_info.hbs', {
                     book: singleMongooseDocumentToObject(book)
                 })
             })
@@ -26,7 +26,7 @@ const NewsController = {
 
     // GET: /news/create
     create(req, res, next) {
-        res.render('news/create');
+        res.render('own/news/item/create.hbs');
     },
 
     // POST : /news/save

@@ -1,5 +1,6 @@
 import express from 'express';
 import controllers from '../app/controllers/UserController.js';
+import ownControllers from '../app/controllers/OwnController.js';
 import multer from 'multer';
 import path from 'path';
 
@@ -46,5 +47,8 @@ router.patch('/:id', controllers.update);
 router.patch('/:id/restore', controllers.restore);
 router.delete('/:id', controllers.softDelete);
 router.delete('/:id/force', controllers.deepDelete);
+
+router.get('/stored/events', ownControllers.storedEvents);
+router.get('/trash/events', ownControllers.trashEvents);
 
 export default router;
