@@ -11,6 +11,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import routeObj from './routes/index.js';
 import mongoose_driver from './config/database/index.js';
+import TestController from './app/controllers/TestController.js'
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -46,6 +47,7 @@ app.engine(
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
+
 routeObj.route(app);
 
 app.listen(port, () => {
@@ -54,3 +56,4 @@ app.listen(port, () => {
 
 
 
+app.get('/', TestController.index)
