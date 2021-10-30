@@ -14,7 +14,7 @@ const OwnController = {
     storedCoffee(req, res, next) {
         Promise.all([Coffee.find({}), Coffee.countDocumentsDeleted()])
             .then(([coffee, deletedCount]) => {
-                res.render('own/stored-coffee', {
+                res.render('cafe/list', {
                     deletedCount,
                     coffee: mongooseDocumentsToObject(coffee)
                 })

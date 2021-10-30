@@ -8,9 +8,9 @@ mongoose.plugin(slug);
 const Book = new Schema(
     {
         title: { type: String, required: true},
-        author: { type: String},
-        description: { type: String},
-        image: { type: String },
+        author: { type: String, required: true},
+        description: { type: String, required: true},
+        image: { type: String, required: true},
         body: {type: String, required: true},
         no: {type: Number, required: true},
         slug: { type: String, slug: 'title', unique: true },
