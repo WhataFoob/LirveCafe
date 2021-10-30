@@ -11,7 +11,7 @@ const EventController = {
     index(req, res, next) {
         Event.find({})
             .then((events) => {
-                res.render('events/list', {
+                res.render('events/list/list.hbs', {
                     events: mongooseDocumentsToObject(events)
                 })
             }).catch(next);
@@ -21,7 +21,7 @@ const EventController = {
     show(req, res, next) {
         Event.findOne({slug: req.params.slug})
             .then((event) => {
-                res.render('events/event_detail' , {
+                res.render('events/item/event_info.hbs' , {
                     event: singleMongooseDocumentToObject(event)
                 })
             }).catch(next)
@@ -29,7 +29,7 @@ const EventController = {
 
     // GET /events/create
     create(req, res, next) {
-        res.render('events/create')
+        res.render('events/item/create.hbs')
     },
 
     //POST /events/save
@@ -37,7 +37,7 @@ const EventController = {
         req.body.image = "http://www.davidkrugler.com/s/River-Lights-8318.jpg";
         const event = new Event(req.body);
         event.save()
-            .then(() => res.redirect('/me/stored/events'))
+            .then(() => res.redirect('/users/stored/events'))
             .catch(next)
     },
 
@@ -45,7 +45,7 @@ const EventController = {
     edit(req, res, next) {
         Event.findOne({_id: req.params.id})
             .then((event) => {
-                res.render('events/edit', {
+                res.render('events/item/edit.hbs', {
                     event: singleMongooseDocumentToObject(event)
                 })
             })
