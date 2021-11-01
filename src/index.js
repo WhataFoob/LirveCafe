@@ -11,7 +11,6 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import routeObj from './routes/index.js';
 import mongoose_driver from './config/database/index.js';
-import TestController from './app/controllers/TestController.js  '
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -58,10 +57,10 @@ io.on("connection", function(socket) {
     console.log("New: " + socket.id)
 
     socket.on("client_send_comment_to_coffee_item", function(data) {
-        socket.join(data.comment_body.itemId)
-        socket.join(data.comment_id)
+        socket.join(data.itemId)
+        socket.join(data._id)
         console.log(socket.adapter.rooms)
-        io.sockets.in(data.comment_body.itemId).emit("server_send_comment_to_coffee_item", data)
+        io.sockets.in(data.itemId).emit("server_send_comment_to_coffee_item", data)
     })
     
     socket.on("client_send_reply_comment", function(data) {
@@ -78,8 +77,3 @@ server.listen(port)
 
 
 routeObj.route(app);
-
-
-
-
-app.get('/', TestController.index)

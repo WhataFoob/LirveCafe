@@ -56,7 +56,7 @@
                 method: 'POST',
                 data: data,
                 success: function (res) {
-                    socket.emit("client_send_reply_comment", data)
+                    socket.emit("client_send_reply_comment", res)
                 }
             });
             return false;
@@ -79,9 +79,8 @@
                     url: "/coffee/do-comment",
                     method: "POST",
                     data: data,
-                    dataType: 'json',
                     success: function (res) {
-                        socket.emit("client_send_comment_to_coffee_item", { comment_id: res._id, comment_body: data })
+                        socket.emit("client_send_comment_to_coffee_item", res)
                     }
                 });
 
@@ -91,27 +90,34 @@
 
             socket.on("server_send_comment_to_coffee_item", function (data) {
 
+
+
                 var html =
-                    `<div id="${data.comment_id}">
-                            <p class="content">${data.comment_body.username}: ${data.comment_body.content}</p>
+                    `<div id="${data._id}">
+                            <p class="content">${data.username}: ${data.content}</p>
+                           
                             <ul class="replyList">
                             </ul>
                             <div class="replyForm">
                                 Reply:
                                 <input type="text" name="me" id="me">
                                 <input type="text" name="reply" id="reply">
-                                <input name="commentId" id="commentId" value="${data.comment_id}">
-                                <button type="button" class="replySendBtn">Reply</button>
+                                <input name="commentId" id="commentId" value="${data._id}">
+                                <button type="button" class="replySendBtn" onClick="sendReply(this)">Reply</button>
                             </div>
                         </div>`
-                $("#commentBox").append(html)
+                var commentBox = $("#commentBox")
+                commentBox.html(html + commentBox.html())
+                
             })
 
             socket.on("server_send_reply_comment", function (data) {
                
-                var html = `<li>${data.username}: ${data.content}</li>`
-                const replyList = $(`#${data.parentCommentId} .replyList`)           
-                replyList.append(html)
+                var html = `
+                    <li>${data.username}: ${data.content}</li>`
+                var replyList = $(`#${data.parentCommentId} .replyList`)           
+                replyList.html(html + replyList.html())
+                 
             })
 
 

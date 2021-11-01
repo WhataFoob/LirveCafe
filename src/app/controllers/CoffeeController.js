@@ -26,6 +26,7 @@ const CoffeeController = {
             .then((coffee) => {
                 coffee = singleMongooseDocumentToObject(coffee)
                 Comment.find({itemId: coffee._id})
+                .sort({"updatedAt": -1})
                     .then((commentList) => {
                         res.render('drink/item/coffee_info.hbs', {
                             coffee: coffee,

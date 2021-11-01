@@ -2,6 +2,7 @@ var date_txt_list = document.getElementsByClassName('date');
 
 const end = Date.now() / 1000;
 
+
 function getTimeFormat(year, month, day, hour, minute, second) {
     if (year > 0)
         return year + " năm trước"
@@ -20,15 +21,18 @@ function getTimeFormat(year, month, day, hour, minute, second) {
     return "Vài giây trước"
 }
 
-for (var txt of date_txt_list) {
-    const start = new Date(txt.innerHTML).getTime() / 1000;
-    console.log(end - start)
+function convert(timeString) {
+    const start = new Date(timeString).getTime() / 1000;
     var no_year = (end - start) / (60 * 60 * 24 * 365)
     var no_month = (end - start) / (60 * 60 * 24 * 30)
     var no_day = (end - start) / (60 * 60 * 24)
     var no_hour = (end - start) / (60 * 60)
     var no_minute = (end - start) / 60
     var no_second = (end - start)
-    txt.innerHTML = getTimeFormat(parseInt(no_year), parseInt(no_month), parseInt(no_day), parseInt(no_hour), parseInt(no_minute), parseInt(no_second))
+    return getTimeFormat(parseInt(no_year), parseInt(no_month), parseInt(no_day), parseInt(no_hour), parseInt(no_minute), parseInt(no_second))
 
+}
+
+for (var txt of date_txt_list) {
+    txt.innerHTML = convert(txt.innerHTML)
 }
