@@ -33,7 +33,7 @@ const UserController = {
 
     // GET: /users/create
     create(req, res, next) {
-        res.render('users/item/create.hbs');
+        res.render('users/info/item/create.hbs');
     },
 
     // POST : /users/save
@@ -43,10 +43,9 @@ const UserController = {
             const name = req.body.firstname + ' ' + req.body.lastname;
             req.body.avatar = '/img/' + name + '-default.jpg'; 
         }
-        console.log(req.body);
         const user = new User(req.body);
         user.save()
-            .then(() => res.redirect('back'))
+            .then(() => res.redirect('/'))
             .catch(next);
     },  
 

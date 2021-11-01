@@ -26,7 +26,7 @@ const CommentControllers = {
         Comment.findOne({_id: req.body.parentCommentId})
             .then((comment) => {
                 const replyList = comment.replyList
-                replyList.push(reply);
+                replyList.unshift(reply);
                 comment.replyList = replyList;
                 return new Promise(function(resolve) {
                     comment.save()
@@ -36,11 +36,8 @@ const CommentControllers = {
             .then(function() {
                 return new Promise(function(resolve) {
                     reply.save()
-                    resolve()
+                    .then(() => res.send(singleMongooseDocumentToObject(reply)))
                 })
-            })
-            .then(() => {
-                res.send("Reply comment Successfully")
             })
             .catch(next)
     }
