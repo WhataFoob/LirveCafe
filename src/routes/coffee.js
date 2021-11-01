@@ -47,4 +47,8 @@ router.delete('/:id', controllers.softDelete);
 router.delete('/:id/force', controllers.deepDelete);
 router.patch('/:id/restore', controllers.restore);
 
+router.post('/do-comment', controllers.doComment)
+router.post('/reply-comment', controllers.replyComment)
+
+
 export default router;
