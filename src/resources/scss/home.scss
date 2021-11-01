@@ -120,7 +120,6 @@ $itemSliderHeight: 500px;
     font-size: 36px;
     margin: 0 8px;
 }
-// 
 .container-fluid {
     padding: 0px 0px !important;
     justify-content: center;
@@ -129,7 +128,7 @@ $itemSliderHeight: 500px;
     background-color: $boundColor;
 }
 
-// -----------Slider------------- 
+
 #home-slider {
     margin-top: 32px;
     .carousel-item img {
@@ -138,7 +137,7 @@ $itemSliderHeight: 500px;
 
 }
 
-// ---------------home books------------------
+
 .home-product {
 
     margin-top:32px; 
@@ -178,7 +177,7 @@ $itemSliderHeight: 500px;
         }
     }
 
-     /* show 3 items */
+   
      .carousel-inner .active,
      .carousel-inner .active + .carousel-item,
      .carousel-inner .active + .carousel-item + .carousel-item,
@@ -208,7 +207,7 @@ $itemSliderHeight: 500px;
          visibility: visible;
      }
      
-     /* left or forward direction */
+
      .active.carousel-item-left + .carousel-item-next.carousel-item-left,
      .carousel-item-next.carousel-item-left + .carousel-item,
      .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
@@ -219,7 +218,7 @@ $itemSliderHeight: 500px;
          visibility: visible;
      }
      
-     /* farthest right hidden item must be abso position for animations */
+   
      .carousel-inner .carousel-item-prev.carousel-item-right {
          position: absolute;
          top: 0;
@@ -229,7 +228,7 @@ $itemSliderHeight: 500px;
          visibility: visible;
      }
      
-     /* right or prev direction */
+     
      .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
      .carousel-item-prev.carousel-item-right + .carousel-item,
      .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
