@@ -97,7 +97,7 @@ const CoffeeController = {
        
         const comment = new Comment(req.body);
         comment.save()
-            .then(() => res.send("Comment Successfully !!!"))
+            .then(() => res.send(singleMongooseDocumentToObject(comment)))
             .catch(next)
     },
 
@@ -105,21 +105,25 @@ const CoffeeController = {
 
     replyComment(req, res, next) {
         const reply = new Reply(req.body);
-        console.log(req.body)
-        
+
         Comment.findOne({_id: req.body.parentCommentId})
             .then((comment) => {
                 const replyList = comment.replyList
                 replyList.push(reply);
                 comment.replyList = replyList;
                 return new Promise(function(resolve) {
-                    comment.save(() => resolve())
+                    comment.save()
+                    resolve()
                 })
             })
             .then(function() {
                 return new Promise(function(resolve) {
-                    reply.save(() => resolve())
+                    reply.save()
+                    resolve()
                 })
+            })
+            .then(() => {
+                res.send("Reply comment Successfully")
             })
             .catch(next)
     }

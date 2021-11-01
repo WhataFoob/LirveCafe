@@ -55,14 +55,20 @@ const io = new Server(server);
 
 io.on("connection", function(socket) {
 
-    console.log("Có người kết nối socket_id: ", socket.id);
-    console.log("Rooms: ")
-    console.log(socket.adapter.rooms)
+    console.log("New: " + socket.id)
 
     socket.on("client_send_comment_to_coffee_item", function(data) {
-        socket.join(data.itemId)
+        socket.join(data.comment_body.itemId)
+        socket.join(data.comment_id)
         console.log(socket.adapter.rooms)
-        io.sockets.in(data.itemId).emit("server_send_comment", data)
+        io.sockets.in(data.comment_body.itemId).emit("server_send_comment_to_coffee_item", data)
+    })
+    
+    socket.on("client_send_reply_comment", function(data) {
+        socket.join(data.parentCommentId)
+        console.log(data.parentCommentId)
+        console.log(socket.adapter.rooms)
+        io.sockets.in(data.parentCommentId).emit("server_send_reply_comment", data)
     })
 
 })
