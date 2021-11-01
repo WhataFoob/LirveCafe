@@ -11,7 +11,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import routeObj from './routes/index.js';
 import mongoose_driver from './config/database/index.js';
-import TestController from './app/controllers/TestController.js'
+import TestController from './app/controllers/TestController.js  '
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -19,7 +19,7 @@ dotenv.config();
 const app = express();
 mongoose_driver.connect();
 
-const port = 4000;
+const port = 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -47,12 +47,32 @@ app.engine(
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
+import http from 'http';
+import { Server } from 'socket.io';
+
+var server = http.Server(app);
+const io = new Server(server);
+
+io.on("connection", function(socket) {
+
+    console.log("Có người kết nối socket_id: ", socket.id);
+    console.log("Rooms: ")
+    console.log(socket.adapter.rooms)
+
+    socket.on("client_send_comment_to_coffee_item", function(data) {
+        socket.join(data.itemId)
+        console.log(socket.adapter.rooms)
+        io.sockets.in(data.itemId).emit("server_send_comment", data)
+    })
+
+})
+
+
+server.listen(port)
+
 
 routeObj.route(app);
 
-app.listen(port, () => {
-    console.log(`Server is running at port: ${port}`);
-})
 
 
 
