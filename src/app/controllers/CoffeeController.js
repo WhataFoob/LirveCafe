@@ -91,42 +91,6 @@ const CoffeeController = {
         .catch(next);
     },
 
-    // POST /coffee/do-comment
-
-    doComment(req, res, next) {
-       
-        const comment = new Comment(req.body);
-        comment.save()
-            .then(() => res.send(singleMongooseDocumentToObject(comment)))
-            .catch(next)
-    },
-
-    // POST /coffee/reply-comment
-
-    replyComment(req, res, next) {
-        const reply = new Reply(req.body);
-
-        Comment.findOne({_id: req.body.parentCommentId})
-            .then((comment) => {
-                const replyList = comment.replyList
-                replyList.push(reply);
-                comment.replyList = replyList;
-                return new Promise(function(resolve) {
-                    comment.save()
-                    resolve()
-                })
-            })
-            .then(function() {
-                return new Promise(function(resolve) {
-                    reply.save()
-                    resolve()
-                })
-            })
-            .then(() => {
-                res.send("Reply comment Successfully")
-            })
-            .catch(next)
-    }
 }
 
 export default CoffeeController;

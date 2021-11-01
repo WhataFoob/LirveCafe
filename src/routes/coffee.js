@@ -5,6 +5,7 @@ import multer from 'multer';
 import path from 'path';
 
 import controllers from '../app/controllers/CoffeeController.js';
+import commentControllers from '../app/controllers/CommentController.js';
 import validate from '../app/validate/coffee.validate.js';
 
 var storage = multer.diskStorage({
@@ -47,8 +48,8 @@ router.delete('/:id', controllers.softDelete);
 router.delete('/:id/force', controllers.deepDelete);
 router.patch('/:id/restore', controllers.restore);
 
-router.post('/do-comment', controllers.doComment)
-router.post('/reply-comment', controllers.replyComment)
+router.post('/do-comment', commentControllers.doComment)
+router.post('/reply-comment', commentControllers.replyComment)
 
 
 export default router;

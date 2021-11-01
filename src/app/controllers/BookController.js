@@ -1,4 +1,8 @@
 import Book from '../models/Book.js';
+
+import Comment from '../models/Comment.js';
+import Reply from '../models/Reply.js';
+
 import { 
     singleMongooseDocumentToObject,
     mongooseDocumentsToObject 
@@ -77,7 +81,7 @@ const BookController = {
         Book.restore({_id: req.params.id})
             .then(() => res.redirect('back'))
             .catch(next);
-    }
-};  
+    },
+};
 
 export default BookController;
