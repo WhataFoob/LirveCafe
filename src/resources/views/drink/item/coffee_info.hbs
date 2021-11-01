@@ -1,2 +1,97 @@
-<p>{{coffee.title}}</p>
-<img src="{{coffee.image}}" alt="">
+<body>
+    <p>{{coffee.title}}</p>
+    <img src="{{coffee.image}}" alt="">
+    <h1>Feedback</h1>
+
+    <div>
+        <div id="commentForm">
+            <input type="text" name="username" id="username">
+            <input type="text" name="content" id="content">
+            <input name="itemId" id="itemId" value="{{coffee._id}}">
+            <button type="button" id="commentSendBtn">Submit</button>
+        </div>
+    </div>
+
+    <div id="commentBox">
+        {{#each commentList}}
+        <p>{{this.username}}: {{this.content}}</p>
+        <ul>
+            {{#each this.replyList}}
+                <li>
+                    {{this.username}}: {{this.content}}
+                </li>
+            {{/each}}
+        </ul>
+        <div id="{{this._id}}">
+            Reply:
+            <input type="text" name="me" id="me">
+            <input type="text" name="reply" id="reply">
+            <input name="commentId" id="commentId" value="{{this._id}}">
+            <button type="button" onclick="replyComment(this)">Reply</button>
+        </div>
+        {{/each}}
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../socket.io/socket.io.js"></script>
+
+    <script>
+
+        var socket = io("http://localhost:3000")
+
+        $(document).ready(function () {
+            $("#commentSendBtn").click(function () {
+
+                var data = {
+                    username: $("#username").val(),
+                    content: $("#content").val(),
+                    itemId: $("#itemId").val(),
+                }
+                socket.emit("client_send_comment_to_coffee_item", data)
+
+                $.ajax({
+                    url: "/coffee/do-comment",
+                    method: "POST",
+                    data: data,
+                    dataType: 'json',
+                    success: function (res) {
+                    }
+                });
+
+                return false;
+            });
+
+
+
+            socket.on("server_send_comment", function (data) {
+
+                $("#commentBox").append(`<p>${data.username}</p>`)
+            })
+        })
+
+        function replyComment(replyButton) {
+            const replyBoxId = replyButton.parentElement.id
+
+            const data = {
+                username: $(`#${replyBoxId} #me`).val(),
+                content: $(`#${replyBoxId} #reply`).val(),
+                parentCommentId: $(`#${replyBoxId} #commentId`).val()
+            }
+
+            $.ajax({
+                url: '/coffee/reply-comment',
+                method: 'POST',
+                data: data,
+                dataType: 'json',
+                success: function (res) {
+                }
+            });
+
+            return false;
+        }
+
+
+
+    </script>
+
+</body>
