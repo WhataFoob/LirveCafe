@@ -2,3 +2,10 @@
     <li>{{this.name}}</li>
     <a href="/coffee/{{this.slug}}">Here</a>
 {{/each}}
+
+{{#if user}}
+    <h1>{{user.username}}</h1>
+{{else}}
+    <h1>Unknown user</h1>
+{{/if}}
+
