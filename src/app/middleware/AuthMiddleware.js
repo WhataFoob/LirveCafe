@@ -32,10 +32,7 @@ const AuthMiddleware = {
 
         User.find({_id: req.signedCookies.userId})
             .then(user => {
-               
-                console.log(user)
                 res.locals.user = mongooseDocumentsToObject(user)[0]
-                console.log(res.locals)
                 next();
             })
     }
