@@ -1,5 +1,7 @@
 import User from '../models/User.js';
+
 import { 
+    singleMongooseDocumentToObject,
     mongooseDocumentsToObject
 } from '../../support_lib/mongoose.js';
 
@@ -16,7 +18,7 @@ const AuthMiddleware = {
         
         User.find({})
             .then(users => {
-                users: mongooseDocumentsToObject(users);
+                users = mongooseDocumentsToObject(users);
                 const user = users.find(checkSignedCookies);
 
                 if (!user) {
@@ -25,7 +27,18 @@ const AuthMiddleware = {
                 }
                 next();
             })
+    },
+    getCurrentUser: function(req, res, next) {
+
+        User.find({_id: req.signedCookies.userId})
+            .then(user => {
+               
+                console.log(user)
+                res.locals.user = mongooseDocumentsToObject(user)[0]
+                console.log(res.locals)
+                next();
+            })
     }
 }
 
-export default auth_middleware;
+export default AuthMiddleware;
