@@ -1,6 +1,7 @@
 import Coffee from '../models/Coffee.js';
 import Comment from '../models/Comment.js';
 import Reply from '../models/Reply.js';
+import Order from '../models/Order.js'
 
 import { 
     singleMongooseDocumentToObject,
@@ -38,6 +39,31 @@ const CoffeeController = {
                     })
                
             }).catch(next);
+    },
+
+    // GET: /coffee/buy/:id
+    showPayForm(req, res, next) {
+        console.log(req.params.id)
+        Coffee.findOne({_id: req.params.id})
+            .then((coffee) => {
+                coffee = singleMongooseDocumentToObject(coffee)
+                res.render('buy/buy.hbs', {
+                    coffee: coffee,
+                    user: res.locals.user
+                })
+            })
+    },
+    
+    // POST: /coffee/buy
+
+    buy(req, res, next) {
+        const order = new Order(req.body)  
+        console.log(order)
+        order.save()
+            .then(() => res.render('notice/payment/success.hbs', {
+                order: singleMongooseDocumentToObject(order),
+                user: res.locals.user
+            }))
     },
 
     // GET: /coffee/create
