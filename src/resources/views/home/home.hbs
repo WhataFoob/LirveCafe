@@ -46,8 +46,6 @@
 
 
 
-
-
 {{!-- home books --}}
 <div class="home-product" id="home-books">
 
@@ -55,7 +53,7 @@
     <span>Các tựa sách hot</span>
   </div>
 
-  <div class="carousel slide" data-ride="carousel" data-interval="9000">
+  <div class="carousel slide" data-ride="carousel" data-interval="5000">
 
     <div class="carousel-inner row w-100 mx-auto" role="listbox">
 
@@ -64,7 +62,7 @@
 
         <div class="panel panel-default">
           <div class="panel-thumbnail">
-            <a href="#" title="image 1" class="thumb">
+            <a href="#book1" title="image 1" class="thumb">
               <img class="img-fluid mx-auto d-block" src="/img/amumu.jpg" alt="slide 1">
             </a>
           </div>
@@ -85,7 +83,7 @@
       <div class="carousel-item col-md-3">
         <div class="panel panel-default">
           <div class="panel-thumbnail">
-            <a href="#" title="image 3" class="thumb">
+            <a href="#books" title="image 3" class="thumb">
               <img class="img-fluid mx-auto d-block" src="/img/yasuo.jpg" alt="slide 2">
             </a>
           </div>
@@ -107,7 +105,7 @@
       <div class="carousel-item col-md-3 ">
         <div class="panel panel-default">
           <div class="panel-thumbnail">
-            <a href="#" title="image 4" class="thumb">
+            <a href="#book3" title="image 4" class="thumb">
               <img class="img-fluid mx-auto d-block" src="/img/jhin.jpg" alt="slide 3">
             </a>
           </div>
@@ -129,7 +127,7 @@
       <div class="carousel-item col-md-3 ">
         <div class="panel panel-default">
           <div class="panel-thumbnail">
-            <a href="#" title="image 5" class="thumb">
+            <a href="#book4" title="image 5" class="thumb">
               <img class="img-fluid mx-auto d-block" src="/img/gwen.jpg" alt="slide 4">
             </a>
           </div>
@@ -150,7 +148,7 @@
       <div class="carousel-item col-md-3 ">
         <div class="panel panel-default">
           <div class="panel-thumbnail">
-            <a href="#" title="image 6" class="thumb">
+            <a href="#book5" title="image 6" class="thumb">
               <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=5" alt="slide 5">
             </a>
           </div>
@@ -172,7 +170,7 @@
       <div class="carousel-item col-md-3 ">
         <div class="panel panel-default">
           <div class="panel-thumbnail">
-            <a href="#" title="image 7" class="thumb">
+            <a href="#book6" title="image 7" class="thumb">
               <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=6" alt="slide 6">
             </a>
           </div>
@@ -194,7 +192,7 @@
       <div class="carousel-item col-md-3 ">
         <div class="panel panel-default">
           <div class="panel-thumbnail">
-            <a href="#" title="image 8" class="thumb">
+            <a href="#book7" title="image 8" class="thumb">
               <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=7" alt="slide 7">
             </a>
           </div>
@@ -216,7 +214,7 @@
       <div class="carousel-item col-md-3">
         <div class="panel panel-default">
           <div class="panel-thumbnail">
-            <a href="#" title="image 2" class="thumb">
+            <a href="#book8" title="image 2" class="thumb">
               <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=8" alt="slide 8">
             </a>
           </div>
@@ -236,12 +234,12 @@
 
     </div>
     {{!-- book prev icon --}}
-    <a class="carousel-control-prev" role="button" data-slide="prev">
+    <a class="carousel-control-prev" href ="#carouselExampleControls"  role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
     {{!-- book next icon --}}
-    <a class="carousel-control-next text-faded" role="button" data-slide="next">
+    <a class="carousel-control-next text-faded" href = "#carouselExampleControls" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
@@ -258,7 +256,7 @@
     <span>Coffee và hơn thế</span>
   </div>
 
-  <div class="carousel slide" data-ride="carousel" data-interval="9000">
+  <div class="carousel slide" data-ride="carousel" data-interval="5000">
 
     <div class="carousel-inner row w-100 mx-auto" role="listbox">
 
@@ -452,6 +450,7 @@
 
 </div>
 
+
 {{!-- home image --}}
 <div id="home-image">
 
@@ -461,41 +460,29 @@
 <script>
   const $ = document.querySelector.bind(document);
   const $$ = document.querySelectorAll.bind(document);
-
   const sliderItems = $$('#ad-slider .carousel-item ')
   const prevSliderIcon = $('#ad-slider .carousel-control-prev')
   const nextSliderIcon = $('#ad-slider .carousel-control-next')
-
-
-
   const bookItems = $$('#home-books .carousel-item')
   const prevbookIcon = $('#home-books .carousel-control-prev')
   const nextbookIcon = $('#home-books .carousel-control-next')
-
   const drinkItems = $$('#home-drinks .carousel-item')
   const prevdrinkIcon = $('#home-drinks .carousel-control-prev')
   const nextdrinkIcon = $('#home-drinks .carousel-control-next')
-
   function prevIconClick(items) {
-
-
     var activeIndex;
     var activeE;
-
     items.forEach(function (item, index) {
       if (item.classList.contains('active')) {
         activeE = item;
       }
     })
-
     items.forEach(function (item, index) {
       if (item === activeE) {
         activeIndex = index;
       }
     })
-
     activeE.classList.remove('active');
-
     if (activeIndex > 0) {
       items[activeIndex - 1].classList.add('active');
     }
@@ -503,26 +490,20 @@
       items[items.length - 1].classList.add('active');
     }
   }
-
   function nextIconClick(items) {
-
     var activeIndex;
     var activeE;
-
     items.forEach(function (item, index) {
       if (item.classList.contains('active')) {
         activeE = item;
       }
     })
-
     items.forEach(function (item, index) {
       if (item === activeE) {
         activeIndex = index;
       }
     })
-
     activeE.classList.remove('active');
-
     if (activeIndex < items.length - 1) {
       items[activeIndex + 1].classList.add('active');
     }
@@ -530,22 +511,16 @@
       items[0].classList.add('active');
     }
   }
-
-
-
-
   prevbookIcon.onclick = function () {
     prevIconClick(bookItems);
   }
   nextbookIcon.onclick = function () {
     nextIconClick(bookItems);
   }
-
   prevdrinkIcon.onclick = function () {
     prevIconClick(drinkItems);
   }
   nextdrinkIcon.onclick = function () {
     nextIconClick(drinkItems);
   }
-
 </script>

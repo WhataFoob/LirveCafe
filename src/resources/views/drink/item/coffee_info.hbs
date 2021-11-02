@@ -1,11 +1,17 @@
 <body>
     <p>{{coffee.title}}</p>
     <img src="{{coffee.image}}" alt="">
+
+    <p>{{coffee.price}}</p>
+    <a type="button" href="/coffee/buy/{{coffee._id}}"id="buyItem">Buy now</a>
+    <button type="button" id="addItemToCart">Add to cart</button>
     <h1>Feedback</h1>
+
+
 
     <div>
         <div id="commentForm">
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username" value={{user.username}} readonly>
             <input type="text" name="content" id="content">
             <input name="itemId" id="itemId" value="{{coffee._id}}">
             <button type="button" id="commentSendBtn">Submit</button>

@@ -1,0 +1,69 @@
+<body>
+    <div id="booking" class="section">
+        <div class="section-center">
+            <div class="container">
+                <div class="row">
+                    <div class="booking-form">
+                        <div class="form-header">
+                            <h1>Make your payment</h1>
+                        </div>
+                        <form method="post" action="/coffee/buy">
+
+                             <div class="form-group">
+                                <input class="form-control"name="name" type="text" value="{{user.lastname}} {{user.firstname}}">
+                                <span class="form-label">Name: </span>
+                            </div>
+
+                             <div class="form-group">
+                                <input class="form-control"name="username" type="text" value="{{user.username}}">
+                                <span class="form-label"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input class="form-control" name="address" type="text" placeholder="Address">
+                                <span class="form-label">Address</span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="email" type="email" placeholder="Enter your Email">
+                                        <span class="form-label">Email</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="phone" placeholder="Enter you Phone">
+                                        <span class="form-label">Phone</span>
+                                    </div>
+                                </div>
+
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="total" value={{coffee.price}}>
+                                        <span class="form-label">Total: </span>
+                                    </div>
+                                </div>
+
+                                 <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input class="form-control" name="itemId" value="{{coffee._id}}">
+                                        <span class="form-label"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-btn">
+                                <button class="submit-btn">Purchase Now</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="	https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</body>
