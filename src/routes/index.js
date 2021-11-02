@@ -6,17 +6,18 @@ import userRoute from './user.js';
 import ownRoute from './own.js'; 
 import authRoute from './auth.js';
 import homeRoute from './test.js';
+import checkUser from '../app/middleware/AuthMiddleware.js';
 
 const routeObj = {
     route: function (app) {
-        app.use('/books', bookRoute);
-        app.use('/coffee', coffeeRoute);
-        app.use('/events', eventRoute);
-        app.use('/news', newsRoute);
-        app.use('/users', userRoute);
-        app.use('/own', ownRoute);
-        app.use('/auth', authRoute);
-        app.use('/', homeRoute);
+        app.use('/books', checkUser.getCurrentUser, bookRoute);
+        app.use('/coffee', checkUser.getCurrentUser, coffeeRoute);
+        app.use('/events', checkUser.getCurrentUser, eventRoute);
+        app.use('/news', checkUser.getCurrentUser, newsRoute);
+        app.use('/users', checkUser.getCurrentUser, userRoute);
+        app.use('/own', checkUser.getCurrentUser, ownRoute);
+        app.use('/auth', checkUser.getCurrentUser, authRoute);
+        app.use('/', checkUser.getCurrentUser, homeRoute);
     },
 }
 export default routeObj;
