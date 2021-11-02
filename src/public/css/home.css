@@ -1,26 +1,28 @@
 .app {
-  background-color: #945305;
+  background-color: #ccc;
   height: auto;
   scroll-behavior: smooth; }
 
 #header {
   background-color: #8B4513; }
   #header .header-text {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold; }
+  #header .header-user, #header .header-menu {
+    position: relative; }
   #header .header-list {
     background-color: #ccc;
     z-index: 2;
     display: none;
-    position: relative; }
+    position: absolute;
+    top: 100%;
+    left: 10px; }
     #header .header-list ul {
       padding-left: 0px;
       margin-bottom: 0;
       background-color: #8B4513;
       border: 1px solid #000;
-      position: absolute;
-      top: 100%;
-      right: 100%; }
+      text-align: center; }
     #header .header-list li {
       list-style-type: none;
       height: 40px;
@@ -43,7 +45,7 @@
     position: absolute;
     z-index: 2;
     top: 9px;
-    left: 22px;
+    left: 14px;
     background: red;
     color: #fff;
     font-size: 16px;
@@ -72,15 +74,16 @@
   margin: 8px; }
 
 #header .header-icon {
-  font-size: 36px;
-  margin: 0 8px; }
+  font-size: 28px;
+  margin: 0 8px;
+  padding-top: 6px; }
 
 .container-fluid {
   padding: 0px 0px !important;
   justify-content: center;
   width: 84%;
   height: auto;
-  background-color: #945305; }
+  background-color: #ccc; }
 
 #home-slider {
   margin-top: 32px; }
@@ -179,3 +182,5 @@
   #footer .contact {
     width: 300px;
     margin: 0 auto; }
+  #footer .footer-icon {
+    margin-right: 10px; }
