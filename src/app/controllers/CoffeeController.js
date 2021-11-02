@@ -1,6 +1,7 @@
 import Coffee from '../models/Coffee.js';
 import Comment from '../models/Comment.js';
 import Reply from '../models/Reply.js';
+import Order from '../models/Order.js'
 
 import { 
     singleMongooseDocumentToObject,
@@ -13,8 +14,10 @@ const CoffeeController = {
     index(req, res, next) {
         Coffee.find({})
             .then((coffee) => {
+                console.log(res.locals)
                 res.render('drink/list/list.hbs', {
-                    coffee: mongooseDocumentsToObject(coffee)
+                    coffee: mongooseDocumentsToObject(coffee),
+                    user: res.locals.user
                 });
             }).catch(next);
     },
@@ -30,11 +33,37 @@ const CoffeeController = {
                     .then((commentList) => {
                         res.render('drink/item/coffee_info.hbs', {
                             coffee: coffee,
-                            commentList: mongooseDocumentsToObject(commentList)
+                            commentList: mongooseDocumentsToObject(commentList),
+                            user: res.locals.user
                         })
                     })
                
             }).catch(next);
+    },
+
+    // GET: /coffee/buy/:id
+    showPayForm(req, res, next) {
+        console.log(req.params.id)
+        Coffee.findOne({_id: req.params.id})
+            .then((coffee) => {
+                coffee = singleMongooseDocumentToObject(coffee)
+                res.render('buy/buy.hbs', {
+                    coffee: coffee,
+                    user: res.locals.user
+                })
+            })
+    },
+    
+    // POST: /coffee/buy
+
+    buy(req, res, next) {
+        const order = new Order(req.body)  
+        console.log(order)
+        order.save()
+            .then(() => res.render('notice/payment/success.hbs', {
+                order: singleMongooseDocumentToObject(order),
+                user: res.locals.user
+            }))
     },
 
     // GET: /coffee/create
@@ -58,6 +87,7 @@ const CoffeeController = {
             .then((coffee) => {
                 res.render('own/drink/item/edit.hbs', {
                     coffee: singleMongooseDocumentToObject(coffee),
+                    user: res.locals.user
                 })
             }).catch(next);
     },

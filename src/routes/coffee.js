@@ -7,6 +7,7 @@ import path from 'path';
 import controllers from '../app/controllers/CoffeeController.js';
 import commentControllers from '../app/controllers/CommentController.js';
 import validate from '../app/validate/coffee.validate.js';
+import checkUser from '../app/middleware/AuthMiddleware.js'
 
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -36,6 +37,8 @@ var upload = multer({
 
 router.get('/list', controllers.index);
 router.get('/create', controllers.create);
+router.get('/buy/:id', controllers.showPayForm)
+router.post('/buy', controllers.buy)
 router.get('/:slug', controllers.show);
 router.post('/save',  
     upload.single('image'),

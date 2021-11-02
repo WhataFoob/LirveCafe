@@ -16,7 +16,8 @@ const OwnController = {
             .then(([coffee, deletedCount]) => {
                 res.render('own/drink/list/store.hbs', {
                     deletedCount,
-                    coffee: mongooseDocumentsToObject(coffee)
+                    coffee: mongooseDocumentsToObject(coffee),
+                    user: res.locals.user
                 })
             }).catch(next);
     },
@@ -26,7 +27,8 @@ const OwnController = {
         Coffee.findDeleted({})
             .then((coffee) => {
                 res.render('own/drink/list/trash.hbs', {
-                    coffee: mongooseDocumentsToObject(coffee)
+                    coffee: mongooseDocumentsToObject(coffee),
+                    user: res.locals.user
                 })
             }).catch(next);
     },
@@ -39,7 +41,8 @@ const OwnController = {
             .then(([books, deletedCount]) => {
                 res.render('own/books/list/store.hbs', {
                     deletedCount,
-                    books: mongooseDocumentsToObject(books)
+                    books: mongooseDocumentsToObject(books),
+                    user: res.locals.user
                 })
             }).catch(next);
     },
@@ -49,7 +52,8 @@ const OwnController = {
         Book.findDeleted({})
             .then((books) => {
                 res.render('own/books/list/trash.hbs', {
-                    books: mongooseDocumentsToObject(books)
+                    books: mongooseDocumentsToObject(books),
+                    user: res.locals.user
                 })
             }).catch(next);
     },
@@ -62,7 +66,8 @@ const OwnController = {
             .then(([users, deletedCount]) => {
                 res.render('own/users/list/store.hbs', {
                     deletedCount,
-                    users: mongooseDocumentsToObject(users)
+                    users: mongooseDocumentsToObject(users),
+                    user: res.locals.user
                 })
             }).catch(next);
     },
@@ -72,7 +77,8 @@ const OwnController = {
         User.findDeleted({})
             .then((users) => {
                 res.render('own/users/list/trash.hbs', {
-                    users: mongooseDocumentsToObject(users)
+                    users: mongooseDocumentsToObject(users),
+                    user: res.locals.user
                 })
             }).catch(next);
     },
@@ -85,7 +91,8 @@ const OwnController = {
             .then(([news, deletedCount]) => {
                 res.render('own/news/list/store.hbs', {
                     deletedCount,
-                    news: mongooseDocumentsToObject(news)
+                    news: mongooseDocumentsToObject(news),
+                    user: res.locals.user
                 })
             }).catch(next);
     },
@@ -95,7 +102,8 @@ const OwnController = {
         News.findDeleted({})
             .then((news) => {
                 res.render('own/news/list/store.hbs', {
-                    news: mongooseDocumentsToObject(news)
+                    news: mongooseDocumentsToObject(news),
+                    user: res.locals.user
                 })
             }).catch(next);
     },
@@ -108,7 +116,8 @@ const OwnController = {
             .then(([events, deletedCount]) => {
                 res.render('users/list/store.hbs', {
                     deletedCount,
-                    events: mongooseDocumentsToObject(events)
+                    events: mongooseDocumentsToObject(events),
+                    user: res.locals.user
                 })
             }).catch(next);
     },
@@ -118,7 +127,8 @@ const OwnController = {
         Event.findDeleted({})
             .then((events) => {
                 res.render('users/list/trash.hbs', {
-                    events: mongooseDocumentsToObject(events)
+                    events: mongooseDocumentsToObject(events),
+                    user: res.locals.user
                 })
             }).catch(next);
     }

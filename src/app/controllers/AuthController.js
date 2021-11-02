@@ -14,6 +14,7 @@ const AuthController = {
 
     login: function(req, res, next) {
         const {key, password} = req.body;
+        console.log(req.body)
         const errors = [];
 
         const checkLogin = function(item) {

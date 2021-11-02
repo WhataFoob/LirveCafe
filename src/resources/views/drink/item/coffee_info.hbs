@@ -1,11 +1,17 @@
 <body>
     <p>{{coffee.title}}</p>
     <img src="{{coffee.image}}" alt="">
+
+    <p>{{coffee.price}}</p>
+    <a type="button" href="/coffee/buy/{{coffee._id}}"id="buyItem">Buy now</a>
+    <button type="button" id="addItemToCart">Add to cart</button>
     <h1>Feedback</h1>
+
+
 
     <div>
         <div id="commentForm">
-            <input type="text" name="username" id="username">
+            <input type="text" name="username" id="username" value={{user.username}} readonly>
             <input type="text" name="content" id="content">
             <input name="itemId" id="itemId" value="{{coffee._id}}">
             <button type="button" id="commentSendBtn">Submit</button>
@@ -50,7 +56,6 @@
                 content: $(`#${commentId} .replyForm #reply`).val(),
                 parentCommentId: commentId,
             }
-
             $.ajax({
                 url: '/coffee/reply-comment',
                 method: 'POST',
@@ -90,12 +95,12 @@
 
             socket.on("server_send_comment_to_coffee_item", function (data) {
 
-
+                
 
                 var html =
                     `<div id="${data._id}">
                             <p class="content">${data.username}: ${data.content}</p>
-                           
+                            <span class="date">${convert(data.updatedAt)}</span>
                             <ul class="replyList">
                             </ul>
                             <div class="replyForm">
@@ -114,7 +119,9 @@
             socket.on("server_send_reply_comment", function (data) {
                
                 var html = `
-                    <li>${data.username}: ${data.content}</li>`
+                    <li>${data.username}: ${data.content}</li>
+                     <span class="date">${convert(data.updatedAt)}</span>
+                `
                 var replyList = $(`#${data.parentCommentId} .replyList`)           
                 replyList.html(html + replyList.html())
                  
