@@ -14,6 +14,7 @@ const AuthController = {
 
     login: function(req, res, next) {
         const {key, password} = req.body;
+        console.log(req.body)
         const errors = [];
 
         const checkLogin = function(item) {
@@ -36,10 +37,10 @@ const AuthController = {
                     res.cookie('userId', users.filter(checkLogin)[0]._id, {
                         signed: true
                     })
-                    res.redirect('/coffee/list');
+                    res.redirect('/');
                 } else {
                     errors.push('username or phone or email or password is not correct');
-                    res.render('/auth/login', {
+                    res.render('auth/index', {
                        errors: errors,
                        values: req.body
                     });

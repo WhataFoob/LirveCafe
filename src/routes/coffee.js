@@ -5,7 +5,9 @@ import multer from 'multer';
 import path from 'path';
 
 import controllers from '../app/controllers/CoffeeController.js';
+import commentControllers from '../app/controllers/CommentController.js';
 import validate from '../app/validate/coffee.validate.js';
+import checkUser from '../app/middleware/AuthMiddleware.js'
 
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -35,6 +37,8 @@ var upload = multer({
 
 router.get('/list', controllers.index);
 router.get('/create', controllers.create);
+router.get('/buy/:id', controllers.showPayForm)
+router.post('/buy', controllers.buy)
 router.get('/:slug', controllers.show);
 router.post('/save',  
     upload.single('image'),
@@ -46,5 +50,9 @@ router.patch('/:id', controllers.update);
 router.delete('/:id', controllers.softDelete);
 router.delete('/:id/force', controllers.deepDelete);
 router.patch('/:id/restore', controllers.restore);
+
+router.post('/do-comment', commentControllers.doComment)
+router.post('/reply-comment', commentControllers.replyComment)
+
 
 export default router;

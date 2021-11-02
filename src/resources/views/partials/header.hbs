@@ -34,8 +34,11 @@
         <div class="header-user d-flex ">
             <i class="header-icon ti-user ml-3 mr-1"></i>
             <div class="header-des">
-                <span class="header-text">Tài khoản</span><br>
-                <span class="header-text" id="user-name">Phạm Thế Nam</span>
+                {{#if user}}   
+                    <span class="header-text" id="user-name">{{user.username}}</span>
+                {{else}}
+                    <span class="header-text">Login</span>
+                {{/if}}
             </div>
 
             <div id = "user-list" class= "header-list">

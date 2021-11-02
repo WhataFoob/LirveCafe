@@ -5,6 +5,7 @@ import multer from 'multer';
 import path from 'path';
 
 import controllers from '../app/controllers/BookController.js';
+import commentControllers from '../app/controllers/CommentController.js';
 import validate from '../app/validate/book.validate.js';
 
 var storage = multer.diskStorage({
@@ -46,5 +47,8 @@ router.patch('/:id', controllers.update);
 router.delete('/:id', controllers.softDelete);
 router.delete('/:id/force', controllers.deepDelete);
 router.patch('/:id/restore', controllers.restore);
+
+router.post('/do-comment', commentControllers.doComment)
+router.post('/reply-comment', commentControllers.replyComment)
 
 export default router;

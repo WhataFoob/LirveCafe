@@ -1,4 +1,8 @@
 import Book from '../models/Book.js';
+
+import Comment from '../models/Comment.js';
+import Reply from '../models/Reply.js';
+
 import { 
     singleMongooseDocumentToObject,
     mongooseDocumentsToObject 
@@ -10,7 +14,8 @@ const BookController = {
         Book.find({})
             .then((books) => {
                 res.render('books/list/list.hbs', {
-                    books: mongooseDocumentsToObject(books)
+                    books: mongooseDocumentsToObject(books),
+                    user: res.locals.user
                 });
             }).catch(next);
     },
@@ -20,7 +25,8 @@ const BookController = {
         Book.findOne({ slug: req.params.slug })
             .then((book) => {
                 res.render('books/item/book_info.hbs', {
-                    book: singleMongooseDocumentToObject(book)
+                    book: singleMongooseDocumentToObject(book),
+                    user: res.locals.user
                 })
             })
             .catch(next);
@@ -28,7 +34,9 @@ const BookController = {
 
     // GET: /books/create
     create(req, res, next) {
-        res.render('own/books/item/create.hbs');
+        res.render('own/books/item/create.hbs',{
+            user: res.locals.user
+        });
     },
 
     // POST : /books/save
@@ -45,7 +53,8 @@ const BookController = {
         Book.findById(req.params.id)
             .then((book) => {
                 res.render('own/books/item/edit.hbs', {
-                    book: singleMongooseDocumentToObject(book)
+                    book: singleMongooseDocumentToObject(book),
+                    user: res.locals.user
                 })
             })
             .catch(next);
@@ -77,7 +86,7 @@ const BookController = {
         Book.restore({_id: req.params.id})
             .then(() => res.redirect('back'))
             .catch(next);
-    }
-};  
+    },
+};
 
 export default BookController;

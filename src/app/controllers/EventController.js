@@ -12,7 +12,8 @@ const EventController = {
         Event.find({})
             .then((events) => {
                 res.render('events/list/list.hbs', {
-                    events: mongooseDocumentsToObject(events)
+                    events: mongooseDocumentsToObject(events),
+                    user: res.locals.user
                 })
             }).catch(next);
     },
@@ -22,14 +23,17 @@ const EventController = {
         Event.findOne({slug: req.params.slug})
             .then((event) => {
                 res.render('events/item/event_info.hbs' , {
-                    event: singleMongooseDocumentToObject(event)
+                    event: singleMongooseDocumentToObject(event),
+                    user: res.locals.user
                 })
             }).catch(next)
     },
 
     // GET /events/create
     create(req, res, next) {
-        res.render('events/item/create.hbs')
+        res.render('events/item/create.hbs', {
+            user: res.locals.user
+        })
     },
 
     //POST /events/save
@@ -46,7 +50,8 @@ const EventController = {
         Event.findOne({_id: req.params.id})
             .then((event) => {
                 res.render('events/item/edit.hbs', {
-                    event: singleMongooseDocumentToObject(event)
+                    event: singleMongooseDocumentToObject(event),
+                    user: res.locals.user
                 })
             })
             .catch(next)

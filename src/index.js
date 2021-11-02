@@ -11,7 +11,6 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import routeObj from './routes/index.js';
 import mongoose_driver from './config/database/index.js';
-import TestController from './app/controllers/TestController.js'
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -19,7 +18,7 @@ dotenv.config();
 const app = express();
 mongoose_driver.connect();
 
-const port = 4000;
+const port = 3000;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -47,13 +46,37 @@ app.engine(
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
+import http from 'http';
+import { Server } from 'socket.io';
 
-routeObj.route(app);
+var server = http.Server(app);
+const io = new Server(server);
 
-app.listen(port, () => {
-    console.log(`Server is running at port: ${port}`);
+io.on("connection", function(socket) {
+
+    console.log("New: " + socket.id)
+
+    socket.on("client_send_comment_to_coffee_item", function(data) {
+        socket.join(data.itemId)
+        socket.join(data._id)
+        console.log(socket.adapter.rooms)
+        io.sockets.in(data.itemId).emit("server_send_comment_to_coffee_item", data)
+    })
+    
+    socket.on("client_send_reply_comment", function(data) {
+        socket.join(data.parentCommentId)
+        console.log(data.parentCommentId)
+        console.log(socket.adapter.rooms)
+        io.sockets.in(data.parentCommentId).emit("server_send_reply_comment", data)
+    })
+
 })
 
 
 
-app.get('/', TestController.index)
+
+
+server.listen(port)
+
+
+routeObj.route(app);
