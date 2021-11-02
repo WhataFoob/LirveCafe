@@ -14,7 +14,8 @@ const UserController = {
             .then((users) => {
                
                 res.render('own/users/list/store.hbs', {
-                    users: mongooseDocumentsToObject(users)
+                    users: mongooseDocumentsToObject(users),
+                    user: res.locals.user
                    
                 });
             }).catch(next);
@@ -25,7 +26,8 @@ const UserController = {
         User.findOne({ _id: req.params.id })
             .then((user) => {
                 res.render('users/item/user_info.hbs', {
-                    user: singleMongooseDocumentToObject(user)
+                    user: singleMongooseDocumentToObject(user),
+                    user: res.locals.user
                 })
             })
             .catch(next);
@@ -33,7 +35,9 @@ const UserController = {
 
     // GET: /users/create
     create(req, res, next) {
-        res.render('users/info/item/create.hbs');
+        res.render('users/info/item/create.hbs', {
+            user: res.locals.user
+        });
     },
 
     // POST : /users/save
@@ -54,7 +58,8 @@ const UserController = {
         User.findById(req.params.id)
             .then((user) => {
                 res.render('users/item/edit.hbs', {
-                    user: singleMongooseDocumentToObject(user)
+                    user: singleMongooseDocumentToObject(user),
+                    user: res.locals.user
                 })
             })
             .catch(next);

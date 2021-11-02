@@ -8,7 +8,8 @@ const NewsController = {
         News.find({})
             .then((news) => {
                 res.render('news/list/list.hbs', {
-                    news: mongooseDocumentsToObject(news)
+                    news: mongooseDocumentsToObject(news),
+                    user: res.locals.user
                 });
             }).catch(next);
     },
@@ -18,7 +19,8 @@ const NewsController = {
         News.findOne({ slug: req.params.slug })
             .then((book) => {
                 res.render('news/item/news_info.hbs', {
-                    book: singleMongooseDocumentToObject(book)
+                    book: singleMongooseDocumentToObject(book),
+                    user: res.locals.user
                 })
             })
             .catch(next);
@@ -26,7 +28,9 @@ const NewsController = {
 
     // GET: /news/create
     create(req, res, next) {
-        res.render('own/news/item/create.hbs');
+        res.render('own/news/item/create.hbs', {
+            user: res.locals.user
+        });
     },
 
     // POST : /news/save
@@ -43,7 +47,8 @@ const NewsController = {
         News.findById(req.params.id)
             .then((news) => {
                 res.render('news/edit', {
-                    news: singleMongooseDocumentToObject(news)
+                    news: singleMongooseDocumentToObject(news),
+                    user: res.locals.user
                 })
             })
             .catch(next);

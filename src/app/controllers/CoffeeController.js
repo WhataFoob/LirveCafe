@@ -13,8 +13,10 @@ const CoffeeController = {
     index(req, res, next) {
         Coffee.find({})
             .then((coffee) => {
+                console.log(res.locals)
                 res.render('drink/list/list.hbs', {
-                    coffee: mongooseDocumentsToObject(coffee)
+                    coffee: mongooseDocumentsToObject(coffee),
+                    user: res.locals.user
                 });
             }).catch(next);
     },
@@ -30,7 +32,8 @@ const CoffeeController = {
                     .then((commentList) => {
                         res.render('drink/item/coffee_info.hbs', {
                             coffee: coffee,
-                            commentList: mongooseDocumentsToObject(commentList)
+                            commentList: mongooseDocumentsToObject(commentList),
+                            user: res.locals.user
                         })
                     })
                
@@ -58,6 +61,7 @@ const CoffeeController = {
             .then((coffee) => {
                 res.render('own/drink/item/edit.hbs', {
                     coffee: singleMongooseDocumentToObject(coffee),
+                    user: res.locals.user
                 })
             }).catch(next);
     },
