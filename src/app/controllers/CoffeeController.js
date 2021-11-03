@@ -58,12 +58,14 @@ const CoffeeController = {
 
     buy(req, res, next) {
         const order = new Order(req.body)  
-        console.log(order)
+       
         order.save()
-            .then(() => res.render('notice/payment/success.hbs', {
-                order: singleMongooseDocumentToObject(order),
-                user: res.locals.user
-            }))
+            .then(() => {
+                res.send({
+                    order: singleMongooseDocumentToObject(order),
+                    user: res.locals.user
+                })
+            }).catch(next);
     },
 
     // GET: /coffee/create
