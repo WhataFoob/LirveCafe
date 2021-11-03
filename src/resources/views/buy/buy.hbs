@@ -41,7 +41,7 @@
                                         <input class="form-control" id="token" name="token" 
                                             type="text"
                                             placeholder="Nhập mã xác thực chúng tôi vừa gửi bạn qua email này" required>
-                                        <span class="form-label">Mấ xác thực</span>
+                                        <span class="form-label">Mã xác thực</span>
                                         <button id="getToken">Lấy mã xác thực</button>
                                     </div>
                                 </div>
@@ -94,6 +94,7 @@
 
                 if (email.length == 0) {
                     alert("Vui lòng nhập email để lấy mã xác thực qua email này")
+                    return false;
                 }
 
                 const data = {

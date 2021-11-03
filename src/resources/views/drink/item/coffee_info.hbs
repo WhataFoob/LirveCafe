@@ -3,7 +3,7 @@
     <img src="{{coffee.image}}" alt="">
 
     <p>{{coffee.price}}</p>
-    <a type="button" href="/coffee/buy/{{coffee._id}}"id="buyItem">Buy now</a>
+    <a type="button" href="/coffee/buy/{{coffee._id}}" id="buyItem">Buy now</a>
     <button type="button" id="addItemToCart">Add to cart</button>
     <h1>Feedback</h1>
 
@@ -11,13 +11,18 @@
 
     <div>
         <div id="commentForm">
+
+            {{#if user}}
             <input type="text" name="username" id="username" value={{user.username}} readonly>
             <input type="text" name="content" id="content">
             <input name="itemId" id="itemId" value="{{coffee._id}}">
             <button type="button" id="commentSendBtn">Submit</button>
+            {{/if}}
         </div>
     </div>
-
+    {{#if commentList.length}}
+        <h1>Comment ({{commentList.length}})</h1>
+    {{/if}}
     <div id="commentBox">
         {{#each commentList}}
         <div id="{{this._id}}">
@@ -95,7 +100,7 @@
 
             socket.on("server_send_comment_to_coffee_item", function (data) {
 
-                
+
 
                 var html =
                     `<div id="${data._id}">
@@ -113,18 +118,18 @@
                         </div>`
                 var commentBox = $("#commentBox")
                 commentBox.html(html + commentBox.html())
-                
+
             })
 
             socket.on("server_send_reply_comment", function (data) {
-               
+
                 var html = `
                     <li>${data.username}: ${data.content}</li>
                      <span class="date">${convert(data.updatedAt)}</span>
                 `
-                var replyList = $(`#${data.parentCommentId} .replyList`)           
+                var replyList = $(`#${data.parentCommentId} .replyList`)
                 replyList.html(html + replyList.html())
-                 
+
             })
 
 
