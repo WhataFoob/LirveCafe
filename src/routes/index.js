@@ -6,6 +6,7 @@ import userRoute from './user.js';
 import ownRoute from './own.js'; 
 import authRoute from './auth.js';
 import homeRoute from './test.js';
+import emailRoute from './email.js';
 import checkUser from '../app/middleware/AuthMiddleware.js';
 
 const routeObj = {
@@ -17,6 +18,7 @@ const routeObj = {
         app.use('/users', checkUser.getCurrentUser, userRoute);
         app.use('/own', checkUser.getCurrentUser, ownRoute);
         app.use('/auth', checkUser.getCurrentUser, authRoute);
+        app.use('/email', checkUser.getCurrentUser, emailRoute);
         app.use('/', checkUser.getCurrentUser, homeRoute);
     },
 }
