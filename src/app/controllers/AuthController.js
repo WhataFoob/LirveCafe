@@ -3,6 +3,15 @@ import {
     mongooseDocumentsToObject
 } from '../../support_lib/mongoose.js';
 
+import Vonage  from '@vonage/server-sdk'
+
+import otpGenerator from 'otp-generator';
+
+const vonage = new Vonage({
+  apiKey: "3784dde2",
+  apiSecret: "bYpbXqGawIqV9PIn"
+}, {debug: true})
+
 const AuthController = {
 
     // GET auth/index
@@ -14,7 +23,7 @@ const AuthController = {
 
     login: function(req, res, next) {
         const {key, password} = req.body;
-        console.log(req.body)
+        
         const errors = [];
 
         const checkLogin = function(item) {
@@ -34,10 +43,35 @@ const AuthController = {
             .then((users) => {
                 users = mongooseDocumentsToObject(users);
                 if (users.filter(checkLogin).length) {
-                    res.cookie('userId', users.filter(checkLogin)[0]._id, {
+                    const user = users.filter(checkLogin)[0]
+                    res.cookie('userId', user._id, {
                         signed: true
                     })
-                    res.redirect('/');
+                    
+                    const from = 'Vonage APIs'
+                    const to = '+84969973012'.replace(/\D/g,'')
+                    let text = "Hello, you get 5 free milk teas on the opening day of new drinks from lirvecafehust Address: Alley 75 Giai Phong, Hanoi";
+                    vonage.message.sendSms(from, to, text,
+                        (err, responseData) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            if(responseData.messages[0]['status'] === "0") {
+                                console.log("Message sent successfully.");
+                            } else {
+                                console.log(responseData);
+                            }
+                        }
+                    })
+
+                    const data =  {
+                        user: user,
+                        validToken: otpGenerator.generate(6, { upperCase: false, specialChars: false})
+                    }
+
+                    console.log(data)
+
+                    res.render('auth/2fa', {data: data});
                 } else {
                     errors.push('username or phone or email or password is not correct');
                     res.render('auth/index', {
