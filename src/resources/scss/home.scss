@@ -2,7 +2,7 @@
 
 $headerHeight: 100px;
 $headerColor: #8B4513;
-$boundColor: #945305;
+$boundColor: #ccc;
 
 $itemSliderHeight: 500px;
 
@@ -18,8 +18,12 @@ $itemSliderHeight: 500px;
 
     background-color: $headerColor;
     .header-text {
-        font-size: 15px;
+        font-size: 14px;
         font-weight: bold;
+    }
+
+    .header-user, .header-menu {
+        position: relative;
     }
 
     .header-list {
@@ -27,16 +31,17 @@ $itemSliderHeight: 500px;
         background-color: #ccc;
         z-index: 2;
         display: none;
-        position: relative;
+        position: absolute;
+        top: 100%;
+        left: 10px; 
         
         ul {
             padding-left: 0px;
             margin-bottom: 0;
             background-color:$headerColor;
             border: 1px solid #000; 
-            position: absolute;
-            top: 100%;
-            right: 100%;    
+            text-align: center;
+            
         }
 
         li {
@@ -75,7 +80,7 @@ $itemSliderHeight: 500px;
         position: absolute;
         z-index: 2;
         top: 9px;
-        left: 22px;
+        left: 14px;
         background: red;
         color: #fff;
         font-size: 16px;
@@ -117,8 +122,9 @@ $itemSliderHeight: 500px;
 }
 
 #header .header-icon {
-    font-size: 36px;
+    font-size: 28px;
     margin: 0 8px;
+    padding-top: 6px;
 }
 // 
 .container-fluid {
@@ -269,5 +275,9 @@ $itemSliderHeight: 500px;
     .contact {
         width: 300px;
         margin: 0 auto;
+    }
+
+    .footer-icon {
+        margin-right: 10px;
     }
 }
