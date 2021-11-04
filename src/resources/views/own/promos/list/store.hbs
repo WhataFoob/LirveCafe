@@ -1,0 +1,83 @@
+<div class="mt-4">
+    <div>
+      <h3>Danh sách các mã giảm giá</h3>
+      <a href="/own/trash/promos">Thùng rác ({{deletedCount}})</a>
+    </div>
+
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên giảm giá</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col" colspan="2">Thời gian tạo</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each promos}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.description}}</td>
+                <td><span class="date">{{this.createdAt}}</span></td>
+                <td>
+                    <a href="/promos/{{this.slug}}/edit" class="btn btn-link">Sửa</a>
+                    <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-promo-modal">Xóa</a>
+                </td>
+            </tr>
+            {{else}}
+            <tr>
+              <td colspan="5" class="text-center">
+                Bạn chưa bất cứ 1 cuốn sách nào
+                <a href="/promos/create">Thêm mới sách</a>
+              </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+{{!-- Confirm delete promo --}}
+<div id="delete-promo-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xóa sách?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn chắc chắn muốn xóa sách này?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        <button id="btn-delete-promo" type="button" class="btn btn-danger">Xóa bỏ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Delete hidden form --}}
+<form name="delete-promo-form" method="POST"></form>
+
+<script src="../../../../../public/js/datetime_handling.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var promoId;
+        var deleteForm = document.forms['delete-promo-form'];
+        var btnDeletepromo = document.getElementById('btn-delete-promo');
+        // When dialog confirm clicked
+        $('#delete-promo-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            promoId = button.data('id');
+        });
+        
+        // When delete promo btn clicked
+        btnDeletepromo.onclick = function () {
+            deleteForm.action = '/promos/' + promoId + '?_method=DELETE';
+            deleteForm.submit();
+        }
+    });
+</script>

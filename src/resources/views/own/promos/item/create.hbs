@@ -1,0 +1,94 @@
+<body>
+    {{#each errors}}
+    <p>{{this}}</p>
+    {{/each}}
+
+    <div class="mt-4">
+        <h3>Thêm mã giảm giá mới</h3>
+
+        <form id="createPromoForm" method="POST" action="/promos/save">
+
+            <div class="form-group">
+                <label for="discountPercentage">Tiêu đề</label>
+                <input type="text" class="form-control" id="name" name="name">
+            </div>
+
+            <div class="form-group">
+                <label for="discountPercentage">Số phần trăm chiết khấu</label>
+                <input type="text" class="form-control" id="discountPercentage" name="discountPercentage">
+            </div>
+            <div class="form-group">
+                <label for="discountAmount">Số tiền chiết khấu</label>
+                <input type="text" class="form-control" id="discountAmount" name="discountAmount">
+            </div>
+            <div class="form-group">
+                <label for="condition">Áp dụng với đơn hàng có số tiền trên: </label>
+                <input type="text" class="form-control" id="condition" name="condition">
+            </div>
+            <div class="form-group">
+                <label for="limitEachDay">Số lần tối đa được áp dụng mã trong 1 ngày: </label>
+                <input type="text" class="form-control" id="limitEachDay" name="limitEachDay">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" class="form-control" id="description" name="description">
+            </div>
+
+            <div class="form-group">
+                <label for="expirationDate">Demo</label>
+                <input type="date" class="form-control" id="expirationDate" name="expirationDate">
+            </div>
+
+
+            <button type="submit" id="createBtn" class="btn btn-primary">Thêm mới mã này</button>
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) dd = '0' + dd;
+        if (mm < 10) mm = '0' + mm;
+
+        today = yyyy + '-' + mm + '-' + dd;
+
+        console.log(today)
+
+        document.getElementById('expirationDate').setAttribute("min", today)
+        document.getElementById('expirationDate').setAttribute("value", today)
+
+        $(document).ready(function () {
+            $("#createBtn").click(function () {
+                
+                
+
+                const discountPercentage = $('#discountPercentage').val()
+                const discountAmount = $('#discountAmount').val()
+                const condition = $('#condition').val();
+                let discount = ''
+                if (discountPercentage)
+                    discount = discountPercentage + '%'
+                if (discountAmount)
+                    discount = discountAmount + 'K'
+
+                let name = `Giảm ${discount} cho đơn từ ${condition}K`;
+                $('#name').val(name)
+
+    
+                $("#createPromoForm").submit(function() {
+                    console.log('Submit')
+                })
+
+            })
+
+        })       
+                
+    </script>
+
+</body>
