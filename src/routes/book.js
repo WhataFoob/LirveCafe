@@ -3,6 +3,7 @@ const router = express.Router();
 
 import multer from 'multer';
 import path from 'path';
+import { removeListener } from 'process';
 
 import controllers from '../app/controllers/BookController.js';
 import commentControllers from '../app/controllers/CommentController.js';
@@ -36,6 +37,10 @@ var upload = multer({
 
 router.get('/list', controllers.index);
 router.get('/create', controllers.create);
+router.get('/buy/:id', controllers.showPayForm)
+router.post('/buy', controllers.buy)
+router.get('/buys/:id', controllers.showAllCartPayForm)
+router.post('/buys', controllers.buyAllCart)
 router.get('/:slug', controllers.show);
 router.post('/save', 
     upload.single('image'),
@@ -47,6 +52,8 @@ router.patch('/:id', controllers.update);
 router.delete('/:id', controllers.softDelete);
 router.delete('/:id/force', controllers.deepDelete);
 router.patch('/:id/restore', controllers.restore);
+
+
 
 router.post('/do-comment', commentControllers.doComment)
 router.post('/reply-comment', commentControllers.replyComment)
