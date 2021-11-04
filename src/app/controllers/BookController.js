@@ -41,6 +41,7 @@ const BookController = {
 
     // POST : /books/save
     save(req, res, next) {
+        
         req.body.image = '/' + req.file.path.split('\\').slice(2).join('/'); 
         const book = new Book(req.body);
         book.save()

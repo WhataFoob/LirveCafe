@@ -16,7 +16,23 @@ const AuthController = {
 
     // GET auth/index
     index: function(req, res, next) {
+
+        if (req.signedCookies) {
+            if (req.signedCookies.userId) {
+                res.redirect('/')
+                return true;
+            }
+            
+        }
+
         res.render('auth/index');
+    },
+
+    // GET auth/logout
+
+    logout: function(req, res, next) {
+        res.clearCookie("userId");
+        res.redirect('/');
     },
 
     // POST auth/login
@@ -79,7 +95,7 @@ const AuthController = {
                        values: req.body
                     });
                 }
-            })
+            }).catch(next)
 
 
 

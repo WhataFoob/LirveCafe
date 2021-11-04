@@ -3,6 +3,7 @@ import Book from '../models/Book.js';
 import News from '../models/News.js';
 import User from '../models/User.js';
 import Event from '../models/Event.js';
+import Promo from '../models/Promo.js';
 
 import { mongooseDocumentsToObject } from '../../support_lib/mongoose.js';
 
@@ -131,7 +132,33 @@ const OwnController = {
                     user: res.locals.user
                 })
             }).catch(next);
-    }
+    },
+
+    // 6.Promotions warehouse
+
+     // GET own/stored/promos
+     storedPromos(req, res, next) {
+        Promise.all([Promo.find({}), Promo.countDocumentsDeleted()])
+            .then(([promos, deletedCount]) => {
+                res.render('own/promos/list/store.hbs', {
+                    deletedCount,
+                    promos: mongooseDocumentsToObject(promos),
+                    user: res.locals.user
+                })
+            }).catch(next);
+    },
+
+    // GET own/trash/promos
+    trashPromos(req, res, next) {
+        Promo.findDeleted({})
+            .then((promos) => {
+                res.render('own/promos/list/trash.hbs', {
+                    promos: mongooseDocumentsToObject(promos),
+                    user: res.locals.user
+                })
+            }).catch(next);
+    },
+
 
 
 
