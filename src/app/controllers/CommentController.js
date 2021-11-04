@@ -13,6 +13,7 @@ const CommentControllers = {
      doComment(req, res, next) {
        
         const comment = new Comment(req.body);
+        
         comment.save()
             .then(() => res.send(singleMongooseDocumentToObject(comment)))
             .catch(next)

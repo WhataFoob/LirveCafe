@@ -1,5 +1,8 @@
 import News from '../models/News.js'
-import { singleMongooseDocumentToObject } from '../../support_lib/mongoose.js';
+import { 
+    singleMongooseDocumentToObject,
+    mongooseDocumentsToObject
+} from '../../support_lib/mongoose.js';
 
 const NewsController = {
 
