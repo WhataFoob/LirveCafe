@@ -40,6 +40,10 @@ app.engine(
     'hbs',
     handlebars({
         extname: '.hbs',
+        helpers: {
+            sum: (a, b) => a + b,
+            multiply: (a, b) => a * b
+        }
     }),
 );
 

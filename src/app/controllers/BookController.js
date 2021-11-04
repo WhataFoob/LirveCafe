@@ -1,4 +1,6 @@
 import Book from '../models/Book.js';
+import Order from '../models/Order.js';
+import Cart from '../models/Cart.js'
 
 import Comment from '../models/Comment.js';
 import Reply from '../models/Reply.js';
@@ -30,6 +32,64 @@ const BookController = {
                 })
             })
             .catch(next);
+    },
+
+     // GET: /book/buy/:id
+     showPayForm(req, res, next) {
+        console.log(req.params.id)
+        Book.findOne({_id: req.params.id})
+            .then((book) => {
+                book = singleMongooseDocumentToObject(book)
+                res.render('buy/buyOneItem.hbs', {
+                    book: book,
+                    user: res.locals.user
+                })
+            })
+    },
+
+     // GET: /book/buys/:id
+    showAllCartPayForm(req, res, next) {
+        console.log(req.params.id)
+        Cart.findOne({_id: req.params.id})
+            .then((cart) => {
+                cart = singleMongooseDocumentToObject(cart)
+                var total = cart.reduce(function(acc, item) {
+                    return acc + parseInt(item.book.price) * parseInt(item.quantity);
+                }, 0)
+                res.render('buy/buyAllCart.hbs', {
+                    cart: cart,
+                    user: res.locals.user,
+                    total: total
+                })
+            })
+    },
+    
+    // POST: /book/buy
+
+    buy(req, res, next) {
+        const order = new Order(req.body)  
+       
+        order.save()
+            .then(() => {
+                res.send({
+                    order: singleMongooseDocumentToObject(order),
+                    user: res.locals.user
+                })
+            }).catch(next);
+    },
+
+    // POST: /book/buys
+
+    buyAllCart(req, res, next) {
+        const order = new Order(req.body)  
+       
+        order.save()
+            .then(() => {
+                res.send({
+                    order: singleMongooseDocumentToObject(order),
+                    user: res.locals.user
+                })
+            }).catch(next);
     },
 
     // GET: /books/create
