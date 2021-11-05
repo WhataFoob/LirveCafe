@@ -1,6 +1,7 @@
 import Book from '../models/Book.js';
 import Order from '../models/Order.js';
-import Cart from '../models/Cart.js'
+import Cart from '../models/Cart.js';
+import Orders from '../models/Orders.js';
 
 import Comment from '../models/Comment.js';
 import Reply from '../models/Reply.js';
@@ -34,7 +35,7 @@ const BookController = {
             .catch(next);
     },
 
-     // GET: /book/buy/:id
+     // GET: /books/buy/:id
      showPayForm(req, res, next) {
         console.log(req.params.id)
         Book.findOne({_id: req.params.id})
@@ -47,13 +48,13 @@ const BookController = {
             })
     },
 
-     // GET: /book/buys/:id
+     // GET: /books/buys/:id
     showAllCartPayForm(req, res, next) {
-        console.log(req.params.id)
+        
         Cart.findOne({_id: req.params.id})
             .then((cart) => {
                 cart = singleMongooseDocumentToObject(cart)
-                var total = cart.reduce(function(acc, item) {
+                var total = cart.itemList.reduce(function(acc, item) {
                     return acc + parseInt(item.book.price) * parseInt(item.quantity);
                 }, 0)
                 res.render('buy/buyAllCart.hbs', {
@@ -78,18 +79,22 @@ const BookController = {
             }).catch(next);
     },
 
-    // POST: /book/buys
+    // POST: /books/buys
 
     buyAllCart(req, res, next) {
-        const order = new Order(req.body)  
+       const data = req.body;
+       const itemId = data.itemId;
+       delete data.itemId;
        
-        order.save()
-            .then(() => {
-                res.send({
-                    order: singleMongooseDocumentToObject(order),
-                    user: res.locals.user
-                })
-            }).catch(next);
+       Cart.findOne({_id: itemId})
+            .then((cart) => {
+                data.itemList = singleMongooseDocumentToObject(cart).itemList;
+                const orders = new Orders(data);
+                console.log(orders)
+                return Promise.all([orders.save(), Cart.deleteOne({_id: itemId})])
+            }).then(([x, y]) => {
+                console.log("Buy all cart successfully: ", x, " ", y)
+            }).catch(next)
     },
 
     // GET: /books/create
