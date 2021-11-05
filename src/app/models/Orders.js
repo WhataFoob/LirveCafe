@@ -13,6 +13,7 @@ const Orders = new Schema(
         phone: { type: String, required: true},
         itemList: { type: Array},
         total: { type: Number, min: 0, required: true },
+        promoId: { type: String }
     },
     {
         timestamps: true    

@@ -56,8 +56,24 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input class="form-control" id="total" name="total" value={{total}}>
+                                
                                         <span class="form-label">Total: </span>
+                                        <div class="form-control" id="old-total" style="text-decoration: line-through;"name="old-total">{{total}}</div>
+                                        <div class="form-control" id="new-total" name="new-total"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" id="promoId" value="{{promo._id}}" hidden>
+                                        {{#if promo.discountAmount}}
+                                            <input class="form-control" id="amount-promo" name="amount-promo" value={{promo.discountAmount}}>
+                                        {{/if}}
+                                        {{#if promo.discountPercentage}}
+                                            <input class="form-control" id="percentage-promo" name="percentage-promo" value={{promo.discountPercentage}}>
+                                        {{/if}}
+                                        
+                                        <span class="form-label">Discount: </span>
                                     </div>
                                 </div>
 
@@ -85,6 +101,20 @@
     <script>
 
         $(document).ready(function () {
+
+            var total = $('#old-total').text();
+            if ($("#amount-promo").val()) {
+                
+                total = parseInt(total) - parseInt($("#amount-promo").val())
+            }
+
+            if ($("#percentage-promo").val()) {
+                
+                total = parseInt(total) *  (100 - parseInt($("#percentage-promo").val())) / 100
+            }
+
+            $('#new-total').text(total);
+
 
             var validToken = ''
 
@@ -117,7 +147,10 @@
 
             $('#purchaseBtn').click(function () {
                 const userToken = $('#token').val()
-                console.log(userToken)
+                
+
+
+                
                 if (userToken == '' || userToken != validToken) {
                     alert("Mã xác thực không hợp lệ");
                 } else {
@@ -127,8 +160,9 @@
                         address: $('#address').val(),
                         email: $('#email').val(),
                         phone: $('#phone').val(),
-                        total: $('#total').val(),
+                        total: total,
                         itemId: $('#itemId').val(),
+                        promoId: $('#promoId').val()
                     }
 
                     $.ajax({

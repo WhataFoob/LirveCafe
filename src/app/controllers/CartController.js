@@ -1,5 +1,6 @@
 import Book from '../models/Book.js';
 import Cart from '../models/Cart.js';
+import Promo from '../models/Promo.js';
 
 import { 
     singleMongooseDocumentToObject,
@@ -54,7 +55,19 @@ const CartController = {
         Cart.findOne({username: username})
             .then((cart) => {
                 cart = singleMongooseDocumentToObject(cart)
-                res.render('carts/index.hbs', {cart})
+                
+                var total = cart.itemList.reduce(function(acc, item) {
+                    return acc + parseInt(item.book.price) * parseInt(item.quantity)
+                }, 0)
+
+                return Promise.all([Promo.find({ condition: { $lte: total} }), Cart.findOne({username: username})])
+            })
+            .then(([promoList, cart]) => {
+                if (!promoList) promoList = []
+                else promoList = mongooseDocumentsToObject(promoList)
+                console.log(promoList, 'Promo list')
+                cart = singleMongooseDocumentToObject(cart)
+                res.render('carts/index.hbs', {cart, promoList})
             })
     },
 
@@ -93,6 +106,15 @@ const CartController = {
                 return Cart.updateOne({username: data.username}, {itemList: userCart})
             }).then(() => res.send("Ok"))
             .catch(next)
+    },
+
+    addPromoToCart(req, res, next) {
+        const data = req.body;
+        Promise.all([
+            Cart.findOne({_id: data.cartId}),
+            Promo.findOne({_id: data.promoId}),
+
+        ])
     }
 
 }
