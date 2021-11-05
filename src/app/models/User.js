@@ -15,7 +15,8 @@ const User = new Schema(
         password: {type: String, required: true},
         avatar: {type: String},
         star_no: {type: Number, default: 0},
-        role: {type: String, default: "guest"}
+        role: {type: String, default: "guest"},
+        level: {type: Number, default: 0}
     },
     {
         timestamps: true,

@@ -3,7 +3,6 @@ const router = express.Router();
 
 import multer from 'multer';
 import path from 'path';
-import { removeListener } from 'process';
 
 import controllers from '../app/controllers/BookController.js';
 import commentControllers from '../app/controllers/CommentController.js';

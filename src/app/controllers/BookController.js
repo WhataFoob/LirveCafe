@@ -1,6 +1,10 @@
 import Book from '../models/Book.js';
 import Order from '../models/Order.js';
-import Cart from '../models/Cart.js'
+import Cart from '../models/Cart.js';
+import Orders from '../models/Orders.js';
+import User from '../models/User.js';
+
+import Rank from '../constants/user.rank.js';
 
 import Comment from '../models/Comment.js';
 import Reply from '../models/Reply.js';
@@ -9,6 +13,38 @@ import {
     singleMongooseDocumentToObject,
     mongooseDocumentsToObject 
 } from '../../support_lib/mongoose.js';
+
+
+const calculateUserLevel = ([singleOrderList, multiOrderList, user]) => {
+    if (!singleOrderList)
+        singleOrderList = []
+    else singleOrderList = mongooseDocumentsToObject(singleOrderList)
+
+    if (!multiOrderList)
+        multiOrderList = []
+    else multiOrderList = mongooseDocumentsToObject(multiOrderList)
+
+    var total = 
+            singleOrderList.reduce(function(acc, item) {
+                return acc + item.total
+            }, 0) +
+            multiOrderList.reduce(function(acc, item) {
+                return acc + item.total
+            }, 0)
+    
+    var level = 0;
+    for (var i = Rank.totalAmountPurchased.length - 1; i>= 0; i--) {
+        if (total >= Rank.totalAmountPurchased[i]) {
+            level = i + 1;
+            break;
+        }
+    }
+
+    user.level = level;
+    return user.save()
+    
+}
+
 
 const BookController = {
     // GET /books/list
@@ -34,7 +70,7 @@ const BookController = {
             .catch(next);
     },
 
-     // GET: /book/buy/:id
+     // GET: /books/buy/:id
      showPayForm(req, res, next) {
         console.log(req.params.id)
         Book.findOne({_id: req.params.id})
@@ -47,13 +83,14 @@ const BookController = {
             })
     },
 
-     // GET: /book/buys/:id
+     // GET: /books/buys/:id
     showAllCartPayForm(req, res, next) {
-        console.log(req.params.id)
+        
         Cart.findOne({_id: req.params.id})
             .then((cart) => {
+                
                 cart = singleMongooseDocumentToObject(cart)
-                var total = cart.reduce(function(acc, item) {
+                var total = cart.itemList.reduce(function(acc, item) {
                     return acc + parseInt(item.book.price) * parseInt(item.quantity);
                 }, 0)
                 res.render('buy/buyAllCart.hbs', {
@@ -68,8 +105,17 @@ const BookController = {
 
     buy(req, res, next) {
         const order = new Order(req.body)  
-       
         order.save()
+            .then(() => {
+                return Promise.all([
+                    Order.find({username: order.username}), 
+                    Orders.find({username: order.username}),
+                    User.findOne({username: order.username}),
+                ])
+            })
+            .then(([singleOrderList, multiOrderList, user]) => {
+                calculateUserLevel([singleOrderList, multiOrderList, user])
+            })
             .then(() => {
                 res.send({
                     order: singleMongooseDocumentToObject(order),
@@ -78,18 +124,33 @@ const BookController = {
             }).catch(next);
     },
 
-    // POST: /book/buys
+    // POST: /books/buys
 
     buyAllCart(req, res, next) {
-        const order = new Order(req.body)  
+       const data = req.body;
+       const itemId = data.itemId;
+      
+       delete data.itemId;
+       data.itemList = []
+       var orders = new Orders(data);
        
-        order.save()
-            .then(() => {
-                res.send({
-                    order: singleMongooseDocumentToObject(order),
-                    user: res.locals.user
-                })
-            }).catch(next);
+       Cart.findOne({_id: itemId})
+            .then((cart) => {
+                
+                data.itemList = singleMongooseDocumentToObject(cart).itemList;
+                orders = new Orders(data);
+                return Promise.all([orders.save(), Cart.deleteOne({_id: itemId})])
+            }).then(([x, y]) => {
+                return Promise.all([
+                    Order.find({username: data.username}), 
+                    Orders.find({username: data.username}),
+                    User.findOne({username: data.username}),
+                ])
+            }).then(([singleOrderList, multiOrderList, user]) => {
+                calculateUserLevel(([singleOrderList, multiOrderList, user]))
+            })
+            .then(() => res.send("Purchase Ok"))
+            .catch(next)
     },
 
     // GET: /books/create
