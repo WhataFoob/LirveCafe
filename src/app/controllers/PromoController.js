@@ -45,10 +45,26 @@ const PromoController = {
     // POST: /promos/save
 
     save(req, res, next) {
-        const promo = new Promo(req.body);
-        console.log(promo)
-        promo.save()
-            .then(() => res.redirect('/own/stored/promos'))
+        const newPromo = new Promo(req.body);
+        const errors = [];
+        Promo.findOne({
+            $and: [
+                {'discountAmount': req.body.discountAmount},
+                {'discountPercentage': req.body.discountPercentage},
+                {'expirationDate': req.body.expirationDate},
+                {'limitEachDay': req.body.limitEachDay}
+            ]
+        })
+            .then((promo) => {
+                if (!promo) {
+                    newPromo.save()
+                        .then(() => res.redirect('/own/stored/promos'))
+                } else {
+                    errors.push("Đã tồn tại mã giảm giá")
+                    res.render('own/promos/item/create.hbs', {errors: errors, promo: singleMongooseDocumentToObject(promo)})
+                }
+            })
+            
             .catch(next)
     },
 
