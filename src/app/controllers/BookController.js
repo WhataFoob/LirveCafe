@@ -3,6 +3,7 @@ import Order from '../models/Order.js';
 import Cart from '../models/Cart.js';
 import Orders from '../models/Orders.js';
 import User from '../models/User.js';
+import Promo from '../models/Promo.js';
 
 import Rank from '../constants/user.rank.js';
 
@@ -85,10 +86,10 @@ const BookController = {
 
      // GET: /books/buys/:id
     showAllCartPayForm(req, res, next) {
-        
-        Cart.findOne({_id: req.params.id})
-            .then((cart) => {
-                
+        const promoId = req.query.promoId
+
+        Promise.all([Cart.findOne({_id: req.params.id}), Promo.findOne({_id: promoId})])
+            .then(([cart, promo]) => {
                 cart = singleMongooseDocumentToObject(cart)
                 var total = cart.itemList.reduce(function(acc, item) {
                     return acc + parseInt(item.book.price) * parseInt(item.quantity);
@@ -96,9 +97,12 @@ const BookController = {
                 res.render('buy/buyAllCart.hbs', {
                     cart: cart,
                     user: res.locals.user,
-                    total: total
+                    total: total,
+                    promo: singleMongooseDocumentToObject(promo)
                 })
             })
+
+      
     },
     
     // POST: /book/buy
