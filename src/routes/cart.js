@@ -11,4 +11,8 @@ router.get('/:username', controllers.showCart)
 router.post('/add-by-one', controllers.addByOne)
 router.post('/subtract-by-one', controllers.subtractByOne)
 
+router.post('/add-promo-to-cart', controllers.addPromoToCart)
+
+
+
 export default router;
