@@ -1,23 +1,37 @@
 <body>
     <p id="username">{{cart.username}}</p>
+    <input type="text" id="cartId" value="{{cart._id}}">
     {{#each cart.itemList}}
     <div id="{{this.book._id}}">
         {{this.book.title}}
-        <button onclick="subtract(this)">-</button>
-        <button class="quantity">{{this.quantity}}</button>
+        <button class="btn btn-primary" onclick="subtract(this)">-</button>
+        Quantity: <span class="quantity">{{this.quantity}}</span>
         <input type="text" class="priceEachItem" value="{{this.book.price}}">
-        <button onclick="add(this)">+</button>
+        <button class="btn btn-primary" onclick="add(this)">+</button>
         <p class="priceEachItemTotal">{{multiply this.quantity this.book.price}}</p>
     </div>
 
     {{/each}}
     <label id="totalLabel">Total</label>
     <div id="total"></div>
-    
+    <div id="promoList">
+        {{#each promoList}}
+            <div id="{{this._id}}">
+                <a href="/promos/{{this._id}}">{{this.name}}</a>
+                <input type="text" class="promoId" value="{{this._id}}" hidden>
+                <input type="text" class="condition" value="{{this.condition}}" hidden></input>
+                <button class="btn btn-primary promo-btn" onmouseover="noticeDisabledBtn(this)"
+                    onclick="clickPromotionBtn(this)">Add this promo</button>
+            </div>
+        {{/each}}
+    </div>
+    <div id="promoId"></div>
+    {{#if cart.itemList.length}}
+    <a href="/books/buys/{{cart._id}}" id="purchaseBtn">Purchase now</a>
+    {{/if}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-
-        function calculateTotal() {
+         function calculateTotal() {
             var priceList = $(".priceEachItemTotal")
             var total = 0
             for (price of priceList) {
@@ -32,16 +46,87 @@
             return total;
         }
 
+        function noticeDisabledBtn(btn) {
+            console.log(btn.disabled)
+            if (btn.disabled == true)
+                alert("You can only apply 1 discount code")
+        }
+        var cartId = $("#cartId").val()
+
+        function clickPromotionBtn(btn) {
+            var promoId = btn.parentElement.id;
+            let total = $("#total").text();
+            total = parseInt(total);
+            
+            let condition = parseInt($(`#${promoId} .condition`).val())
+            if (condition > total) {
+                alert("Bạn chưa đáp ứng đủ điểu kiện, vui lòng đọc chi tiết mã giảm giá");
+                return ;
+            }
+
+
+
+
+            if (btn.classList.contains("btn-success")) {
+                btn.classList.remove("btn-success")
+                btn.innerHTML = "Add this promo"
+                
+                var promoList = document.getElementsByClassName('promo-btn');
+
+                for (item of promoList) {
+                    if (item !== btn)
+                        item.removeAttribute("disabled")
+                }
+
+                $("#purchaseBtn").attr('href', `/books/buys/${cartId}`)
+
+
+            } else {
+
+                btn.classList.add("btn-success")
+                btn.innerHTML = "Remove this promo"
+                var promoId = btn.parentElement.id;
+
+                var promoList = document.getElementsByClassName('promo-btn');
+
+                for (item of promoList) {
+                    if (item !== btn)
+                        item.setAttribute("disabled", true)
+                }
+
+                const data = {
+                    cartId, promoId
+                }
+
+                $("#promoId").text(promoId)
+                $("#purchaseBtn").attr('href', `/books/buys/${cartId}?promoId=${promoId}`);
+
+                $.ajax({
+                    url: '/carts/add-promo-to-cart',
+                    method: "POST",
+                    data: data,
+                    success: function (res) {
+                        console.log(res)
+                    }
+                })
+            }
+
+
+        }
+
+
+       
+
 
         function subtract(btn) {
-           const bookId = btn.parentElement.id;
+            const bookId = btn.parentElement.id;
 
-               
+
 
             var quantity = parseInt($(`#${bookId} .quantity`).text());
             var price = parseInt($(`#${bookId} .priceEachItem`).val());
             var username = $('#username').text();
-            const data = {bookId: bookId, quantity: quantity, username: username}
+            const data = { bookId: bookId, quantity: quantity, username: username }
             $.ajax({
                 url: '/carts/subtract-by-one',
                 method: "POST",
@@ -49,10 +134,13 @@
                 success: function (res) {
                     console.log(res)
                 }
-            }) 
+            })
 
-            if (quantity - 1 == 0)
-                $(`#${bookId}`).hide() 
+            if (quantity - 1 == 0) {
+                $(`#${bookId}`).hide()
+                $('#promoList').hide()
+                $('#purchaseBtn').hide()
+            }
 
             $(`#${bookId} .quantity`).text(quantity - 1)
             $(`#${bookId} .priceEachItemTotal`).text((quantity - 1) * price)
@@ -64,7 +152,7 @@
             var quantity = parseInt($(`#${bookId} .quantity`).text());
             var price = parseInt($(`#${bookId} .priceEachItem`).val());
             var username = $('#username').text();
-            const data = {bookId: bookId, quantity: quantity, username: username}
+            const data = { bookId: bookId, quantity: quantity, username: username }
             $.ajax({
                 url: '/carts/add-by-one',
                 method: "POST",
@@ -72,11 +160,11 @@
                 success: function (res) {
                     console.log(res)
                 }
-            }) 
+            })
 
             $(`#${bookId} .quantity`).text(quantity + 1)
             $(`#${bookId} .priceEachItemTotal`).text((quantity + 1) * price)
-            $("#total").html(calculateTotal())    
+            $("#total").html(calculateTotal())
         }
 
         $("#total").html(calculateTotal())
