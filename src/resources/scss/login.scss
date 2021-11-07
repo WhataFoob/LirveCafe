@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.login-wrapper {
+    font-family: 'Roboto', sans-serif;
+    background-color: #CCC;
+    padding: 28px 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form-login {
+    
+}
+.form-wrapper {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 36px 28px;
+    // height: 484px;
+    width: 400px;
+    display: block;
+}
+.form-wrapper h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.form-errors {
+    background-color: #FFF6F7;
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+.form-error {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.form-input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 24px 0;
+}
+.form-input label {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+.inputLogin-wrapper {
+    border: 1px solid #ccc;
+    padding: 6px 16px;
+}
+.form-input.invalid .inputLogin-wrapper {
+    border: 1px solid #FF424F;
+    background-color: #FFF6F7;
+}
+.inputLogin-wrapper input {
+    border: none;
+    width: 100%;
+    outline: none;
+    background-color: transparent;
+}
+.inputLogin-wrapper input::placeholder {
+    font-size: 14px;
+}
+.form-message {
+    color: #FF424F;
+    font-size: 14px;
+}
+.btn-submit-login {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    background-color: #8B4513;
+    padding: 16px 0;
+    border: none;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    opacity: 1;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.btn-submit-login:hover {
+    opacity: 0.9;
+}
+.optional {
+    display: flex;
+    justify-content: space-between;
+}
+.optional a {
+    color: #007AC8;
+    text-decoration: none;
+    font-size: 12px;
+    text-align: left;
+}
+
+.another-option {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px ;
+}
+.another-option span {
+    color: #555;
+}
+.another-option a {
+    text-decoration: none;
+    color: #8B4513;
+}

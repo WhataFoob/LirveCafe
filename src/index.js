@@ -50,6 +50,9 @@ app.engine(
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
+//Morgan
+app.use(morgan('combined'));
+
 import http from 'http';
 import { Server } from 'socket.io';
 
@@ -75,8 +78,6 @@ io.on("connection", function(socket) {
     })
 
 })
-
-
 
 
 

@@ -40,14 +40,22 @@
                     <span class="header-text">Login</span>
                 {{/if}}
             </div>
-
+            {{#if user}}
             <div id = "user-list" class= "header-list">
                 <ul>
-                    <a href = '#'><li>Tài khoản</li></a>
-                    <a href = '#'><li>Đăng xuất</li></a>
+                    <a href = 'users/list'><li>Tài khoản của tôi</li></a>
+                    <a href = 'users/{{user.username}}'><li>Đơn hàng</li></a>
+                    <a href = 'auth/logout'><li>Đăng xuất</li></a>
                 </ul>
             </div>
-
+            {{else}}
+            <div id = "user-list" class= "header-list">
+                <ul>
+                    <a href = '#'><li>Đăng ký</li></a>
+                    <a href = 'auth/index'><li>Đăng nhập</li></a>
+                </ul>
+            </div>
+            {{/if}}
         </div>
 
         <div id="header-notification">

@@ -1,10 +1,69 @@
 
-{{#each errors}}
+{{!-- {{#each errors}}
     {{this}}
-{{/each}}
+{{/each}} --}}
 
-<h1>Login<form method="POST" action='/auth/login'>
+<div class="login-wrapper">
+    <form method="POST" action="/auth/login" class="form-login">
+        <div class="form-wrapper">
+            <h2>ĐĂNG NHẬP</h2>
+            {{#if errors}}
+            <div class="form-errors">
+                {{#each errors}}
+                    <span class="form-error">{{this}}</span>
+                {{/each}}
+            </div>
+            {{/if}}
+            <div class="form-input">
+                <label for="email">Tên đăng nhập</label>
+                <div class="inputLogin-wrapper">
+                    <input type="email" id="email" placeholder="Email/Số điện thoại/Tên đăng nhập" name="key" value="{{values.key}}">
+                </div>
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-input">
+                <label for="password">Mật khẩu</label>
+                <div class="inputLogin-wrapper">
+                    <input type="password" id="password" placeholder="Mật khẩu" name="password" value="{{values.password}}">
+
+                </div>
+                <span class="form-message"></span>
+            </div>
+
+            <button type="submit" class="btn-submit-login">ĐĂNG NHẬP</button>
+
+            <div class="optional">
+                <a href="" class="">Quên mật khẩu</a>
+            </div>
+
+            <div class="another-option">
+                <span>Bạn lần đầu tiên đến với LirveCafe?</span>
+                <a href="" class="">Đăng ký</a>
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+
+
+{{!-- <h1>Login<form method="POST" action='/auth/login'>
         <div class="form-group"><label for="email">Key</label><input class="form-control" id="email" name="key" type="text" value="" /></div>
         <div class="form-group"><label for="password">Password</label><input class="form-control" id="password" name="password" type="password" value="" /></div><button class="btn btn-primary">Login</button>
     </form>
-</h1>
+</h1> --}}
+
+<script src="/js/validator.js"></script>
+<script>
+    Validator({
+        form: '.form-login',
+        formGroup: '.form-input',
+        errorMessageSelector: '.form-message',
+        validate: [
+            Validator.isRequired('#email'),
+            Validator.isRequired('#password'),
+        ]
+    })
+</script>
