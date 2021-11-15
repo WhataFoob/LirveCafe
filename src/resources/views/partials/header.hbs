@@ -17,39 +17,21 @@
 
             <div id = "menu-list" class= "header-list">
                 <ul>
-                    <a href = '#'><li>Sách</li></a>
-                    <a href = '#'><li>Coffee</li></a>
-                    <a href = '#'><li>Working space</li></a>
+                    <li><a href = '#'>Sách</a></li>
+                    <li><a href = '#'>Coffee</a></li>
+                    <li><a href = '#'>Working space</a></li>
                     
                 </ul>
             </div>
 
         </div>
 
-        <form class="form-inline col row">
-            <input class="col-10 form-control " type="search" placeholder="Search không chỉ là tính năng, search còn là tìm kiếm" aria-label="Search">
-            <button class="btn col-2" type="submit">Search</button>
+        <form class="form-inline col-6 row header-form">
+            <input class="col-9 form-control " type="search" placeholder="Nhập để tìm kiếm..." aria-label="Search">
+            <button class="btn col-2 search-btn" type="submit">Search</button>
         </form>
 
-        <div class="header-user d-flex ">
-            <i class="header-icon ti-user ml-3 mr-1"></i>
-            <div class="header-des">
-                {{#if user}}   
-                    <span class="header-text" id="user-name">{{user.username}}</span>
-                {{else}}
-                    <span class="header-text">Login</span>
-                {{/if}}
-            </div>
-
-            <div id = "user-list" class= "header-list">
-                <ul>
-                    <a href = '#'><li>Tài khoản</li></a>
-                    <a href = '#'><li>Đăng xuất</li></a>
-                </ul>
-            </div>
-
-        </div>
-
+    
         <div id="header-notification">
             <a href = '#'>
                 <i class="noti-icon ti-bell header-icon">
@@ -64,6 +46,25 @@
                     <span id = "cart-number" class = "header-number">3</span>
                 </i>
             </a>
+        </div>
+
+         <div class="header-user d-flex ">
+            <i class="header-icon ti-user ml-3 mr-1"></i>
+            <div class="header-des">
+                {{#if user}}   
+                    <span class="header-text" id="user-name">{{user.username}}</span>
+                {{else}}
+                    <span class="header-text" id = "login-text">Đăng nhập</span>
+                {{/if}}
+            </div>
+
+            <div id = "user-list" class= "header-list">
+                <ul>
+                    <li><a href = '#'>Tài khoản</a></li>
+                    <li><a href = '#'>Đăng xuất</a></li>
+                </ul>
+            </div>
+
         </div>
 
     </div>
