@@ -1,12 +1,12 @@
 {{!-- {{#each coffee}}
-    <li>{{this.name}}</li>
-    <a href="/coffee/{{this.slug}}">Here</a>
+<li>{{this.name}}</li>
+<a href="/coffee/{{this.slug}}">Here</a>
 {{/each}}
 
 {{#if user}}
-    <h1>{{user.username}}</h1>
+<h1>{{user.username}}</h1>
 {{else}}
-    <h1>Unknown user</h1>
+<h1>Unknown user</h1>
 {{/if}} --}}
 
 <div id="list-product-page" class="row no-gutters">
@@ -45,7 +45,7 @@
             <i class="ti-star star-light"></i>
             <i class="ti-star star-light"></i>
             <i class="ti-star star-light"></i>
-            từ 5 sao
+            <span>từ 5 sao</span>
           </a></li>
         <li>
           <a href='#'>
@@ -54,7 +54,7 @@
             <i class="ti-star star-light"></i>
             <i class="ti-star star-light"></i>
             <i class="ti-star star-dark"></i>
-            từ 4 sao
+            <span>từ 4 sao</span>
           </a>
         </li>
         <li>
@@ -64,7 +64,7 @@
             <i class="ti-star star-light"></i>
             <i class="ti-star star-dark"></i>
             <i class="ti-star star-dark"></i>
-            từ 3 sao
+            <span>từ 3 sao</span>
           </a>
         </li>
       </ul>
@@ -131,24 +131,24 @@
 
     <div class="product-filter">
       <ul>
-        <li class = "">
-          <a href = '#'>Phổ biến</a>
+        <li class="">
+          <a href='#'>Phổ biến</a>
           <div class="filter-pane"></div>
         </li>
-        <li class = "active">
-          <a href = '#'>Bán chạy</a>
+        <li class="active">
+          <a href='#'>Bán chạy</a>
           <div class="filter-pane"></div>
         </li>
-        <li  class = "">
-          <a href = '#'>Hàng mới</a>
+        <li class="">
+          <a href='#'>Hàng mới</a>
           <div class="filter-pane "></div>
         </li>
-        <li  class = "">
-          <a href = '#'>Giá thấp</a>
+        <li class="">
+          <a href='#'>Giá thấp</a>
           <div class="filter-pane "></div>
         </li>
-        <li  class = "">
-          <a href = '#'>Giá cao</a>
+        <li class="">
+          <a href='#'>Giá cao</a>
           <div class="filter-pane"></div>
         </li>
       </ul>
@@ -161,7 +161,7 @@
           <div class="card">
             <img class="card-img-top" src="/img/pikachu.png" alt="Card image cap">
             <div class="card-body">
-              <p class="card-title">phamthenam's Pikachu</p>
+              <p class="card-title">Pikachu</p>
               <p class="card-text"> "Pika pika pikachu"</p>
               <div class="item-price flex">
                 <div class="price-value">344.000 ₫</div>
@@ -177,7 +177,7 @@
           <div class="card">
             <img class="card-img-top" src="/img/pikachu.png" alt="Card image cap">
             <div class="card-body">
-              <p class="card-title">phamthenam's Pikachu</p>
+              <p class="card-title">Pikachu</p>
               <p class="card-text"> "Pika pika pikachu"</p>
               <div class="item-price flex">
                 <div class="price-value">344.000 ₫</div>
@@ -193,56 +193,7 @@
           <div class="card">
             <img class="card-img-top" src="/img/pikachu.png" alt="Card image cap">
             <div class="card-body">
-              <p class="card-title">phamthenam's Pikachu</p>
-              <p class="card-text"> "Pika pika pikachu"</p>
-              <div class="item-price flex">
-                <div class="price-value">344.000 ₫</div>
-                <div class="discount-value ">-12%</div>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
-
-      <div class="product-item col col-3">
-        <a href="#">
-          <div class="card">
-            <img class="card-img-top" src="/img/pikachu.png" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-title">phamthenam's Pikachu</p>
-              <p class="card-text"> "Pika pika pikachu"</p>
-              <div class="item-price flex">
-                <div class="price-value">344.000 ₫</div>
-                <div class="discount-value ">-12%</div>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="product-item col col-3">
-        <a href="#">
-          <div class="card">
-            <img class="card-img-top" src="/img/pikachu.png" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-title">phamthenam's Pikachu</p>
-              <p class="card-text"> "Pika pika pikachu"</p>
-              <div class="item-price flex">
-                <div class="price-value">344.000 ₫</div>
-                <div class="discount-value ">-12%</div>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="product-item col col-3">
-        <a href="#">
-          <div class="card">
-            <img class="card-img-top" src="/img/pikachu.png" alt="Card image cap">
-            <div class="card-body">
-              <p class="card-title">phamthenam's Pikachu</p>
+              <p class="card-title">Pikachu</p>
               <p class="card-text"> "Pika pika pikachu"</p>
               <div class="item-price flex">
                 <div class="price-value">344.000 ₫</div>
@@ -259,7 +210,39 @@
           <div class="card">
             <img class="card-img-top" src="/img/pikachu.png" alt="Card image cap">
             <div class="card-body">
-              <p class="card-title">phamthenam's Pikachu</p>
+              <p class="card-title">Pikachu</p>
+              <p class="card-text"> "Pika pika pikachu"</p>
+              <div class="item-price flex">
+                <div class="price-value">344.000 ₫</div>
+                <div class="discount-value ">-12%</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="product-item col col-3">
+        <a href="#">
+          <div class="card">
+            <img class="card-img-top" src="/img/pikachu.png" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-title">Pikachu</p>
+              <p class="card-text"> "Pika pika pikachu"</p>
+              <div class="item-price flex">
+                <div class="price-value">344.000 ₫</div>
+                <div class="discount-value ">-12%</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="product-item col col-3">
+        <a href="#">
+          <div class="card">
+            <img class="card-img-top" src="/img/pikachu.png" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-title">Pikachu</p>
               <p class="card-text"> "Pika pika pikachu"</p>
               <div class="item-price flex">
                 <div class="price-value">344.000 ₫</div>
@@ -276,7 +259,7 @@
           <div class="card">
             <img class="card-img-top" src="/img/pikachu.png" alt="Card image cap">
             <div class="card-body">
-              <p class="card-title">phamthenam's Pikachu</p>
+              <p class="card-title">Pikachu</p>
               <p class="card-text"> "Pika pika pikachu"</p>
               <div class="item-price flex">
                 <div class="price-value">344.000 ₫</div>
@@ -293,7 +276,24 @@
           <div class="card">
             <img class="card-img-top" src="/img/pikachu.png" alt="Card image cap">
             <div class="card-body">
-              <p class="card-title">phamthenam's Pikachu</p>
+              <p class="card-title">Pikachu</p>
+              <p class="card-text"> "Pika pika pikachu"</p>
+              <div class="item-price flex">
+                <div class="price-value">344.000 ₫</div>
+                <div class="discount-value ">-12%</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+
+      <div class="product-item col col-3">
+        <a href="#">
+          <div class="card">
+            <img class="card-img-top" src="/img/pikachu.png" alt="Card image cap">
+            <div class="card-body">
+              <p class="card-title">Pikachu</p>
               <p class="card-text"> "Pika pika pikachu"</p>
               <div class="item-price flex">
                 <div class="price-value">344.000 ₫</div>
@@ -306,23 +306,140 @@
 
     </div>
 
+    <div id = "pagination" class = "row justify-content-end">
+      <ul>
+        <a href = "#"><i class = "btn left-btn ti-angle-double-left"></i></a>
+
+        <li class = "active"><a href = "#"><span>1</span></a></li>
+        <li class = ""><a href = "#"><span>2</span></a></li>
+        <li class = ""><a href = "#"><span>3</span></a></li>
+        <li class = ""><a href = "#"><span>4</span></a></li>
+        
+        <a href = "#"><i class = "btn right-btn act ti-angle-double-right"></i></a>
+        
+      </ul>
+    </div>
 
   </div>
+
+
 </div>
 
 
 <script>
-    const $ = document.querySelector.bind(document);
-    const $$ = document.querySelectorAll.bind(document);
-    const filterList = $('.product-filter')
-    const filterItems = $$('.product-filter li')
-    filterItems.forEach((element, index) => {
-        element.onclick = function() {
-          var activeItem = $('.product-filter li.active')
-          
-          activeItem.classList.remove('active')
-          element.classList.add('active')
-          
-        }
+  const $ = document.querySelector.bind(document);
+  const $$ = document.querySelectorAll.bind(document);
+  
+
+  function prevIconClick(items) {
+    var activeIndex;
+    var activeE;
+    items.forEach(function (item, index) {
+      if (item.classList.contains('active')) {
+        activeE = item;
+      }
     })
-  </script>
+    items.forEach(function (item, index) {
+      if (item === activeE) {
+        activeIndex = index;
+      }
+    })
+    activeE.classList.remove('active');
+    if (activeIndex > 0) {
+      items[activeIndex - 1].classList.add('active');
+    }
+    else {
+      items[items.length - 1].classList.add('active');
+    }
+  }
+
+  function nextIconClick(items) {
+    var activeIndex;
+    var activeE;
+    items.forEach(function (item, index) {
+      if (item.classList.contains('active')) {
+        activeE = item;
+      }
+    })
+    items.forEach(function (item, index) {
+      if (item === activeE) {
+        activeIndex = index;
+      }
+    })
+    activeE.classList.remove('active');
+    if (activeIndex < items.length - 1) {
+      items[activeIndex + 1].classList.add('active');
+    }
+    else {
+      items[0].classList.add('active');
+    }
+  }
+
+  // filter list
+  const filterItems = $$('.product-filter li')
+
+  filterItems.forEach((element, index) => {
+    element.onclick = function () {
+      var activeItem = $('.product-filter li.active')
+
+      activeItem.classList.remove('active')
+      element.classList.add('active')
+
+    }
+  })
+
+  // pagination
+
+  const pagiItems = $$('#pagination li')
+
+  const leftBtn = $('#pagination .left-btn')  
+
+  const rightBtn = $('#pagination .right-btn')  
+
+  function checkPagiActive() {
+    
+    const num = pagiItems.length
+    const activeItem = $('#pagination li.active')
+
+    if(activeItem !== pagiItems[0]){
+      leftBtn.classList.add('act')
+    }
+    else{
+      leftBtn.classList.remove('act')
+    }
+
+    if(activeItem === pagiItems[num-1]) {
+      rightBtn.classList.remove('act')
+    }
+    else {
+      rightBtn.classList.add('act')
+    }
+
+  }
+
+  pagiItems.forEach((element, index) => {
+
+    element.onclick = function () {
+      var activeItem = $('#pagination li.active')
+
+      activeItem.classList.remove('active')
+      element.classList.add('active')
+      
+      checkPagiActive()
+    }
+  })
+
+  
+  leftBtn.onclick = function () {
+    prevIconClick(pagiItems)
+    checkPagiActive()
+
+  }
+  rightBtn.onclick = function () {
+    nextIconClick(pagiItems)
+    checkPagiActive()
+
+  }
+
+
+</script>
