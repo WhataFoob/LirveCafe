@@ -8,6 +8,8 @@ import controllers from '../app/controllers/BookController.js';
 import commentControllers from '../app/controllers/CommentController.js';
 import validate from '../app/validate/book.validate.js';
 
+import authMiddleware from '../app/middleware/AuthMiddleware.js';
+
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, "src/public/uploads/img");
