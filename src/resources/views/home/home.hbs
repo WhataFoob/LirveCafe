@@ -58,14 +58,14 @@
 
     <div class="carousel-inner row w-100 mx-auto" role="listbox">
 
-      {{!-- book item --}}
       {{#each books}}
-      <div class="carousel-item col-md-3 active">
+      {{!-- book item1 --}}
+      <div class="carousel-item col-md-3">
 
         <div class="panel panel-default">
           <div class="panel-thumbnail">
-            <a href="/book/{{this.slug}}" title="{{this.title}}" class="thumb">
-              <img class="img-fluid mx-auto d-block" src="{{this.image}}" alt="{{this.title}}">
+            <a href="#book1" title="image 1" class="thumb">
+              <img class="img-fluid mx-auto d-block" src="{{this.image}}" alt="slide 1">
             </a>
           </div>
         </div>
@@ -73,17 +73,18 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{this.title}}</h5>
-            <div class="book-author"><span>Tác giả: </span><span>{{this.author}}</span></div>
-            <p class="card-text">{{this.description}}</p>
+            {{!-- <div class="book-author"><span>Tác giả: </span><span>Riot</span></div> --}}
+            <p class="card-text">{{this.body}}</p>
 
             <div class="item-price flex">
-              <div class="price-value">{{this.price}}</div>
+              <div class="price-value">{{this.priceEachItemTotal}}</div>
             </div>
           </div>
         </div>
 
       </div>
       {{/each}}
+
     </div>
     {{!-- book prev icon --}}
     <a class="carousel-control-prev" role="button" data-slide="prev">
@@ -113,14 +114,14 @@
 
     <div class="carousel-inner row w-100 mx-auto" role="listbox">
 
-      {{!-- drink item --}}
       {{#each coffee}}
-      <div class="carousel-item col-md-3 active">
+      {{!-- drink item1 --}}
+      <div class="carousel-item col-md-3">
 
         <div class="panel panel-default">
           <div class="panel-thumbnail">
-            <a href="/coffee/{{this.slug}}" title="{{this.name}}" class="thumb">
-              <img class="img-fluid mx-auto d-block" src="{{this.image}}" alt="{{this.title}}">
+            <a href="#" title="image 1" class="thumb">
+              <img class="img-fluid mx-auto d-block" src="{{this.image}}" alt="slide 1">
             </a>
           </div>
         </div>
@@ -128,6 +129,7 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">{{this.name}}</h5>
+            {{!-- <div class="book-author"><span>Tác giả: </span><span>Riot</span></div> --}}
             <p class="card-text">{{this.description}}</p>
 
             <div class="item-price flex">
@@ -137,14 +139,16 @@
         </div>
 
       </div>
-
       {{/each}}
+
+
     </div>
     {{!-- book prev icon --}}
     <a class="carousel-control-prev" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
+
     {{!-- book next icon --}}
     <a class="carousel-control-next text-faded" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -153,6 +157,7 @@
   </div>
 
 </div>
+
 
 {{!-- home image --}}
 <div id="home-image">
@@ -173,6 +178,12 @@
   const drinkItems = $$('#home-drinks .carousel-item')
   const prevdrinkIcon = $('#home-drinks .carousel-control-prev')
   const nextdrinkIcon = $('#home-drinks .carousel-control-next')
+
+  if (bookItems.length > 0)
+    bookItems[0].classList.add('active')
+  
+  if (drinkItems.length > 0)
+    drinkItems[0].classList.add('active')
 
   function prevIconClick(items) {
     var activeIndex;
