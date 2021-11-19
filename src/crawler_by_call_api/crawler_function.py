@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 import time
 import json
 from crawler_by_call_api.utils import read_json_file
+from slugify import slugify
 
 
 def get_header():
@@ -110,26 +111,27 @@ def crawl_book_detail_by_id(detail_by_item_id_api, item_id):
 def crawl_coffee_slugs(slug_list_by_category_api):
     item_slugs = []
     payload = {}
-    response = requests.get(slug_list_by_category_api, headers=get_header(), data=payload)
+    response = requests.post(slug_list_by_category_api, headers=get_header(), data=payload)
    
     if response.status_code == 200:
         response_json = response.json()
     else:
         response_json = read_json_file('crawler_by_call_api/support_no_api/data_json/coffeehouse_menu.json')
     menu = response_json["menu"]
-    
     for category in menu:
         if category["name"] == "Cà phê":
             coffee = category["products"]
-            item_slugs = [[item["slug"]] for item in coffee]
+            for item in coffee:
+                item_slugs.append(slugify(item["name"], to_lower=True))
             break
+    
     return item_slugs
 
 def get_coffee_detail_json_by_slug(slug):
     response_json = read_json_file('./crawler_by_call_api/support_no_api/data_json/coffeehouse_menu.json')
     res = {}
     menu = response_json["menu"]
-
+    
     for category in menu:
         if category["name"] == "Cà phê":
             coffee = category["products"]
@@ -153,13 +155,14 @@ def crawl_coffee_detail_by_slug(detail_by_slug_api, slug):
         'favs': 0
     }
     payload = {}
-    
-    response = requests.get(detail_by_slug_api.format(slug[0]), headers=get_header(), data=payload)
-    
+   
+    response = requests.post(detail_by_slug_api.format(slug), headers=get_header(), data=payload)
+    print(detail_by_slug_api.format(slug))
     if response.status_code == 200:
         response_json = response.json()
     else:
-        response_json = get_coffee_detail_json_by_slug(slug[0])  
+        response_json = get_coffee_detail_json_by_slug(slug)  
+    
     product = response_json["product"]
     id = product["id"]
     name = product["name"]
