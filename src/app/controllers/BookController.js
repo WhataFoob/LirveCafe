@@ -54,7 +54,8 @@ const BookController = {
             .then((books) => {
                 res.render('books/list/list.hbs', {
                     books: mongooseDocumentsToObject(books),
-                    user: res.locals.user
+                    user: res.locals.user,
+                    cart: res.locals.cart
                 });
             }).catch(next);
     },
@@ -65,7 +66,8 @@ const BookController = {
             .then((book) => {
                 res.render('books/item/book_info.hbs', {
                     book: singleMongooseDocumentToObject(book),
-                    user: res.locals.user
+                    user: res.locals.user,
+                    cart: res.locals.cart
                 })
             })
             .catch(next);
@@ -73,13 +75,14 @@ const BookController = {
 
      // GET: /books/buy/:id
      showPayForm(req, res, next) {
-        console.log(req.params.id)
+    
         Book.findOne({_id: req.params.id})
             .then((book) => {
                 book = singleMongooseDocumentToObject(book)
                 res.render('buy/buyOneItem.hbs', {
                     book: book,
-                    user: res.locals.user
+                    user: res.locals.user,
+                    cart: res.locals.cart
                 })
             })
     },
@@ -87,10 +90,12 @@ const BookController = {
      // GET: /books/buys/:id
     showAllCartPayForm(req, res, next) {
         const promoId = req.query.promoId
+        
 
         Promise.all([Cart.findOne({_id: req.params.id}), Promo.findOne({_id: promoId})])
             .then(([cart, promo]) => {
                 cart = singleMongooseDocumentToObject(cart)
+               
                 var total = cart.itemList.reduce(function(acc, item) {
                     return acc + parseInt(item.book.price) * parseInt(item.quantity);
                 }, 0)
@@ -98,7 +103,7 @@ const BookController = {
                     cart: cart,
                     user: res.locals.user,
                     total: total,
-                    promo: singleMongooseDocumentToObject(promo)
+                    promo: singleMongooseDocumentToObject(promo),
                 })
             })
 
@@ -123,7 +128,8 @@ const BookController = {
             .then(() => {
                 res.send({
                     order: singleMongooseDocumentToObject(order),
-                    user: res.locals.user
+                    user: res.locals.user,
+                    cart: res.locals.cart
                 })
             }).catch(next);
     },
@@ -133,7 +139,6 @@ const BookController = {
     buyAllCart(req, res, next) {
        const data = req.body;
        const itemId = data.itemId;
-      
        delete data.itemId;
        data.itemList = []
        var orders = new Orders(data);
@@ -143,6 +148,7 @@ const BookController = {
                 
                 data.itemList = singleMongooseDocumentToObject(cart).itemList;
                 orders = new Orders(data);
+                
                 return Promise.all([orders.save(), Cart.deleteOne({_id: itemId})])
             }).then(([x, y]) => {
                 return Promise.all([
@@ -153,7 +159,7 @@ const BookController = {
             }).then(([singleOrderList, multiOrderList, user]) => {
                 calculateUserLevel(([singleOrderList, multiOrderList, user]))
             })
-            .then(() => res.send("Purchase Ok"))
+            .then(() => res.send("OK"))
             .catch(next)
     },
 
@@ -180,7 +186,8 @@ const BookController = {
             .then((book) => {
                 res.render('own/books/item/edit.hbs', {
                     book: singleMongooseDocumentToObject(book),
-                    user: res.locals.user
+                    user: res.locals.user,
+                    cart: res.locals.cart
                 })
             })
             .catch(next);

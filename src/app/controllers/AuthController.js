@@ -7,10 +7,10 @@ import Vonage  from '@vonage/server-sdk'
 
 import otpGenerator from 'otp-generator';
 
-const vonage = new Vonage({
-  apiKey: "3784dde2",
-  apiSecret: "bYpbXqGawIqV9PIn"
-}, {debug: true})
+// const vonage = new Vonage({
+//   apiKey: "3784dde2",
+//   apiSecret: "bYpbXqGawIqV9PIn"
+// }, {debug: true})
 
 const AuthController = {
 
@@ -64,31 +64,28 @@ const AuthController = {
                         signed: true
                     })
                     
-                    const from = 'Vonage APIs'
-                    const to = '+84969973012'.replace(/\D/g,'')
-                    let text = "Hello, you get 5 free milk teas on the opening day of new drinks from lirvecafehust Address: Alley 75 Giai Phong, Hanoi";
-                    vonage.message.sendSms(from, to, text,
-                        (err, responseData) => {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            if(responseData.messages[0]['status'] === "0") {
-                                console.log("Message sent successfully.");
-                            } else {
-                                console.log(responseData);
-                            }
-                        }
-                    })
+                    // const from = 'Vonage APIs'
+                    // const to = '+84969973012'.replace(/\D/g,'')
+                    // let text = "Hello, you get 5 free milk teas on the opening day of new drinks from lirvecafehust Address: Alley 75 Giai Phong, Hanoi";
+                    // vonage.message.sendSms(from, to, text,
+                    //     (err, responseData) => {
+                    //     if (err) {
+                    //         console.log(err);
+                    //     } else {
+                    //         if(responseData.messages[0]['status'] === "0") {
+                    //             console.log("Message sent successfully.");
+                    //         } else {
+                    //             console.log(responseData);
+                    //         }
+                    //     }
+                    // })
 
                     const data =  {
                         user: user,
-                        validToken: otpGenerator.generate(6, { upperCase: false, specialChars: false})
+                        // validToken: otpGenerator.generate(6, { upperCase: false, specialChars: false})
                     }
-
-                    console.log(data)
-
-                    res.render('auth/2fa', {data: data});
-                } else {
+                       // res.render('auth/2fa', {data: data});
+                    res.redirect('/')
                     errors.push('username or phone or email or password is not correct');
                     res.render('auth/index', {
                        errors: errors,

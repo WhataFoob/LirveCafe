@@ -47,7 +47,7 @@ const CoffeeController = {
         Coffee.findOne({_id: req.params.id})
             .then((coffee) => {
                 coffee = singleMongooseDocumentToObject(coffee)
-                res.render('buy/buy.hbs', {
+                res.render('buy/buyOneItem.hbs', {
                     coffee: coffee,
                     user: res.locals.user
                 })

@@ -14,7 +14,6 @@ const HomeController = {
             .then(([books, coffee]) => {
                 books = mongooseDocumentsToObject(books)
                 coffee = mongooseDocumentsToObject(coffee)
-
                 res.render('./home/home.hbs', {
                     user: res.locals.user,
                     books: books,
