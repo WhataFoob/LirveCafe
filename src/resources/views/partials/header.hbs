@@ -2,7 +2,7 @@
 
     <div id="main-header" class="row navbar d-flex flex-row justify-content-start">
 
-        <a href="#" class="navbar-brand mx-0">
+        <a href="/" class="navbar-brand mx-0">
             <img src="/img/brand-logo.png" alt="logo-brand" width="80px" height="80px">
             <span id="name-brand">LivreCafé</span>
         </a>
@@ -15,57 +15,100 @@
 
             </div>
 
-            <div id = "menu-list" class= "header-list">
+            <div id="menu-list" class="header-list">
                 <ul>
-                    <a href = '#'><li>Sách</li></a>
-                    <a href = '#'><li>Coffee</li></a>
-                    <a href = '#'><li>Working space</li></a>
-                    
+                    <li>
+                        <a href="/coffee/list">Coffee</a>
+                    </li>
+                    <li>
+                        <a href="/books/list">Book</a>
+                    </li>
+                    <li>
+                        <a href="/news/list">News</a>
+                    </li>
                 </ul>
             </div>
 
         </div>
 
-        <form class="form-inline col row">
-            <input class="col-10 form-control " type="search" placeholder="Search không chỉ là tính năng, search còn là tìm kiếm" aria-label="Search">
+        <div class="form-inline col row">
+            <input class="col-10 form-control " type="search" id="searchBox" name="searchBox"
+                placeholder="Search không chỉ là tính năng, search còn là tìm kiếm" aria-label="Search">
             <button class="btn col-2" type="submit">Search</button>
-        </form>
+        </div>
 
         <div class="header-user d-flex ">
             <i class="header-icon ti-user ml-3 mr-1"></i>
             <div class="header-des">
-                {{#if user}}   
-                    <span class="header-text" id="user-name">{{user.username}}</span>
+                {{#if user}}
+                <span class="header-text" id="user-name">{{user.username}}</span>
                 {{else}}
-                    <span class="header-text">Login</span>
+
+                <a href='/auth/index' class="header-text">
+                    Login
+                </a>
                 {{/if}}
             </div>
 
-            <div id = "user-list" class= "header-list">
+            {{#if user}}
+            <div id="user-list" class="header-list">
                 <ul>
-                    <a href = '#'><li>Tài khoản</li></a>
-                    <a href = '#'><li>Đăng xuất</li></a>
+                    <li>
+                        <a href='#'>
+                            Tài khoản
+                        </a>
+                    </li>
+                    <li>
+                        <a href='/auth/logout'>
+                            Đăng xuất
+                        </a>
+                    </li>
+
                 </ul>
             </div>
+            {{/if}}
 
         </div>
 
         <div id="header-notification">
-            <a href = '#'>
+            <a href='#'>
                 <i class="noti-icon ti-bell header-icon">
-                    <span id = "noti-number" class = "header-number">2</span>
+                    <span id="noti-number" class="header-number">2</span>
                 </i>
             </a>
         </div>
 
+        
         <div id="header-cart" class="col-1 text-center">
-            <a href = '#'>
+            <a href='#'>
                 <i class="header-icon ti-shopping-cart-full">
-                    <span id = "cart-number" class = "header-number">3</span>
+                    <span id="cart-number" class="header-number">{{cart.itemList.length}}</span>
                 </i>
             </a>
         </div>
-
+        
     </div>
 
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+
+    $(document).ready(function () {
+        $('input[name=searchBox]').on('input', function () {
+            let searchTxt = document.getElementById("searchBox").value
+            console.log(searchTxt)
+            $.ajax({
+                url: '/search/multi-search',
+                method: "POST",
+                data: { searchTxt },
+                success: function (res) {
+                    console.log(res)
+                }
+            })
+        })
+
+    })
+</script>

@@ -52,6 +52,7 @@
                 alert("You can only apply 1 discount code")
         }
         var cartId = $("#cartId").val()
+        
 
         function clickPromotionBtn(btn) {
             var promoId = btn.parentElement.id;
@@ -60,6 +61,7 @@
             
             let condition = parseInt($(`#${promoId} .condition`).val())
             if (condition > total) {
+                
                 alert("Bạn chưa đáp ứng đủ điểu kiện, vui lòng đọc chi tiết mã giảm giá");
                 return ;
             }
@@ -132,18 +134,23 @@
                 method: "POST",
                 data: data,
                 success: function (res) {
-                    console.log(res)
+                    $("#cart-number").text(res.itemList.length);
+                    if (res.itemList.length == 0) {
+                         $('#purchaseBtn').hide()
+                    }
                 }
             })
 
             if (quantity - 1 == 0) {
                 $(`#${bookId}`).hide()
                 $('#promoList').hide()
-                $('#purchaseBtn').hide()
+                
+               
             }
 
             $(`#${bookId} .quantity`).text(quantity - 1)
             $(`#${bookId} .priceEachItemTotal`).text((quantity - 1) * price)
+            
             $("#total").html(calculateTotal())
         }
 
@@ -158,13 +165,16 @@
                 method: "POST",
                 data: data,
                 success: function (res) {
-                    console.log(res)
+                    
+                    $("#cart-number").text(res.itemList.length);
                 }
             })
 
             $(`#${bookId} .quantity`).text(quantity + 1)
             $(`#${bookId} .priceEachItemTotal`).text((quantity + 1) * price)
+             
             $("#total").html(calculateTotal())
+
         }
 
         $("#total").html(calculateTotal())

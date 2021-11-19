@@ -35,13 +35,17 @@
                 </li>
                 {{/each}}
             </ul>
-            <div class="replyForm">
+
+            
+            {{#if ../user}}
+                <div class="replyForm">
                 Reply:
-                <input type="text" name="me" id="me">
+                <input type="text" name="me" id="me" value="{{../user.username}}" readonly>
                 <input type="text" name="reply" id="reply">
                 <input name="commentId" id="commentId" value="{{this._id}}">
                 <button type="button" class="replySendBtn" onClick="sendReply(this)">Reply</button>
             </div>
+            {{/if}}
         </div>
         {{/each}}
     </div>
@@ -129,6 +133,15 @@
                 `
                 var replyList = $(`#${data.parentCommentId} .replyList`)
                 replyList.html(html + replyList.html())
+
+                $.ajax({
+                    url: '/coffee/get-comment-notification',
+                    method: 'POST',
+                    data: data,
+                    success: function(res) {
+                        console.log(res)
+                    }
+                })
 
             })
 
