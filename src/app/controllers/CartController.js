@@ -37,7 +37,7 @@ const CartController = {
                         itemList: userCart,
                         level: user.level
                     }
-                    console.log(data)
+                    
                     cart = new Cart(data);
                 
                     return cart.save(data)
@@ -60,8 +60,7 @@ const CartController = {
                         level: user.level
                     }
 
-                    console.log(data)
-
+                   
                     if (!flag) {
                         userCart.push({
                             book: singleMongooseDocumentToObject(book),
@@ -84,18 +83,26 @@ const CartController = {
     showCart(req, res, next) {
        
         const username = req.params.username;
-        const level = parseInt(req.query.level)
+        let level = parseInt(req.query.level)
+        level = level || 0
+        console.log(username, level)
         
         Cart.findOne({
                 username: username
             })
             .then((cart) => {
                 cart = singleMongooseDocumentToObject(cart)
+                console.log(cart)
                 if (!cart) cart = {username: username, itemList: []}
                 var total = cart.itemList.reduce(function (acc, item) {
-                    return acc + parseInt(item.book.price) * parseInt(item.quantity)
+                    let price = item.book.price
+                    if (price.includes("$"))
+                        price = price.slice(1)
+                    return acc + parseFloat(price) * parseInt(item.quantity)
                 }, 0)
 
+                console.log(total)
+                
                 return Promise.all([Promo.find({
                     condition: {
                         $lte: total
@@ -106,49 +113,53 @@ const CartController = {
             })
             .then(([promoList, cart]) => {
                 if (!promoList) promoList = []
-                else promoList = mongooseDocumentsToObject(promoList)
+                else {
+                    promoList = mongooseDocumentsToObject(promoList)
+                    promoList.sort(function (a, b) {
+                        if (!a.discountAmount)
+                            a.disCountAmount = 0;
+                        if (!b.disCountAmount)
+                            b.disCountAmount = 0;
+    
+                        if (!a.discountPercentage)
+                            a.disCountPercentage = 0;
+                        if (!b.disCountPercentage)
+                            b.disCountPercentage = 0;
+    
+                        if (a.discountAmount && b.discountAmount) {
+                            if (a.discountAmount == b.discountAmount)
+                                return b.condition - a.condition
+                            return a.discountAmount - b.discountAmount
+                        }
+    
+                        if (a.discountPercentage && b.discountPercentage) {
+                            if (a.discountPercentage == b.discountPercentage)
+                                return b.condition - a.condition
+                            return a.discountPercentage - b.discountPercentage
+                        }
+                        
+                        if (a.discountPercentage && b.discountAmount)
+                            return 1;
+                        
                 
-                promoList.sort(function (a, b) {
-                    if (!a.discountAmount)
-                        a.disCountAmount = 0;
-                    if (!b.disCountAmount)
-                        b.disCountAmount = 0;
-
-                    if (!a.discountPercentage)
-                        a.disCountPercentage = 0;
-                    if (!b.disCountPercentage)
-                        b.disCountPercentage = 0;
-
-                    if (a.discountAmount && b.discountAmount) {
-                        if (a.discountAmount == b.discountAmount)
-                            return b.condition - a.condition
-                        return a.discountAmount - b.discountAmount
-                    }
-
-                    if (a.discountPercentage && b.discountPercentage) {
-                        if (a.discountPercentage == b.discountPercentage)
-                            return b.condition - a.condition
-                        return a.discountPercentage - b.discountPercentage
-                    }
+                        
+                        return -1;
+    
+                        
+                    })
                     
-                    if (a.discountPercentage && b.discountAmount)
-                        return 1;
-                    
-            
-                    
-                    return -1;
-
-                    
-                })
+                    const limitPromo = parseInt(level * promoList.length / 6) 
+                   
+                    promoList = promoList.slice(0, limitPromo)
+                }
                 
-                const limitPromo = parseInt(level * promoList.length / 6) 
-               
-                promoList = promoList.slice(0, limitPromo)
+                
                 
                 
                 cart = singleMongooseDocumentToObject(cart)
                 res.render('carts/index.hbs', {
                     cart,
+                    total:
                     promoList
                 })
             })
@@ -175,7 +186,7 @@ const CartController = {
                 })
             }).then(() => {
                 res.locals.cart = userCart;
-                console.log(res.locals.cart, "herererererer")
+                
                 res.send(userCart)
             })
             .catch(next)
@@ -206,7 +217,7 @@ const CartController = {
                 })
             }).then(() => {
                 res.locals.cart = userCart;
-                console.log(res.locals.cart, "herererererer")
+             
                 res.send({
                     itemList: userCart
                 })

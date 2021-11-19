@@ -27,7 +27,7 @@ const AuthMiddleware = {
                     return;
                 }
                 user = singleMongooseDocumentToObject(user);
-                console.log(user)
+        
                 next();
             })
     },
@@ -43,7 +43,7 @@ const AuthMiddleware = {
 
 
                         res.locals.user = singleMongooseDocumentToObject(user)
-
+                        
                         return Cart.findOne({
                             username: res.locals.user.username
                         })
@@ -55,7 +55,7 @@ const AuthMiddleware = {
                 }).then((cart) => {
                     if (cart) {
                         res.locals.cart = singleMongooseDocumentToObject(cart);
-                        console.log(cart, "Here is bug")
+                        
                     }
                     next();
                 })
