@@ -9,7 +9,7 @@ import {
 
 const HomeController = {
     index: function(req, res, next) {
-
+       
         Promise.all([Book.find({}), Coffee.find({})])
             .then(([books, coffee]) => {
                 books = mongooseDocumentsToObject(books)
