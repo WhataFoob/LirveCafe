@@ -51,4 +51,9 @@ router.delete('/:id/force', controllers.deepDelete);
 router.get('/stored/events', ownControllers.storedEvents);
 router.get('/trash/events', ownControllers.trashEvents);
 
+router.get('/stored/Orders', ownControllers.storedOrders);
+router.get('/trash/Orders', ownControllers.trashOrders);
+
+
+
 export default router;

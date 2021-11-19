@@ -6,6 +6,8 @@ import path from 'path';
 
 import controllers from '../app/controllers/CoffeeController.js';
 import commentControllers from '../app/controllers/CommentController.js';
+import notificationController from '../app/controllers/NotificationController.js';
+
 import validate from '../app/validate/coffee.validate.js';
 import checkUser from '../app/middleware/AuthMiddleware.js'
 
@@ -53,6 +55,8 @@ router.patch('/:id/restore', controllers.restore);
 
 router.post('/do-comment', commentControllers.doComment)
 router.post('/reply-comment', commentControllers.replyComment)
+
+router.post('/get-comment-notification', notificationController.getCommentNotification)
 
 
 export default router;

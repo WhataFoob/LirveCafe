@@ -49,7 +49,7 @@ const UserController = {
         }
         const user = new User(req.body);
         user.save()
-            .then(() => res.redirect('/'))
+            .then(() => res.render('/home/home.hbs', {user: user}))
             .catch(next);
     },  
 
@@ -59,7 +59,6 @@ const UserController = {
             .then((user) => {
                 res.render('users/item/edit.hbs', {
                     user: singleMongooseDocumentToObject(user),
-                    user: res.locals.user
                 })
             })
             .catch(next);
@@ -91,7 +90,12 @@ const UserController = {
         User.restore({_id: req.params.id})
             .then(() => res.redirect('back'))
             .catch(next);
-    }
+    },
+
+   
+
+    
+    
 };
 
 export default UserController;

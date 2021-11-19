@@ -58,9 +58,27 @@
 
     <div class="carousel-inner row w-100 mx-auto" role="listbox">
 
-      {{!-- book item1 --}}
-      <div class="carousel-item col-md-3 active">
+      {{!-- book list --}}
+      {{#each books}}
+        <a href="/books/{{this.slug}}" class="carousel-item col-md-3">
 
+<<<<<<< HEAD
+          <div class="panel panel-default">
+            <div class="panel-thumbnail">
+              <div title="{{this.title}}" class="thumb">
+                <img class="img-fluid mx-auto d-block" src="{{this.image}}" alt="slide 1">
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{this.title}}</h5>
+
+              <p class="card-text">{{this.description}}</p>
+
+            </div>
+=======
         <div class="panel panel-default">
           <div class="panel-thumbnail">
             <a href="#book1" title="image 1" class="thumb">
@@ -143,9 +161,18 @@
             <a href="#book3" title="image 3" class="thumb">
               <img class="img-fluid mx-auto d-block" src="/img/yasuo.jpg" alt="slide 3">
             </a>
+>>>>>>> master
           </div>
-        </div>
 
+<<<<<<< HEAD
+        </a>
+      {{/each}}
+
+      
+
+    {{!-- book prev icon --}}
+    <button style="display: inline-block" class="carousel-control-prev" data-slide="prev">
+=======
         <div class="card">
           <div class="card-body">
             <h5 class="card-title">Yasuo</h5>
@@ -264,14 +291,19 @@
     </div>
     {{!-- book prev icon --}}
     <a class="carousel-control-prev" role="button" data-slide="prev">
+>>>>>>> master
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
-    </a>
+    </button>
     {{!-- book next icon --}}
+<<<<<<< HEAD
+    <button style="display: inline-block" class="carousel-control-next text-faded" data-slide="next">
+=======
     <a class="carousel-control-next text-faded" role="button" data-slide="next">
+>>>>>>> master
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
-    </a>
+    </button>
   </div>
 
 </div>
@@ -291,6 +323,15 @@
     <div class="carousel-inner row w-100 mx-auto" role="listbox">
 
       {{!-- drink item1 --}}
+<<<<<<< HEAD
+     {{#each coffee}}
+         <div class="carousel-item col-md-3">
+
+        <div class="panel panel-default">
+          <div class="panel-thumbnail">
+            <a href="/coffee/{{this.slug}}" title="{{this.name}}" class="thumb">
+              <img class="img-fluid mx-auto d-block" src="{{this.image}}" alt="slide 1">
+=======
       <div class="carousel-item col-md-3 active">
 
         <div class="panel panel-default">
@@ -416,15 +457,22 @@
           <div class="panel-thumbnail">
             <a href="#" title="image 6" class="thumb">
               <img class="img-fluid mx-auto d-block" src="//via.placeholder.com/600x400?text=6" alt="slide 6">
+>>>>>>> master
             </a>
           </div>
         </div>
 
         <div class="card">
           <div class="card-body">
+<<<<<<< HEAD
+            <h5 class="card-title">{{this.title}}</h5>
+
+            <p class="card-text">{{this.description}}</p>
+=======
             <h5 class="card-title">Amumu</h5>
             {{!-- <div class = "book-author"><span>Tác giả: </span><span>Riot</span></div> --}}
             <p class="card-text">Every child in Valoran has heard the tale before</p>
+>>>>>>> master
 
             <div class="item-price flex">
               <div class="price-value">69.000 ₫</div>
@@ -434,6 +482,9 @@
         </div>
 
       </div>
+<<<<<<< HEAD
+     {{/each}}
+=======
       {{!-- drink item 7--}}
       <div class="carousel-item col-md-3 ">
         <div class="panel panel-default">
@@ -482,14 +533,15 @@
         </div>
 
       </div>
+>>>>>>> master
 
     </div>
-    {{!-- book prev icon --}}
+    {{!-- coffee prev icon --}}
     <a class="carousel-control-prev" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
-    {{!-- book next icon --}}
+    {{!-- coffee next icon --}}
     <a class="carousel-control-next text-faded" role="button" data-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
@@ -519,6 +571,14 @@
   const prevdrinkIcon = $('#home-drinks .carousel-control-prev')
   const nextdrinkIcon = $('#home-drinks .carousel-control-next')
 
+<<<<<<< HEAD
+  document.querySelector('#home-books .carousel-item').classList.add('active')
+  if (document.querySelector('#home-drinks .carousel-item'))
+
+    document.querySelector('#home-drinks .carousel-item').classList.add('active')
+
+=======
+>>>>>>> master
   function prevIconClick(items) {
     var activeIndex;
     var activeE;
@@ -533,12 +593,8 @@
       }
     })
     activeE.classList.remove('active');
-    if (activeIndex > 0) {
-      items[activeIndex - 1].classList.add('active');
-    }
-    else {
-      items[items.length - 1].classList.add('active');
-    }
+    
+    items[(activeIndex - 1 + items.length) % item.length].classList.add('active');
   }
 
   function nextIconClick(items) {
@@ -555,12 +611,8 @@
       }
     })
     activeE.classList.remove('active');
-    if (activeIndex < items.length - 1) {
-      items[activeIndex + 1].classList.add('active');
-    }
-    else {
-      items[0].classList.add('active');
-    }
+    items[(activeIndex + 1) % items.length].classList.add('active');
+    
   }
   
   prevbookIcon.onclick = function () {

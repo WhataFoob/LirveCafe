@@ -1,8 +1,9 @@
 import Book from '../models/Book.js';
 import Cart from '../models/Cart.js';
 import Promo from '../models/Promo.js';
+import User from '../models/User.js';
 
-import { 
+import {
     singleMongooseDocumentToObject,
     mongooseDocumentsToObject
 } from '../../support_lib/mongoose.js';
@@ -11,24 +12,41 @@ const CartController = {
 
 
     addBookToCart(req, res, next) {
+        
         const itemId = req.body.itemId;
         const username = req.body.username;
         var userCart = [];
         var data = {};
-        Promise.all([Cart.findOne({username: username}), Book.findOne({_id: itemId})])
-            .then(([cart, book]) => {
+        Promise.all([Cart.findOne({
+                username: username
+            }), Book.findOne({
+                _id: itemId
+            }), User.findOne({
+                username: username
+            })   
+        ])
+            .then(([cart, book, user]) => {
+                user = singleMongooseDocumentToObject(user)
                 if (!cart) {
-                    userCart.push({book: singleMongooseDocumentToObject(book), quantity: 1})
-                    data = {username: username, itemList: userCart}
-                    const cart = new Cart(data);
-                    console.log(cart)
+                    userCart.push({
+                        book: singleMongooseDocumentToObject(book),
+                        quantity: 1
+                    })
+                    data = {
+                        username: username,
+                        itemList: userCart,
+                        level: user.level
+                    }
+                    console.log(data)
+                    cart = new Cart(data);
+                
                     return cart.save(data)
                 } else {
                     cart = singleMongooseDocumentToObject(cart);
                     userCart = cart.itemList;
                     var flag = false;
                     for (var i = 0; i < userCart.length; i++) {
-                        
+
                         if (userCart[i].book._id.toString() === itemId) {
                             userCart[i].quantity = userCart[i].quantity + 1;
                             flag = true;
@@ -36,64 +54,142 @@ const CartController = {
                         }
                     }
 
-                    data = {username: username, itemList: userCart}
-
-                    if (!flag) {
-                        userCart.push({book: singleMongooseDocumentToObject(book), quantity: 1})
+                    data = {
+                        username: username,
+                        itemList: userCart,
+                        level: user.level
                     }
 
-                    return Cart.updateOne({username: username}, {itemList: userCart})            
+                    console.log(data)
+
+                    if (!flag) {
+                        userCart.push({
+                            book: singleMongooseDocumentToObject(book),
+                            quantity: 1
+                        })
+                    }
+
+                    return Cart.updateOne({
+                        username: username
+                    }, {
+                        itemList: userCart
+                    })
                 }
             }).then(() => {
                 res.send(data)
             }).catch(next)
-       
+
     },
-    
+
     showCart(req, res, next) {
+       
         const username = req.params.username;
-        Cart.findOne({username: username})
+        const level = parseInt(req.query.level)
+        
+        Cart.findOne({
+                username: username
+            })
             .then((cart) => {
                 cart = singleMongooseDocumentToObject(cart)
-                
-                var total = cart.itemList.reduce(function(acc, item) {
+                if (!cart) cart = {username: username, itemList: []}
+                var total = cart.itemList.reduce(function (acc, item) {
                     return acc + parseInt(item.book.price) * parseInt(item.quantity)
                 }, 0)
 
-                return Promise.all([Promo.find({ condition: { $lte: total} }), Cart.findOne({username: username})])
+                return Promise.all([Promo.find({
+                    condition: {
+                        $lte: total
+                    }
+                }), Cart.findOne({
+                    username: username
+                })])
             })
             .then(([promoList, cart]) => {
                 if (!promoList) promoList = []
                 else promoList = mongooseDocumentsToObject(promoList)
-                console.log(promoList, 'Promo list')
+                
+                promoList.sort(function (a, b) {
+                    if (!a.discountAmount)
+                        a.disCountAmount = 0;
+                    if (!b.disCountAmount)
+                        b.disCountAmount = 0;
+
+                    if (!a.discountPercentage)
+                        a.disCountPercentage = 0;
+                    if (!b.disCountPercentage)
+                        b.disCountPercentage = 0;
+
+                    if (a.discountAmount && b.discountAmount) {
+                        if (a.discountAmount == b.discountAmount)
+                            return b.condition - a.condition
+                        return a.discountAmount - b.discountAmount
+                    }
+
+                    if (a.discountPercentage && b.discountPercentage) {
+                        if (a.discountPercentage == b.discountPercentage)
+                            return b.condition - a.condition
+                        return a.discountPercentage - b.discountPercentage
+                    }
+                    
+                    if (a.discountPercentage && b.discountAmount)
+                        return 1;
+                    
+            
+                    
+                    return -1;
+
+                    
+                })
+                
+                const limitPromo = parseInt(level * promoList.length / 6) 
+               
+                promoList = promoList.slice(0, limitPromo)
+                
+                
                 cart = singleMongooseDocumentToObject(cart)
-                res.render('carts/index.hbs', {cart, promoList})
+                res.render('carts/index.hbs', {
+                    cart,
+                    promoList
+                })
             })
     },
 
     addByOne(req, res, next) {
         const data = req.body;
-        console.log(data)
-        Cart.findOne({username: data.username})
+        let userCart = []
+        Cart.findOne({
+                username: data.username
+            })
             .then((cart) => {
                 cart = singleMongooseDocumentToObject(cart)
-                const userCart = cart.itemList;
+                userCart = cart.itemList;
                 for (var item of userCart) {
                     if (item.book._id.toString() === data.bookId) {
                         item.quantity += 1
                     }
                 }
-                return Cart.updateOne({username: data.username}, {itemList: userCart})
-            }).then(() => res.send("Ok"))
+                return Cart.updateOne({
+                    username: data.username
+                }, {
+                    itemList: userCart
+                })
+            }).then(() => {
+                res.locals.cart = userCart;
+                console.log(res.locals.cart, "herererererer")
+                res.send(userCart)
+            })
             .catch(next)
     },
 
     subtractByOne(req, res, next) {
         const data = req.body;
-        Cart.findOne({username: data.username})
+        let userCart = []
+        Cart.findOne({
+                username: data.username
+            })
             .then((cart) => {
                 cart = singleMongooseDocumentToObject(cart)
-                const userCart = cart.itemList;
+                userCart = cart.itemList;
 
                 for (var i = 0; i < userCart.length; i++) {
                     var item = userCart[i];
@@ -102,19 +198,36 @@ const CartController = {
                     }
                     if (item.quantity == 0) userCart.splice(i, 1);
                 }
-                   
-                return Cart.updateOne({username: data.username}, {itemList: userCart})
-            }).then(() => res.send("Ok"))
+
+                return Cart.updateOne({
+                    username: data.username
+                }, {
+                    itemList: userCart
+                })
+            }).then(() => {
+                res.locals.cart = userCart;
+                console.log(res.locals.cart, "herererererer")
+                res.send({
+                    itemList: userCart
+                })
+            })
             .catch(next)
     },
 
     addPromoToCart(req, res, next) {
+        
         const data = req.body;
         Promise.all([
-            Cart.findOne({_id: data.cartId}),
-            Promo.findOne({_id: data.promoId}),
+            Cart.findOne({
+                _id: data.cartId
+            }),
+            Promo.findOne({
+                _id: data.promoId
+            }),
 
-        ])
+        ]).then(([cart, promo]) => {
+           
+        }).catch(next)
     }
 
 }

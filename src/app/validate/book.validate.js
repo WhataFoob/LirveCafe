@@ -25,7 +25,7 @@ const validate = {
         }
 
         if (errors.length) {
-            res.render('books/create', {
+            res.render('own/books/item/create.hbs', {
                 errors: errors,
                 values: req.body
             }) 
