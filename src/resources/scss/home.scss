@@ -1,6 +1,6 @@
 
 $headerHeight: 100px;
-$headerColor1: #FBB117;
+$headerColor1: #c39e51;
 $boundColor: #fff;
 $textHeaderColor: #fff;
 $itemSliderHeight: 500px;
@@ -13,9 +13,18 @@ $valueColor: #FF424E;
     
 }
 
+body {
+    background-image: url('/img/background_list.jpg');
+}
+
 #header {
 
     background-color: $headerColor1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
 
     .header-text {
         font-size: 14px;
@@ -23,9 +32,7 @@ $valueColor: #FF424E;
         color: $textHeaderColor;
     }
 
-    .header-user, .header-menu {
-        position: relative;
-    }
+    
 
     .header-user {
         #login-text {
@@ -152,15 +159,14 @@ $valueColor: #FF424E;
     color: $textHeaderColor;
     font-size: 28px;
     margin: 0 8px;
-    padding-top: 6px;
+    padding-top: 0;
 }
 // 
 .container-fluid {
     padding: 0px 0px !important;
     justify-content: center;
     width: 84%;
-    height: auto; 
-    background-color: $boundColor;
+    margin-top: 126px;
 }
 
 // -----------Slider------------- 
@@ -190,8 +196,8 @@ $valueColor: #FF424E;
 .home-product {
 
     margin-top:32px; 
-    background-image: linear-gradient(90deg, $headerColor1, #FDD017);
-    
+    background-image: linear-gradient(90deg, $headerColor1, #c1a531);
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0 / 20%), 0 6px 20px 0 rgb(34, 2, 2);
     border-radius: 12px;
 
     .product-header {
@@ -216,8 +222,8 @@ $valueColor: #FF424E;
         padding: 0 8px;
         position: relative;
 
-        
-
+        box-shadow: 0 4px 8px 0 rgb(0, 0, 0 / 20%), 0 6px 20px 0 rgb(34, 2, 2);
+        border-radius: 10;
         .panel-thumbnail {
             height: 220px;
             width: 100%;
@@ -279,6 +285,8 @@ $valueColor: #FF424E;
         }
     }
 
+
+
     .carousel-item:hover {
         box-shadow: 0 0 4px $textHeaderColor;
         text-decoration: none;
@@ -314,6 +322,7 @@ $valueColor: #FF424E;
          display: block;
          visibility: visible;
      }
+
      
      /* left or forward direction */
      .active.carousel-item-left + .carousel-item-next.carousel-item-left,
@@ -348,6 +357,7 @@ $valueColor: #FF424E;
          display: block;
          visibility: visible;
      }
+
     
   
 }
@@ -356,7 +366,7 @@ $valueColor: #FF424E;
     margin: 16px 0;
     padding-top: 50%;
     background: url('/img/homeimage.jpg') center center / cover no-repeat;
-    border: 3px solid $headerColor1;
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0 / 20%), 0 6px 20px 0 rgb(34, 2, 2);
     border-radius:12px;
 }
 
@@ -415,3 +425,9 @@ $valueColor: #FF424E;
 a {
     text-decoration: none;
 }
+
+.carousel-inner {
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0 / 20%), 0 6px 20px 0 rgb(34, 2, 2);
+    border-radius: 8px;
+}
+
