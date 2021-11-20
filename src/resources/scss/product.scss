@@ -43,10 +43,6 @@ $valueColor: #FF424E;
 
     #product-category {
         
-        border: 2px solid $mainColor;
-        width: 250px;
-        border-radius: 8px;
-        margin-right: 16px;
         padding: 16px 16px;
         height: 100%;
         width: 100%;
@@ -149,6 +145,7 @@ $valueColor: #FF424E;
 
     #product-name {
         height: 44px;
+        padding-left: 24px;
         font-size: 24px;
         font-weight: 600;
         color: $mainColor;
@@ -276,6 +273,7 @@ $valueColor: #FF424E;
 
         #pagination {
 
+            border: 2px solid $mainColor;
             border-radius: 8px;
 
             ul {
