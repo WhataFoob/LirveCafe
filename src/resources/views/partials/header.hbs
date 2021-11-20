@@ -1,13 +1,13 @@
 <div id="header">
 
-    <div id="main-header" class="row navbar d-flex flex-row justify-content-start">
+    <div id="main-header" class="row navbar d-flex flex-row justify-content-start clearfix">
 
-        <a href="#" class="navbar-brand mx-0">
+        <a href="#" class="navbar-brand">
             <img src="/img/brand-logo.png" alt="logo-brand" width="80px" height="80px">
             <span id="name-brand">LivreCafé</span>
         </a>
 
-        <div class="header-menu d-flex mx-3">
+        <div class="header-menu d-flex">
             <i class="header-icon ti-menu"></i>
             <div class="header-des">
                 <span class="header-text">Danh mục</span><br>
@@ -26,9 +26,9 @@
 
         </div>
 
-        <form class="form-inline col-6 row header-form">
+        <form class="form-inline col row header-form">
             <input class="col-9 form-control " type="search" placeholder="Nhập để tìm kiếm..." aria-label="Search">
-            <button class="btn col-2 search-btn" type="submit">Search</button>
+            <button class="btn col-2 search-btn" type="submit"><i class = "header-search-icon ti-search"></i>Search</button>
         </form>
 
     
@@ -48,7 +48,7 @@
             </a>
         </div>
 
-         <div class="header-user d-flex ">
+         <div class="header-user d-flex">
             <i class="header-icon ti-user ml-3 mr-1"></i>
             <div class="header-des">
                 {{#if user}}   

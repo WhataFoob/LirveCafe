@@ -20,7 +20,7 @@ const CoffeeController = {
                     user: res.locals.user
                 });
             }).catch(next);
-    },
+    },    
 
     // GET /coffee/:slug
     show(req, res, next) {
