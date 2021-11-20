@@ -15,7 +15,7 @@ import mongoose_driver from './config/database/index.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const app = express(); 
+const app = express();
 mongoose_driver.connect();
 
 const port = 3000;
@@ -75,6 +75,9 @@ io.on("connection", function(socket) {
     })
 
 })
+
+
+
 
 
 server.listen(port)
