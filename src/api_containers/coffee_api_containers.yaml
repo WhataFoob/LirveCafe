@@ -1,0 +1,4 @@
+ca-phe: [
+  'https://api.thecoffeehouse.com/api/v5/menu',
+  'https://api.thecoffeehouse.com/api/v5/menu/{}'
+]
