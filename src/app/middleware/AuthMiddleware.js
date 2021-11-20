@@ -1,40 +1,69 @@
 import User from '../models/User.js';
+import Cart from '../models/Cart.js';
 
-import { 
+import {
     singleMongooseDocumentToObject,
     mongooseDocumentsToObject
 } from '../../support_lib/mongoose.js';
 
 const AuthMiddleware = {
-    requireAuth: function(req, res, next) {
+    requireAuth: function (req, res, next) {
+
+
         if (!req.signedCookies) {
             res.redirect('/auth/index');
-            return ;
+            return;
         }
 
-        function checkSignedCookies(item) {
-            item._id === req.signedCookies.userId;
-        }
-        
-        User.find({})
-            .then(users => {
-                users = mongooseDocumentsToObject(users);
-                const user = users.find(checkSignedCookies);
+
+
+        User.findOne({
+                _id: req.signedCookies.userId
+            })
+            .then((user) => {
 
                 if (!user) {
                     res.redirect('/auth/index');
-                    return ;
+                    return;
                 }
+                user = singleMongooseDocumentToObject(user);
+        
                 next();
             })
     },
-    getCurrentUser: function(req, res, next) {
+    getCurrentUserInfo: function (req, res, next) {
 
-        User.find({_id: req.signedCookies.userId})
-            .then(user => {
-                res.locals.user = mongooseDocumentsToObject(user)[0]
-                next();
-            })
+        
+        if (req.signedCookies.userId) {
+            User.findOne({
+                    _id: req.signedCookies.userId
+                })
+                .then(user => {
+                    if (user) {
+
+
+                        res.locals.user = singleMongooseDocumentToObject(user)
+                        
+                        return Cart.findOne({
+                            username: res.locals.user.username
+                        })
+                    } else {
+
+                        next();
+                    }
+
+                }).then((cart) => {
+                    if (cart) {
+                        res.locals.cart = singleMongooseDocumentToObject(cart);
+                        
+                    }
+                    next();
+                })
+
+        } else {
+            next();
+        }
+
     }
 }
 

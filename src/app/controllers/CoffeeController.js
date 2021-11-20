@@ -47,7 +47,7 @@ const CoffeeController = {
         Coffee.findOne({_id: req.params.id})
             .then((coffee) => {
                 coffee = singleMongooseDocumentToObject(coffee)
-                res.render('buy/buy.hbs', {
+                res.render('buy/buyOneItem.hbs', {
                     coffee: coffee,
                     user: res.locals.user
                 })
@@ -58,12 +58,14 @@ const CoffeeController = {
 
     buy(req, res, next) {
         const order = new Order(req.body)  
-        console.log(order)
+       
         order.save()
-            .then(() => res.render('notice/payment/success.hbs', {
-                order: singleMongooseDocumentToObject(order),
-                user: res.locals.user
-            }))
+            .then(() => {
+                res.send({
+                    order: singleMongooseDocumentToObject(order),
+                    user: res.locals.user
+                })
+            }).catch(next);
     },
 
     // GET: /coffee/create

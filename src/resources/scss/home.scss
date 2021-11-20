@@ -10,6 +10,7 @@ $valueColor: #FF424E;
     background-color: $boundColor;
     height: auto;
     scroll-behavior: smooth;
+    
 }
 
 #header {
@@ -186,7 +187,7 @@ $valueColor: #FF424E;
     box-shadow: 0 0 8px #000;
 
     .carousel-item {
-
+        text-decoration: none!important;
         img {
             height: $itemSliderHeight;
             object-fit: cover;
@@ -243,9 +244,11 @@ $valueColor: #FF424E;
             height: 180px;
             position: relative;
             background-color: #fff;
+            
 
             .card-body {
                 padding: 8px 12px;
+
             }
 
             .card-title {
@@ -294,7 +297,7 @@ $valueColor: #FF424E;
 
     .carousel-item:hover {
         box-shadow: 0 0 4px $textHeaderColor;
-
+        text-decoration: none;
         color: $headerColor1;
     }
 
@@ -395,4 +398,35 @@ $valueColor: #FF424E;
     .footer-icon {
         margin-right: 10px;
     }
+}
+
+.card-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+            line-clamp: 1; 
+    -webkit-box-orient: vertical;
+    color: #bf8c8c;
+}
+
+.card-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    color: #bf8c8c;
+}
+
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+a {
+    text-decoration: none;
 }

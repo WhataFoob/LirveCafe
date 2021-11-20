@@ -1,0 +1,38 @@
+<body>
+
+    <h3>Vui lòng các thực đăng nhập bằng điện thoại</h3>
+    My Phone: <input type="text" name="phone" id="phone" value="{{data.user.phone}}" readonly="readonly">
+    <form id="2fa_form" action='/' method='GET'>
+        <input type="text" 
+                id="userToken" 
+                name="userToken" 
+               
+            placeholder="Nhập mã xác thực vừa gửi đến số điện thoại của bạn">
+        <input type="text" id="validToken" hidden name="validToken" value={{data.validToken}}>
+         <input type="button" onclick="myFunction()" value="Hoàn tất xác thực mặt khẩu cấp 2">
+        
+    </form>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+       
+        function myFunction() {
+            
+            const validToken = $('#validToken').val()
+            const userToken = $('#userToken').val()
+
+            console.log(validToken, userToken, "haha")
+
+            if (validToken != userToken) {
+                alert("Mã xác thực không hợp lê: ", validToken)
+                return false;
+            }
+
+            document.getElementById("2fa_form").submit()
+        }
+        
+
+    </script>
+
+</body>

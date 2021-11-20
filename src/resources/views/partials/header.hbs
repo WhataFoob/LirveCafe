@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/product.css">
 <div id="header">
 
     <div id="main-header" class="row navbar d-flex flex-row justify-content-start clearfix">
@@ -17,8 +20,8 @@
 
             <div id = "menu-list" class= "header-list">
                 <ul>
-                    <li><a href = '#'>Sách</a></li>
-                    <li><a href = '#'>Coffee</a></li>
+                    <li><a href = '/books/list'>Sách</a></li>
+                    <li><a href = '/coffee/list'>Coffee</a></li>
                     <li><a href = '#'>Working space</a></li>
                     
                 </ul>
@@ -54,7 +57,7 @@
                 {{#if user}}   
                     <span class="header-text" id="user-name">{{user.username}}</span>
                 {{else}}
-                    <span class="header-text" id = "login-text">Đăng nhập</span>
+                    <a class="header-text" id = "login-text" href="/auth/index">Đăng nhập</a>
                 {{/if}}
             </div>
 

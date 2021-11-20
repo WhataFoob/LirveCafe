@@ -1,0 +1,6 @@
+nha-sach-tiki: [
+  'https://tiki.vn/api/personalish/v1/blocks/listings?limit=48&include=advertisement&aggregations=1&trackity_id=06406b4c-3c86-020d-4384-75a8ceeef504&category=8322&urlKey=nha-sach-tiki',
+  'https://tiki.vn/api/v2/products/{}?platform=web&spid=74021318',
+  'https://tiki.vn/api/v2/reviews?limit=5&include=comments,contribute_info&sort=score%7Cdesc,id%7Cdesc,stars%7Call&spid=74021318&product_id={}&seller_id=1'
+]
+

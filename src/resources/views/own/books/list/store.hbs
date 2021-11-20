@@ -1,6 +1,6 @@
 <div class="mt-4">
     <div>
-      <h3>Danh sách các loại coffee</h3>
+      <h3>Danh sách các loại sách</h3>
       <a href="/own/trash/books">Thùng rác ({{deletedCount}})</a>
     </div>
 
@@ -14,14 +14,14 @@
             </tr>
         </thead>
         <tbody>
-            {{#each }}
+            {{#each books}}
             <tr>
                 <th scope="row">{{sum @index 1}}</th>
                 <td>{{this.title}}</td>
                 <td>{{this.description}}</td>
-                <td>{{this.createdAt}}</td>
+                <td><span class="date">{{this.createdAt}}</span></td>
                 <td>
-                    <a href="/books/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+                    <a href="/books/{{this.slug}}/edit" class="btn btn-link">Sửa</a>
                     <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-book-modal">Xóa</a>
                 </td>
             </tr>
@@ -61,6 +61,8 @@
 {{!-- Delete hidden form --}}
 <form name="delete-book-form" method="POST"></form>
 
+<script src="../../../../../support_lib/datetime_handling.js"></script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var bookId;
@@ -69,12 +71,13 @@
         // When dialog confirm clicked
         $('#delete-book-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
+            console.log(button)
             bookId = button.data('id');
         });
         
         // When delete book btn clicked
         btnDeletebook.onclick = function () {
-            deleteForm.action = '/book/' + bookId + '?_method=DELETE';
+            deleteForm.action = '/books/' + bookId + '?_method=DELETE';
             deleteForm.submit();
         }
     });

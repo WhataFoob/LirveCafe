@@ -1,0 +1,83 @@
+<div class="mt-4">
+  <div>
+    <h3>Danh sách đơn hàng của {{username}}</h3>
+    <a href="/own/trash/orders">Thùng rác ({{deletedCount}})</a>
+  </div>
+
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Mã đơn hàng</th>
+        <th scope="col">Tổng tiền</th>
+        <th scope="col" colspan="2">Thời gian tạo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each orders}}
+      <tr>
+        <th scope="row">{{sum @index 1}}</th>
+        <td>{{this._id}}</td>
+        <td>{{this.total}}000 VNĐ</td>
+        <td><span class="date">{{this.createdAt}}</span></td>
+        <td>
+          <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}"
+            data-target="#delete-order-modal">Xóa</a>
+        </td>
+      </tr>
+      {{else}}
+      <tr>
+        <td colspan="5" class="text-center">
+          Trống
+
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+{{!-- Confirm delete order --}}
+<div id="delete-order-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xóa sách?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn chắc chắn muốn xóa đơn hàng này?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        <button id="btn-delete-order" type="button" class="btn btn-danger">Xóa bỏ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Delete hidden form --}}
+<form name="delete-order-form" method="POST"></form>
+
+<script src="../../../../../support_lib/datetime_handling.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var orderId;
+    var deleteForm = document.forms['delete-order-form'];
+    var btnDeleteorder = document.getElementById('btn-delete-order');
+    // When dialog confirm clicked
+    $('#delete-order-modal').on('show.bs.modal', function (event) {
+      var button = $(event.relatedTarget);
+      orderId = button.data('id');
+    });
+
+    // When delete order btn clicked
+    btnDeleteorder.onclick = function () {
+      deleteForm.action = '/orders/' + orderId + '?_method=DELETE';
+      deleteForm.submit();
+    }
+  });
+</script>
