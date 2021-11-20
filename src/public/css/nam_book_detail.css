@@ -14,13 +14,13 @@
       border: 1px solid #c39e51;
       padding-left: 0;
       padding-right: 0;
-      margin-top: 24px;
-      margin-left: 44px; }
-      #product-detail-page #detail-and-buy .product-img img {
-        width: 84%;
-        margin-top: 24px; }
+      margin-top: 36px;
+      margin-left: 44px;
+      height: 500px; }
     #product-detail-page #detail-and-buy #product-buy-detail {
       padding-left: 60px; }
+      #product-detail-page #detail-and-buy #product-buy-detail .detail-rating {
+        margin-bottom: 18px; }
       #product-detail-page #detail-and-buy #product-buy-detail .detail-rating, #product-detail-page #detail-and-buy #product-buy-detail .detail-sold {
         display: inline-block; }
       #product-detail-page #detail-and-buy #product-buy-detail .detail-header {
@@ -34,7 +34,7 @@
         font-weight: 600;
         padding-left: 16px; }
       #product-detail-page #detail-and-buy #product-buy-detail .detail-coupon {
-        padding: 12px 16px 0px 12px; }
+        padding: 12px 16px 20px 12px; }
         #product-detail-page #detail-and-buy #product-buy-detail .detail-coupon .coupon-text {
           font-weight: 600; }
         #product-detail-page #detail-and-buy #product-buy-detail .detail-coupon ul {
@@ -74,7 +74,7 @@
         #product-detail-page #detail-and-buy #product-buy-detail .detail-buy .change-btn:hover {
           background-color: #ccc; }
         #product-detail-page #detail-and-buy #product-buy-detail .detail-buy .submit-btn {
-          margin-top: 16px;
+          margin-top: 32px;
           width: 130px;
           height: 46px;
           background-color: #e34e57;
@@ -133,3 +133,7 @@ img.col {
 
 .product-detail-page {
   height: 6000px; }
+
+.detail-title {
+  margin-top: 32px;
+  margin-bottom: 16px; }
