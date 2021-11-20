@@ -42,13 +42,54 @@ body {
         }
     }
 
-    .header-list {
-        
+
+    .func-list {
         z-index: 2;
         display: none;
         position: absolute;
-        top: 100%;
-        left: 10px; 
+        top: 75%;
+        right: 4px;
+        
+        ul {
+            padding-left: 0px;
+            margin-bottom: 0;
+            background-color:$headerColor1;
+            border: 1px solid $textHeaderColor; 
+            text-align: center;
+            border-radius: 6px;
+            box-shadow: 0 0 8px $textHeaderColor;
+        }
+
+        li {
+            list-style-type: none;
+            
+            height: 40px;
+            padding: 4px 16px;
+            width: 150px;
+        }
+
+        li:hover {
+           
+            background-color: $textHeaderColor;
+            a {
+                color: $headerColor1;
+            }
+        }
+
+        a {
+            color:  $textHeaderColor;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+    }
+
+    .header-list {
+        z-index: 2;
+        display: none;
+        position: absolute;
+        top: 75%;
+        left: 200px; 
         
         
         ul {
