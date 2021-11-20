@@ -60,13 +60,13 @@
 
       {{#each books}}
       {{!-- book item1 --}}
-      <div class="carousel-item col-md-3">
+      <a href="/books/{{this.slug}}" class="carousel-item col-md-3">
 
         <div class="panel panel-default">
           <div class="panel-thumbnail">
-            <a href="#book1" title="image 1" class="thumb">
+            <div title="image 1" class="thumb">
               <img class="img-fluid mx-auto d-block" src="{{this.image}}" alt="slide 1">
-            </a>
+            </div>
           </div>
         </div>
 
@@ -77,12 +77,12 @@
             <p class="card-text">{{this.body}}</p>
 
             <div class="item-price flex">
-              <div class="price-value">{{this.priceEachItemTotal}}</div>
+              <div class="price-value">{{this.price}} VNĐ</div>
             </div>
           </div>
         </div>
 
-      </div>
+      </a>
       {{/each}}
 
     </div>
@@ -116,13 +116,13 @@
 
       {{#each coffee}}
       {{!-- drink item1 --}}
-      <div class="carousel-item col-md-3">
+      <a  href="/coffee/{{this.slug}}" class="carousel-item col-md-3">
 
         <div class="panel panel-default">
           <div class="panel-thumbnail">
-            <a href="#" title="image 1" class="thumb">
+            <div title="image 1" class="thumb">
               <img class="img-fluid mx-auto d-block" src="{{this.image}}" alt="slide 1">
-            </a>
+            </div>
           </div>
         </div>
 
@@ -133,12 +133,12 @@
             <p class="card-text">{{this.description}}</p>
 
             <div class="item-price flex">
-              <div class="price-value">{{this.price}}</div>
+              <div class="price-value">{{this.price}} VNĐ</div>
             </div>
           </div>
         </div>
 
-      </div>
+      </a>
       {{/each}}
 
 
