@@ -1,17 +1,31 @@
 #list-product-page {
 <<<<<<< HEAD
+<<<<<<< HEAD
   background-color: #fff;
   margin-bottom: 32px; }
   #list-product-page .carousel-control-next, #list-product-page .carousel-control-prev {
     top: 50%; }
 =======
   background-color: #fff; }
+=======
+  background-color: #a98654;
+  margin-bottom: 20px;
+  margin-top: 16px;
+  box-shadow: 0 4px 8px 0 black, 0 6px 20px 0 #220202;
+  border-radius: 8px; }
+  #list-product-page .breadcrumb {
+    background-color: #a98654; }
+>>>>>>> ce3e2258f660a10be1dddaade88b4d8f86deb523
   #list-product-page .carousel-control-next, #list-product-page .carousel-control-prev {
     top: 50%; }
   #list-product-page .product-list-box {
     display: flex;
+<<<<<<< HEAD
     justify-content: space-between; }
 >>>>>>> cd1796dcd6fbe9eaec6df864e4b8d0d74553b219
+=======
+    justify-content: space-around; }
+>>>>>>> ce3e2258f660a10be1dddaade88b4d8f86deb523
   #list-product-page * {
     padding: 0 0;
     margin: 0 0;
@@ -23,7 +37,6 @@
     list-style-type: none; }
   #list-product-page .product-category-box {
     width: 230px;
-    background-color: #ccc;
     margin-right: 12px; }
   #list-product-page #product-category {
     border: 2px solid #FBB117;
@@ -35,17 +48,18 @@
     width: 100%;
     font-family: "Roboto","Helvetica","Arial","sans-serif";
     position: relative;
-    overflow: auto; }
+    overflow: auto;
+    margin-left: 16px; }
     #list-product-page #product-category h4 {
       font-size: 16px;
       font-weight: 600;
       margin-bottom: 16px;
-      color: #FBB117; }
+      color: #203f5a; }
     #list-product-page #product-category li {
       margin-bottom: 8px;
       font-size: 14px; }
     #list-product-page #product-category li:hover a {
-      color: #FBB117; }
+      color: #c39e51; }
     #list-product-page #product-category ul:last-child {
       margin-bottom: 24px; }
     #list-product-page #product-category .rate-category .star-light {
@@ -56,7 +70,7 @@
       font-weight: bold; }
     #list-product-page #product-category .rate-category li {
       padding-left: 16px;
-      border: 1px solid #FBB117;
+      border: 1px solid #c39e51;
       border-radius: 12px;
       background-color: #ccc; }
     #list-product-page #product-category .rate-category li:hover {
@@ -68,16 +82,16 @@
       margin-bottom: 8px;
       border-radius: 12px;
       padding-left: 16px;
-      border: 1px solid #FBB117;
+      border: 1px solid #c39e51;
       font-size: 14px; }
     #list-product-page #product-category .value-category div:hover span {
-      color: #FBB117; }
+      color: #c39e51; }
     #list-product-page #product-category .value-category div:hover {
       background-color: #fff; }
   #list-product-page #page-route nav ol {
     height: 40px;
-    background-color: #FFF;
     line-height: 40px;
+<<<<<<< HEAD
 <<<<<<< HEAD
     padding-left: 16px;
     border-radius: 0;
@@ -85,19 +99,32 @@
 =======
     padding-left: 16px; }
 >>>>>>> cd1796dcd6fbe9eaec6df864e4b8d0d74553b219
+=======
+    padding-left: 20px; }
+>>>>>>> ce3e2258f660a10be1dddaade88b4d8f86deb523
   #list-product-page #page-route a:hover {
-    color: #FBB117; }
+    color: #c39e51; }
+  #list-product-page .d-block {
+    border-radius: 8px;
+    height: 370px;
+    overflow: hidden; }
+  #list-product-page .carousel-item {
+    margin-bottom: 20px; }
   #list-product-page #product-name {
     height: 44px;
     font-size: 24px;
     font-weight: 600;
+<<<<<<< HEAD
     color: #FBB117; }
 <<<<<<< HEAD
   #list-product-page #carousel-example-1z img {
     object-fit: cover; }
 =======
+=======
+    color: #c39e51; }
+>>>>>>> ce3e2258f660a10be1dddaade88b4d8f86deb523
   #list-product-page #product-category {
-    border: 2px solid #FBB117;
+    border: 2px solid #c39e51;
     width: 230px;
     border-radius: 8px;
     margin-right: 12px; }
@@ -105,13 +132,15 @@
   #list-product-page #product-area {
     height: auto; }
     #list-product-page #product-area .product-slider {
-      height: 350px; }
+      height: 350px;
+      margin-right: 16px;
+      margin-left: 16px; }
       #list-product-page #product-area .product-slider img {
         object-fit: cover; }
     #list-product-page #product-area .product-filter {
-      border: 1px solid #FBB117;
       padding-top: 16px;
-      margin-bottom: 8px; }
+      margin-bottom: 8px;
+      margin-top: 32px; }
       #list-product-page #product-area .product-filter a {
         color: #000; }
       #list-product-page #product-area .product-filter ul {
@@ -129,12 +158,12 @@
         font-weight: 600; }
       #list-product-page #product-area .product-filter .filter-pane {
         height: 4px;
-        background-color: #FBB117;
+        background-color: #c39e51;
         display: none; }
       #list-product-page #product-area .product-filter .active .filter-pane {
         display: block; }
       #list-product-page #product-area .product-filter li:hover {
-        color: #FBB117; }
+        color: #c39e51; }
       #list-product-page #product-area .product-filter li:hover .filter-pane {
         display: block; }
 <<<<<<< HEAD
@@ -172,11 +201,10 @@
     #list-product-page #product-area #pagination {
 =======
     #list-product-page #product-area #product-list .product-item {
-      padding: 12px 16px;
-      background-color: #fff; }
+      padding: 12px 16px; }
       #list-product-page #product-area #product-list .product-item .card {
         border: none;
-        box-shadow: 0 0 8px #FBB117; }
+        box-shadow: 0 0 8px #c39e51; }
         #list-product-page #product-area #product-list .product-item .card .card-body {
           padding: 4px 12px; }
         #list-product-page #product-area #product-list .product-item .card .card-title {
@@ -197,12 +225,15 @@
       #list-product-page #product-area #product-list .product-item .card-body {
         height: 150px; }
     #list-product-page #product-area #product-list .product-item:hover .card {
-      box-shadow: 0 0 20px #FBB117;
-      border: 4px solid #fff;
+      box-shadow: 0 0 20px #c39e51;
       margin: -4px; }
     #list-product-page #product-area #pagination {
+<<<<<<< HEAD
       border: 2px solid #FBB117;
 >>>>>>> cd1796dcd6fbe9eaec6df864e4b8d0d74553b219
+=======
+      border: 2px solid #c39e51;
+>>>>>>> ce3e2258f660a10be1dddaade88b4d8f86deb523
       border-radius: 8px; }
       #list-product-page #product-area #pagination ul {
         display: block;
@@ -213,7 +244,7 @@
         margin: 0 8px;
         padding: 0 8px; }
       #list-product-page #product-area #pagination .active {
-        background-color: #FBB117;
+        background-color: #c39e51;
         border-radius: 10%;
         color: #fff; }
       #list-product-page #product-area #pagination .btn {
