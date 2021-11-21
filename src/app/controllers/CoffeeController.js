@@ -56,16 +56,19 @@ const CoffeeController = {
     // GET /coffee/:slug
     show(req, res, next) {
         
-        Coffee.findOne({slug: req.params.slug})
-            .then((coffee) => {
+        Promise.all([Coffee.findOne({slug: req.params.slug}), Coffee.find({})])
+            .then(([coffee, coffees]) => {
                 coffee = singleMongooseDocumentToObject(coffee)
+                coffees = mongooseDocumentsToObject(coffees)
                 Comment.find({itemId: coffee._id})
-                .sort({"updatedAt": -1})
+                .sort({updatedAt: -1})
                     .then((commentList) => {
                         res.render('drink/item/coffee_info.hbs', {
                             coffee: coffee,
+                            coffees: coffees,
                             commentList: mongooseDocumentsToObject(commentList),
-                            user: res.locals.user
+                            user: res.locals.user,
+                            cart: res.locals.cart
                         })
                     })
                
