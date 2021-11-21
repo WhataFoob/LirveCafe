@@ -138,10 +138,7 @@ $valueColor: #FF424E;
         height: 370px;
         overflow: hidden;
     }
-    .carousel-item {
-        margin-bottom: 20px;
-      
-    }
+    
 
     #product-name {
         height: 44px;
@@ -258,6 +255,7 @@ $valueColor: #FF424E;
 
                 .card-img-top{
                     height: 230px;
+                    object-fit: cover;
                 }
 
                 .card-body {

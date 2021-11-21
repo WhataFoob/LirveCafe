@@ -26,22 +26,20 @@ $valueColor: #e34e57;
             border: 1px solid $mainColor;
             padding-left: 0;
             padding-right: 0;
-            margin-top: 24px;
+            margin-top: 36px;
             margin-left: 44px;
-            img {
-                width: 84%;
-                
-                margin-top: 24px;
-            }
-            
+            height:500px;
         }
 
         #product-buy-detail{
             
             padding-left: 60px;
-
+            .detail-rating {
+                margin-bottom: 18px;
+            }
             .detail-rating, .detail-sold{
                 display: inline-block;
+
             }
 
             .detail-header {
@@ -65,7 +63,7 @@ $valueColor: #e34e57;
             .detail-coupon {
 
               
-                padding: 12px 16px 0px 12px;
+                padding: 12px 16px 20px 12px;
 
                 .coupon-text {
                     font-weight: 600;
@@ -134,7 +132,7 @@ $valueColor: #e34e57;
                 }
 
                 .submit-btn {
-                    margin-top: 16px;
+                    margin-top: 32px;
                     width: 130px;
                     height: 46px;
                     background-color: $valueColor;
@@ -247,4 +245,8 @@ img.col {
 
 .product-detail-page {
     height: 6000px;
+}
+.detail-title {
+    margin-top: 32px;
+    margin-bottom: 16px;
 }

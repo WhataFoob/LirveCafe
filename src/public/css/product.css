@@ -24,10 +24,6 @@
     width: 230px;
     margin-right: 12px; }
   #list-product-page #product-category {
-    border: 2px solid #c39e51;
-    width: 250px;
-    border-radius: 8px;
-    margin-right: 16px;
     padding: 16px 16px;
     height: 100%;
     width: 100%;
@@ -83,10 +79,9 @@
     border-radius: 8px;
     height: 370px;
     overflow: hidden; }
-  #list-product-page .carousel-item {
-    margin-bottom: 20px; }
   #list-product-page #product-name {
     height: 44px;
+    padding-left: 24px;
     font-size: 24px;
     font-weight: 600;
     color: #c39e51; }
@@ -153,13 +148,15 @@
           margin-left: 6px;
           padding: 1px; }
       #list-product-page #product-area #product-list .product-item .card-img-top {
-        height: 230px; }
+        height: 230px;
+        object-fit: cover; }
       #list-product-page #product-area #product-list .product-item .card-body {
         height: 150px; }
     #list-product-page #product-area #product-list .product-item:hover .card {
       box-shadow: 0 0 20px #c39e51;
       margin: -4px; }
     #list-product-page #product-area #pagination {
+      border: 2px solid #c39e51;
       border-radius: 8px; }
       #list-product-page #product-area #pagination ul {
         display: block;
