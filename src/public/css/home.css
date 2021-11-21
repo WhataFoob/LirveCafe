@@ -4,7 +4,7 @@
   scroll-behavior: smooth; }
 
 body {
-  background-image: url("/img/background_list.jpg");
+  background-image: url("/img/body_background.jpg");
   background-size: cover; }
 
 #header {
@@ -314,4 +314,8 @@ a {
 
 .carousel-inner {
   box-shadow: 0 4px 8px 0 black, 0 6px 20px 0 #220202;
-  border-radius: 8px; }
+  border-radius: 10px !important; }
+
+.carousel.slide {
+  margin-left: 0;
+  margin-right: 0; }
