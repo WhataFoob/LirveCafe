@@ -115,8 +115,7 @@ body {
   color: #c39e51; }
 
 #home-slider {
-  margin-top: 32px;
-  box-shadow: 0 0 36px #c39e51; }
+  margin-top: 32px; }
   #home-slider .carousel-item {
     text-decoration: none !important; }
     #home-slider .carousel-item img {

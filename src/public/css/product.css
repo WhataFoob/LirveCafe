@@ -24,6 +24,10 @@
     width: 230px;
     margin-right: 12px; }
   #list-product-page #product-category {
+    border: 2px solid #c39e51;
+    width: 250px;
+    border-radius: 8px;
+    margin-right: 16px;
     padding: 16px 16px;
     height: 100%;
     width: 100%;
@@ -83,7 +87,6 @@
     margin-bottom: 20px; }
   #list-product-page #product-name {
     height: 44px;
-    padding-left: 24px;
     font-size: 24px;
     font-weight: 600;
     color: #c39e51; }
@@ -157,7 +160,6 @@
       box-shadow: 0 0 20px #c39e51;
       margin: -4px; }
     #list-product-page #product-area #pagination {
-      border: 2px solid #c39e51;
       border-radius: 8px; }
       #list-product-page #product-area #pagination ul {
         display: block;
