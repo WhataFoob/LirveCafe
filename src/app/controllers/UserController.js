@@ -49,7 +49,7 @@ const UserController = {
         }
         const user = new User(req.body);
         user.save()
-            .then(() => res.render('/home/home.hbs', {user: user}))
+            .then(() => res.render('home/home.hbs', {user: user}))
             .catch(next);
     },  
 

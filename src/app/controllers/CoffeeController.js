@@ -12,15 +12,46 @@ const CoffeeController = {
 
     // GET /coffee/list
     index(req, res, next) {
-        Coffee.find({})
+        let coffeeQuery = Coffee.find({});
+        
+        if(res.locals.sort.enabled && res.locals.sort.field != 'default') {
+            let asc_or_desc = 1
+            if (res.locals.sort.type == 'desc') {
+                asc_or_desc = -1
+            }
+            
+
+            if (res.locals.sort.field == 'price') {
+               
+                coffeeQuery = coffeeQuery.sort({
+                    price: asc_or_desc
+                })
+            }
+
+            if (res.locals.sort.field == 'createdAt') {
+                coffeeQuery = coffeeQuery.sort({
+                    createdAt: asc_or_desc
+                })
+            }
+
+            if (res.locals.sort.field == 'sold') {
+                coffeeQuery = coffeeQuery.sort({
+                    sold: asc_or_desc
+                })
+            }
+            
+            
+        }
+
+        Promise.resolve(coffeeQuery)
             .then((coffee) => {
-                console.log(res.locals)
+               
                 res.render('drink/list/list.hbs', {
                     coffee: mongooseDocumentsToObject(coffee),
                     user: res.locals.user
                 });
             }).catch(next);
-    },    
+    },
 
     // GET /coffee/:slug
     show(req, res, next) {
@@ -43,7 +74,6 @@ const CoffeeController = {
 
     // GET: /coffee/buy/:id
     showPayForm(req, res, next) {
-        console.log(req.params.id)
         Coffee.findOne({_id: req.params.id})
             .then((coffee) => {
                 coffee = singleMongooseDocumentToObject(coffee)
