@@ -62,10 +62,12 @@ const BookController = {
 
     // GET: /books/:slug
     show(req, res, next) {
-        Book.findOne({ slug: req.params.slug })
-            .then((book) => {
+        Promise.all([ Book.findOne({ slug: req.params.slug }),  Book.find({})])
+            .then(([book, books]) => {
+               
                 res.render('books/item/book_info.hbs', {
                     book: singleMongooseDocumentToObject(book),
+                    books: mongooseDocumentsToObject(books),
                     user: res.locals.user,
                     cart: res.locals.cart
                 })

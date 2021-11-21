@@ -15,6 +15,7 @@ $valueColor: #FF424E;
 
 body {
     background-image: url('/img/background_list.jpg');
+    background-size: cover;
 }
 
 #header {
@@ -468,6 +469,11 @@ a {
 
 .carousel-inner {
     box-shadow: 0 4px 8px 0 rgb(0, 0, 0 / 20%), 0 6px 20px 0 rgb(34, 2, 2);
-    border-radius: 8px;
+    border-radius: 10px!important;
 }
 
+
+.carousel.slide {
+    margin-left: 0;
+    margin-right: 0;
+}

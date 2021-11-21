@@ -47,9 +47,10 @@ const UserController = {
             const name = req.body.firstname + ' ' + req.body.lastname;
             req.body.avatar = '/img/' + name + '-default.jpg'; 
         }
-        const user = new User(req.body);
+        let user = new User(req.body);
+        
         user.save()
-            .then(() => res.render('/home/home.hbs', {user: user}))
+            .then(() => res.render('home/home.hbs', {user:  user = singleMongooseDocumentToObject(user)}))
             .catch(next);
     },  
 

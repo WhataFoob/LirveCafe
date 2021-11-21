@@ -39,7 +39,7 @@ const AuthController = {
 
     login: function(req, res, next) {
         const {key, password} = req.body;
-        
+        console.log(req.body)
         const errors = [];
 
         const checkLogin = function(item) {
@@ -79,7 +79,7 @@ const AuthController = {
                     //         }
                     //     }
                     // })
-
+                    console.log(user)
                     const data =  {
                         user: user,
                         // validToken: otpGenerator.generate(6, { upperCase: false, specialChars: false})

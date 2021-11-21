@@ -4,7 +4,8 @@
   scroll-behavior: smooth; }
 
 body {
-  background-image: url("/img/background_list.jpg"); }
+  background-image: url("/img/background_list.jpg");
+  background-size: cover; }
 
 #header {
   background-color: #c39e51;
