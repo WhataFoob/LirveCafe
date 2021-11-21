@@ -75,7 +75,8 @@
 .banner-text h2 {
   color: #f0940a;
   font-size: 35px;
-  font-weight: 600; }
+  font-weight: 600;
+  text-shadow: 2px 2px 4px #000000; }
 
 .banner-text h2:after {
   content: " ";
@@ -85,8 +86,10 @@
   font-size: 20px;
   display: block;
   margin-top: 20px;
-  border-radius: 3px; }
+  border-radius: 3px;
+  text-shadow: 2px 2px 4px #000000; }
 
 .banner-text p {
   color: #f0940a;
-  font-size: 20px; }
+  font-size: 20px;
+  text-shadow: 2px 2px 4px #000000; }
