@@ -11,6 +11,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import routeObj from './routes/index.js';
 import mongoose_driver from './config/database/index.js';
+import SortMiddleware from './app/middleware/SortMiddleware.js';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -30,6 +31,9 @@ app.use(
         extended: true,
     })
 );
+
+app.use(SortMiddleware);
+
 
 // parsing application/json
 app.use(bodyParser.json());

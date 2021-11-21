@@ -131,7 +131,7 @@
                                 </tr>
                                 <tr>
                                     <td>Số trang</td>
-                                    <td>316</td>
+                                    <td>{{book.no}}</td>
                                 </tr>
                                 <tr>
                                     <td>Nhà xuất bản</td>
@@ -146,534 +146,64 @@
                         Mô Tả Sản Phẩm
                     </div>
                     <div class="detail__description-content">
-                        Trong độ xuân xanh phơi phới ngày ấy, bạn không dám mạo hiểm, không dám nỗ lực để kiếm học bổng,
-                        không chịu tìm tòi những thử thách trong công việc, không phấn đấu hướng đến ước mơ của mình.
-                        Bạn mơ mộng rằng làm việc xong sẽ vào làm ở một công ty nổi tiếng, làm một thời gian sẽ thăng
-                        quan tiến chức. Mơ mộng rằng khởi nghiệp xong sẽ lập tức nhận được tiền đầu tư, cầm được tiền
-                        đầu tư là sẽ niêm yết trên sàn chứng khoán. Mơ mộng rằng muốn gì sẽ có đó, không thiếu tiền cũng
-                        chẳng thiếu tình, an hưởng những năm tháng êm đềm trong cuộc đời mình. Nhưng vì sao bạn lại nghĩ
-                        rằng bạn chẳng cần bỏ ra chút công sức nào, cuộc sống sẽ dâng đến tận miệng những thứ bạn muốn?
-                        Bạn cần phải hiểu rằng: Hấp tấp muốn mau chóng thành công rất dễ khiến chúng ta đi vào mê lộ.
-                        Thanh xuân là khoảng thời gian đẹp đẽ nhất trong đời, cũng là những năm tháng then chốt có thể
-                        quyết định tương lai của một người. Nếu bạn lựa chọn an nhàn trong 10 năm, tương lai sẽ buộc bạn
-                        phải vất vả trong 50 năm để bù đắp lại. Nếu bạn bươn chải vất vả trong 10 năm, thứ mà bạn chắc
-                        chắn có được là 50 năm hạnh phúc. Điều quý giá nhất không phải là tiền mà là tiền bạc. Thế nên,
-                        bạn à, đừng lựa chọn an nhàn khi còn trẻ.
-                        <p>
-                            Giá sản phẩm trên Tiki đã bao gồm thuế theo luật hiện hành. Bên cạnh đó, tuỳ vào loại sản
-                            phẩm, hình thức và địa chỉ giao hàng mà có thể phát sinh thêm chi phí khác như phí vận
-                            chuyển, phụ phí hàng cồng kềnh, thuế nhập khẩu (đối với đơn hàng giao từ nước ngoài có giá
-                            trị trên 1 triệu đồng).....
+                        {{book.body}}
                         </p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="relevant-product">
+        {{!-- home books --}}
+        <div class="home-product" style="margin-left: 18px; margin-right: 18px; border-bottom: 0px, solid, #fff"
+            id="home-books">
 
-            <div class="relevant-header">
-                Sản phẩm tương tự
+            <div class="product-header" id="books-header">
+                <span>Có thể bạn thích</span>
+                <i class="product-icon ti-book"></i>
             </div>
 
-            <div class="row no-gutters">
-                <div id="carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel slide" style="height: 400px" data-ride="carousel" data-interval="5000">
 
+                <div class="carousel-inner row w-100 mx-auto" style="height: 100%; box-shadow: none" role="listbox">
 
-                    <div class="carousel-inner">
-                        {{!-- slide 1 --}}
-                        <div class="carousel-item active">
-                            <div class="d-none d-lg-block">
-                                <div class="slide-box row justify-content-start">
+                    {{#each books}}
 
-                                    {{!-- item 1 --}}
-                                    <div class="item col col-2">
-                                        <a href='#'>
-                                            <div class="panel panel-default ">
-                                                <div class="panel-thumbnail">
-                                                    <img class="img-fluid mx-auto d-block" src="/img/amumu.jpg"
-                                                        alt="slide 1">
-                                                </div>
-                                            </div>
+                    <a href="/books/{{this.slug}}" class="carousel-item col-md-3">
 
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Amumu</h5>
-                                                    <div class="rating">
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- dark star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#c7c7c7"
-                                                            style="color:#c7c7c7" height="16" width="16"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                    </div>
-
-                                                    <div class="sold">
-                                                        Đã bán <span>100</span>
-                                                    </div>
-
-                                                    <div class="item-price flex">
-                                                        <div class="price-value">69.000 ₫</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    {{!-- item 2 --}}
-                                    <div class="item col col-2">
-                                        <a href='#'>
-                                            <div class="panel panel-default ">
-                                                <div class="panel-thumbnail">
-                                                    <img class="img-fluid mx-auto d-block" src="/img/amumu.jpg"
-                                                        alt="slide 1">
-                                                </div>
-                                            </div>
-
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Amumu</h5>
-                                                    <div class="rating">
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- dark star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#c7c7c7"
-                                                            style="color:#c7c7c7" height="16" width="16"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                    </div>
-
-                                                    <div class="sold">
-                                                        Đã bán <span>100</span>
-                                                    </div>
-
-                                                    <div class="item-price flex">
-                                                        <div class="price-value">69.000 ₫</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    {{!-- item 3 --}}
-
-                                    <div class="item col col-2">
-                                        <a href='#'>
-                                            <div class="panel panel-default ">
-                                                <div class="panel-thumbnail">
-                                                    <img class="img-fluid mx-auto d-block" src="/img/amumu.jpg"
-                                                        alt="slide 1">
-                                                </div>
-                                            </div>
-
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Amumu</h5>
-                                                    <div class="rating">
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- dark star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#c7c7c7"
-                                                            style="color:#c7c7c7" height="16" width="16"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                    </div>
-
-                                                    <div class="sold">
-                                                        Đã bán <span>100</span>
-                                                    </div>
-
-                                                    <div class="item-price flex">
-                                                        <div class="price-value">69.000 ₫</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    {{!-- item 4 --}}
-                                    <div class="item col col-2">
-                                        <a href='#'>
-                                            <div class="panel panel-default ">
-                                                <div class="panel-thumbnail">
-                                                    <img class="img-fluid mx-auto d-block" src="/img/amumu.jpg"
-                                                        alt="slide 1">
-                                                </div>
-                                            </div>
-
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Amumu</h5>
-                                                    <div class="rating">
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- dark star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#c7c7c7"
-                                                            style="color:#c7c7c7" height="16" width="16"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                    </div>
-
-                                                    <div class="sold">
-                                                        Đã bán <span>100</span>
-                                                    </div>
-
-                                                    <div class="item-price flex">
-                                                        <div class="price-value">69.000 ₫</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    {{!-- item 5 --}}
-
-                                    <div class="item col col-2">
-                                        <a href='#'>
-                                            <div class="panel panel-default ">
-                                                <div class="panel-thumbnail">
-                                                    <img class="img-fluid mx-auto d-block" src="/img/amumu.jpg"
-                                                        alt="slide 1">
-                                                </div>
-                                            </div>
-
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Amumu</h5>
-                                                    <div class="rating">
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- dark star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#c7c7c7"
-                                                            style="color:#c7c7c7" height="16" width="16"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                    </div>
-
-                                                    <div class="sold">
-                                                        Đã bán <span>100</span>
-                                                    </div>
-
-                                                    <div class="item-price flex">
-                                                        <div class="price-value">69.000 ₫</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    {{!-- item 6 --}}
-                                    <div class="item col col-2">
-                                        <a href='#'>
-                                            <div class="panel panel-default ">
-                                                <div class="panel-thumbnail">
-                                                    <img class="img-fluid mx-auto d-block" src="/img/amumu.jpg"
-                                                        alt="slide 1">
-                                                </div>
-                                            </div>
-
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Amumu</h5>
-                                                    <div class="rating">
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- light star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#fdd836" height="16"
-                                                            width="16" xmlns="http://www.w3.org/2000/svg"
-                                                            style="color: rgb(253, 216, 54);">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                        {{!-- dark star --}}
-                                                        <svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                                                            viewBox="0 0 24 24" size="16" color="#c7c7c7"
-                                                            style="color:#c7c7c7" height="16" width="16"
-                                                            xmlns="http://www.w3.org/2000/svg">
-                                                            <path
-                                                                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z">
-                                                            </path>
-                                                        </svg>
-
-                                                    </div>
-
-                                                    <div class="sold">
-                                                        Đã bán <span>100</span>
-                                                    </div>
-
-                                                    <div class="item-price flex">
-                                                        <div class="price-value">69.000 ₫</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                        <div class="panel panel-default">
+                            <div class="panel-thumbnail">
+                                <div title="image 1" class="thumb">
+                                    <img class="img-fluid mx-auto d-block" src="{{this.image}}" alt="slide 1">
                                 </div>
                             </div>
                         </div>
-                        {{!-- end slide 1 --}}
 
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{this.title}}</h5>
 
+                                <p class="card-text">{{this.body}}</p>
 
+                                <div class="item-price flex">
+                                    <div class="price-value">{{this.price}} VNĐ</div>
+                                </div>
+                            </div>
+                        </div>
 
-                    </div>
-                    <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                    {{/each}}
+
                 </div>
+                {{!-- book prev icon --}}
+                <a class="carousel-control-prev" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                {{!-- book next icon --}}
+                <a class="carousel-control-next text-faded" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
 
         </div>
@@ -727,31 +257,10 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../socket.io/socket.io.js"></script>
-    <script src="../../../../js/datetime_handling.js"></script>
-
+    <script src="/js/datetime_handling.js"></script>
+    <scripts src="/js/book_detail.js"></scripts>
+    
     <script>
-        const $ = document.querySelector.bind(document);
-        const $$ = document.querySelectorAll.bind(document);
-
-        const input = $('#product-detail-page .detail-buy input')
-        const decreBtn = $('#product-detail-page .detail-buy #decre-btn')
-        const increBtn = $('#product-detail-page .detail-buy #incre-btn')
-
-        decreBtn.onclick = () => {
-            var value = parseInt(input.value);
-
-            if (value > 1) {
-                input.value = value - 1;
-            }
-        }
-
-        increBtn.onclick = () => {
-            var value = parseInt(input.value);
-            input.value = value + 1;
-        }
-
-
-
         var socket = io("http://localhost:3000")
 
         function sendReply(replyButton) {
@@ -875,6 +384,8 @@
 
         })
 
+
     </script>
+
 
 </body>
