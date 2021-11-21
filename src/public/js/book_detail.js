@@ -1,6 +1,9 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
+console.log($)
+console.log($$)
+
 const sliderItems = $$('.carousel-item')
 alert(sliderItems.length)
 const prevSliderIcon = $('.carousel-control-prev')
@@ -13,8 +16,6 @@ const nextbookIcon = $('#home-books .carousel-control-next')
 if (bookItems.length > 0)
     bookItems[0].classList.add('active')
 
-if (drinkItems.length > 0)
-    drinkItems[0].classList.add('active')
 
 function prevIconClick(items) {
     var activeIndex;
