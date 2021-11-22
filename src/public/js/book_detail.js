@@ -5,7 +5,6 @@ console.log($)
 console.log($$)
 
 const sliderItems = $$('.carousel-item')
-alert(sliderItems.length)
 const prevSliderIcon = $('.carousel-control-prev')
 const nextSliderIcon = $('.carousel-control-next')
 const bookItems = $$('#home-books .carousel-item')
