@@ -16,7 +16,6 @@ const UserController = {
                 res.render('own/users/list/store.hbs', {
                     users: mongooseDocumentsToObject(users),
                     user: res.locals.user
-                   
                 });
             }).catch(next);
     },
@@ -25,9 +24,8 @@ const UserController = {
     show(req, res, next) {
         User.findOne({ _id: req.params.id })
             .then((user) => {
-                res.render('users/item/user_info.hbs', {
-                    user: singleMongooseDocumentToObject(user),
-                    user: res.locals.user
+                res.render('users/info/item/user_info.hbs', {
+                    user: singleMongooseDocumentToObject(user)
                 })
             })
             .catch(next);
@@ -57,9 +55,8 @@ const UserController = {
     edit(req, res, next) {
         User.findById(req.params.id)
             .then((user) => {
-                res.render('users/item/edit.hbs', {
-                    user: singleMongooseDocumentToObject(user),
-                    user: res.locals.user
+                res.render('users/info/item/edit.hbs', {
+                    user: singleMongooseDocumentToObject(user)
                 })
             })
             .catch(next);
@@ -67,8 +64,11 @@ const UserController = {
 
     // PATCH /users/:id
     update(req, res, next) {
-        User.updateOne({_id: req.params.id}, req.body)
-            .then(() => res.redirect('back'))
+        User.updateOne({_id: req.params.id}, {firstname:req.body.firstname, lastname:req.body.lastname, email: req.body.email,phone:req.body.phone, avatar: req.body.avatar})
+            .then(() => {
+                console.log(req.body)
+                res.redirect('back')
+            })
             .catch(next);
     },
 
