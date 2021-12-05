@@ -18,7 +18,7 @@
             <tr>
                 <th scope="row">{{sum @index 1}}</th>
                 <td>{{this.name}}</td>
-                <td>{{this.description}}</td>
+                <td>{{this.description}} (Đến ngày: {{this.expirationDate}})</td>
                 <td><span class="date">{{this.createdAt}}</span></td>
                 <td>
                     <a href="/promos/{{this.slug}}/edit" class="btn btn-link">Sửa</a>
@@ -61,7 +61,7 @@
 {{!-- Delete hidden form --}}
 <form name="delete-promo-form" method="POST"></form>
 
-<script src="../../../../../public/js/datetime_handling.js"></script>
+<script src="../../../../../support_lib/datetime_handling.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -1,12 +1,13 @@
 import express from 'express';
 
 import controllers from '../app/controllers/CartController.js';
+import authMiddleware from '../app/middleware/AuthMiddleware.js';
 
 const router = express.Router();
 
 router.post('/add-book-to-cart', controllers.addBookToCart)
 
-router.get('/:username', controllers.showCart)
+router.get('/:username', authMiddleware.requireAuth, authMiddleware.getCurrentUserInfo, controllers.showCart)
 
 router.post('/add-by-one', controllers.addByOne)
 router.post('/subtract-by-one', controllers.subtractByOne)

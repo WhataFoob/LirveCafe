@@ -11,6 +11,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import routeObj from './routes/index.js';
 import mongoose_driver from './config/database/index.js';
+import SortMiddleware from './app/middleware/SortMiddleware.js';
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -30,6 +31,9 @@ app.use(
         extended: true,
     })
 );
+
+app.use(SortMiddleware);
+
 
 // parsing application/json
 app.use(bodyParser.json());
@@ -64,13 +68,31 @@ io.on("connection", function(socket) {
         socket.join(data.itemId)
         socket.join(data._id)
         console.log(socket.adapter.rooms)
-        io.sockets.in(data.itemId).emit("server_send_comment_to_coffee_item", data)
+        // If not want to bother users
+        // io.sockets.in(data.itemId).emit("server_send_comment_to_coffee_item", data)
+
+        // whatever
+        io.sockets.emit("server_send_comment_to_coffee_item", data)
     })
+
+    socket.on("client_send_comment_to_book_item", function(data) {
+        socket.join(data.itemId)
+        socket.join(data._id)
+        console.log(socket.adapter.rooms)
+        // If not want to bother users
+        // io.sockets.in(data.itemId).emit("server_send_comment_to_book_item", data)
+
+        // whatever
+        io.sockets.emit("server_send_comment_to_book_item", data)
+
+    })
+
     
     socket.on("client_send_reply_comment", function(data) {
         socket.join(data.parentCommentId)
         console.log(data.parentCommentId)
         console.log(socket.adapter.rooms)
+        console.log("haha")
         io.sockets.in(data.parentCommentId).emit("server_send_reply_comment", data)
     })
 

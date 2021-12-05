@@ -4,11 +4,14 @@ import News from '../models/News.js';
 import User from '../models/User.js';
 import Event from '../models/Event.js';
 import Promo from '../models/Promo.js';
+import Orders from '../models/Orders.js';
 
-import { mongooseDocumentsToObject } from '../../support_lib/mongoose.js';
+import {
+    mongooseDocumentsToObject
+} from '../../support_lib/mongoose.js';
 
 const OwnController = {
-    
+
     // 1. coffee warehouse
 
     // GET own/stored/coffee
@@ -109,7 +112,7 @@ const OwnController = {
             }).catch(next);
     },
 
-     // 5. Events warehouse
+    // 5. Events warehouse
 
     // GET own/stored/events
     storedEvents(req, res, next) {
@@ -136,8 +139,8 @@ const OwnController = {
 
     // 6.Promotions warehouse
 
-     // GET own/stored/promos
-     storedPromos(req, res, next) {
+    // GET own/stored/promos
+    storedPromos(req, res, next) {
         Promise.all([Promo.find({}), Promo.countDocumentsDeleted()])
             .then(([promos, deletedCount]) => {
                 res.render('own/promos/list/store.hbs', {
@@ -154,6 +157,33 @@ const OwnController = {
             .then((promos) => {
                 res.render('own/promos/list/trash.hbs', {
                     promos: mongooseDocumentsToObject(promos),
+                    user: res.locals.user
+                })
+            }).catch(next);
+    },
+
+    // 7. Orders warehouse
+
+    // GET own/stored/orders
+    storedOrders(req, res, next) {
+        Promise.all([Orders.find({}), Orders.countDocumentsDeleted()])
+            .then(([orders, deletedCount]) => {
+                res.render('own/orders/list/store.hbs', {
+                    deletedCount,
+                    orders: mongooseDocumentsToObject(orders),
+                    user: res.locals.user
+                })
+            }).catch(next);
+    },
+
+    // GET own/trash/orders
+    trashOrders(req, res, next) {
+        Orders.findDeleted({
+                username: res.locals.user.username
+            })
+            .then((orders) => {
+                res.render('orders/list/trash.hbs', {
+                    orders: mongooseDocumentsToObject(orders),
                     user: res.locals.user
                 })
             }).catch(next);

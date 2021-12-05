@@ -1,8 +1,8 @@
 import express from 'express';
 const router = express.Router();
 
-import testController from '../app/controllers/HomeController.js';
+import homeController from '../app/controllers/HomeController.js';
 
-router.get('/', testController.index);
+router.get('/', homeController.index);
 
 export default router;

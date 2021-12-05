@@ -61,7 +61,7 @@
 {{!-- Delete hidden form --}}
 <form name="delete-book-form" method="POST"></form>
 
-<script src="../../../../../public/js/datetime_handling.js"></script>
+<script src="../../../../../support_lib/datetime_handling.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -71,6 +71,7 @@
         // When dialog confirm clicked
         $('#delete-book-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
+            console.log(button)
             bookId = button.data('id');
         });
         

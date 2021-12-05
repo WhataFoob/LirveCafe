@@ -7,19 +7,25 @@ import ownRoute from './own.js';
 import authRoute from './auth.js';
 import homeRoute from './test.js';
 import emailRoute from './email.js';
-import checkUser from '../app/middleware/AuthMiddleware.js';
+import promoRoute from './promo.js';
+import cartRoute from './cart.js';
+import authMiddleware from '../app/middleware/AuthMiddleware.js';
+import orderRoute from './order.js';
 
 const routeObj = {
     route: function (app) {
-        app.use('/books', checkUser.getCurrentUser, bookRoute);
-        app.use('/coffee', checkUser.getCurrentUser, coffeeRoute);
-        app.use('/events', checkUser.getCurrentUser, eventRoute);
-        app.use('/news', checkUser.getCurrentUser, newsRoute);
-        app.use('/users', checkUser.getCurrentUser, userRoute);
-        app.use('/own', checkUser.getCurrentUser, ownRoute);
-        app.use('/auth', checkUser.getCurrentUser, authRoute);
-        app.use('/email', checkUser.getCurrentUser, emailRoute);
-        app.use('/', checkUser.getCurrentUser, homeRoute);
+        app.use('/books', authMiddleware.getCurrentUserInfo, bookRoute);
+        app.use('/coffee', authMiddleware.getCurrentUserInfo, coffeeRoute);
+        app.use('/events', authMiddleware.getCurrentUserInfo, eventRoute);
+        app.use('/news', authMiddleware.getCurrentUserInfo, newsRoute);
+        app.use('/users', authMiddleware.getCurrentUserInfo, userRoute);
+        app.use('/own', authMiddleware.getCurrentUserInfo, ownRoute);
+        app.use('/auth', authRoute);
+        app.use('/email', authMiddleware.getCurrentUserInfo, emailRoute);
+        app.use('/promos', authMiddleware.getCurrentUserInfo, promoRoute);
+        app.use('/carts', cartRoute);
+        app.use('/', authMiddleware.getCurrentUserInfo, homeRoute);
+        app.use('/orders', authMiddleware.getCurrentUserInfo, orderRoute);
     },
 }
 export default routeObj;

@@ -23,7 +23,7 @@ const Orders = new Schema(
 mongoose.plugin(slug)
 Orders.plugin(mongooseDelete, {
     deleteAt: true,
-    overrideMethos: 'all'
+    overrideMethods: 'all'
 });
 
-export default mongoose.model('Ordesr', Orders);
+export default mongoose.model('Orders', Orders);

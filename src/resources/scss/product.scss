@@ -1,15 +1,27 @@
 
-$mainColor: #8B4513;
-$valueColor: #FF424E;
-
-
+$mainColor: #c39e51;
+$valueColor: #FF424E; 
 
 #list-product-page {
 
-    background-color: #fff;
+    background-color: #a98654;
+    margin-bottom: 20px;
+    margin-top: 16px;
+    box-shadow: 0 4px 8px 0 rgb(0, 0, 0 / 20%), 0 6px 20px 0 rgb(34, 2, 2);
+    border-radius: 8px;
+    .breadcrumb {
+        background-color: #a98654;     
+    }
+    .carousel-control-next, .carousel-control-prev {
+        top: 50%;
+    }
 
+    .product-list-box {
+        display: flex;
+        justify-content: space-around;
+    }
+  
     
-
     * {
         padding: 0 0;
         margin: 0 0;
@@ -24,17 +36,28 @@ $valueColor: #FF424E;
     li {
         list-style-type: none;
     }
+   .product-category-box {
+       width: 230px;
+        margin-right: 12px;
+   }
 
     #product-category {
         
         padding: 16px 16px;
-
+        height: 100%;
+        width: 100%;
         font-family: "Roboto","Helvetica","Arial","sans-serif";
+        position: relative;
+        overflow: auto;
+        margin-left: 16px;
+        
+    
 
         h4 {
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 16px;
+            color: #203f5a;
         }
 
         li {
@@ -67,6 +90,15 @@ $valueColor: #FF424E;
                 border-radius: 12px;
                 background-color: #ccc;
             }
+
+            li:hover {
+                background-color: #fff;
+                
+            }
+
+            span {
+                padding-left: 8px;
+            }
         }
 
         .value-category {
@@ -81,6 +113,10 @@ $valueColor: #FF424E;
             div:hover span{
                 color: $mainColor;
             }
+
+            div:hover {
+                background-color: #fff;    
+            }
         }
     }   
     
@@ -88,28 +124,36 @@ $valueColor: #FF424E;
 
         nav ol {
             height: 40px;
-            background-color: #ccc;
+           
             line-height: 40px;
-            padding-left: 16px; 
-            border-radius: 0;
+            padding-left: 20px; 
         }
         a:hover {
             color: $mainColor;
         }
     }
 
+    .d-block {
+        border-radius: 8px;
+        height: 370px;
+        overflow: hidden;
+    }
+    
 
     #product-name {
         height: 44px;
         padding-left: 24px;
         font-size: 24px;
         font-weight: 600;
+        color: $mainColor;
     }
 
     
     #product-category{
-        border: 1px solid $mainColor;
-        width: 250px;
+        border: 2px solid $mainColor;
+        width: 230px;
+        border-radius: 8px;
+        margin-right: 12px;
     }
 
     #product-area{
@@ -117,18 +161,25 @@ $valueColor: #FF424E;
         
 
         .product-slider{
-            height: 300px;
-
+            height: 350px;
+            margin-right: 16px;
+            margin-left: 16px;
             img {
-                height:300px;
+                object-fit: cover;
+                
             }
         }
 
         .product-filter {
             
-            border: 1px solid $mainColor;
+            
             padding-top: 16px;
             margin-bottom: 8px;
+            margin-top: 32px;
+
+            a {
+                color: #000;
+            }
 
             ul {
                 display: flex;
@@ -164,16 +215,19 @@ $valueColor: #FF424E;
             li:hover .filter-pane {
                 display: block;
             }
+
+
         }
 
         #product-list{
+           
             .product-item {
                 
                 padding: 12px 16px;
-                background-color: #fff;
                 
                 .card {
                     border: none;
+                    box-shadow: 0 0 8px $mainColor;
 
                     .card-body {
                         padding: 4px 12px;
@@ -200,7 +254,8 @@ $valueColor: #FF424E;
                 }
 
                 .card-img-top{
-                    height: 200px;
+                    height: 230px;
+                    object-fit: cover;
                 }
 
                 .card-body {
@@ -209,9 +264,39 @@ $valueColor: #FF424E;
             }
 
             .product-item:hover .card {
-                box-shadow: 0 0 12px $mainColor;
+                box-shadow: 0 0 20px $mainColor;
+                margin: -4px;
             }
         }
 
+        #pagination {
+
+            border: 2px solid $mainColor;
+            border-radius: 8px;
+
+            ul {
+                display: block;
+                padding: 8px 0;
+            }
+            li {
+                display: inline-block;
+                font-size: 20px;
+                margin: 0 8px;
+                padding: 0 8px;
+            }
+
+            .active {
+                background-color: $mainColor;
+                border-radius: 10%;
+                color: #fff;
+            }
+
+            .btn {
+                display: none;
+            }
+            .btn.act {
+                display: inline-block;
+            }
+        }
     }
 }
